@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Button } from '../Components/Button/button.component';
 import { Image } from '../Components/Image/image.component';

@@ -1,9 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Button } from '../Button/button.component';
 
 @Component({
-  selector: 'app-banner',          // Balise HTML à utiliser : <app-banner>
-  standalone: true,                      // Composant autonome
-  templateUrl: './banner.html',  // Template HTML
-  styleUrls: ['./banner.css']    // Styles CSS
+  selector: 'app-banner',
+  standalone: true,
+  imports: [Button],
+  templateUrl: './banner.html',
+  styleUrls: ['./banner.css']
 })
-export class BannerComponent {}      // Classe vide pour l'instant
+export class BannerComponent {
+  @Input({ required: true }) title!: string;
+  @Input({ required: true }) text!: string;
+  @Input({ required: true }) buttonText!: string;
+  @Input({ required: true }) image!: string;
+  @Input() customClass?: string;
+}
