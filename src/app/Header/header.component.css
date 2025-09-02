@@ -1,0 +1,42 @@
+/* Header main div */
+.my-header {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100%;
+    background-color: lightgrey;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+}
+
+/* Div for the buttons (pages/login/register) */
+.button-container {
+    align-items: center;
+    justify-content: flex-end;
+    padding: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    background-color: transparent;
+    margin-left: auto;
+}
+
+/* Div for the selected page */
+.selectedPage {
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    display: flex;
+    background-color: transparent;
+    gap: 15px;
+}
+
+/* Div for the login/register buttons */
+.LoginRegister {
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    display: flex;
+    gap: 15px;
+}
