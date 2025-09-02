@@ -1,0 +1,28 @@
+/* Project Card Styles */
+.container-project {
+    background-color: green;
+    max-width: 25vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.company-name {
+    background-color: red;
+}
+
+.description {
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 5px;
+    background-color: blue;
+    text-align: center;
+    max-width: 400px;
+}
