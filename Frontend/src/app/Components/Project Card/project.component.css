@@ -1,7 +1,6 @@
 /* Project Card Styles */
 .container-project {
     background-color: green;
-    max-width: 25vw;
     display: flex;
     flex-direction: row;
     align-items: center;

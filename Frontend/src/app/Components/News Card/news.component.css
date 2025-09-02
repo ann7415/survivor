@@ -1,0 +1,7 @@
+/* News Card Styles */
+.news-card {
+    background-color: violet;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
