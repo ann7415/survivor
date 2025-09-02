@@ -1,0 +1,17 @@
+bin/
+obj/
+*.idea
+Properties/
+*.db
+*.user
+*.suo
+*.pdb
+*.dll
+*.exe
+*.cache
+*.vscode
+*.log
+staticwebassets.*.json
+launchSettings.json
+appsettings.*.local.json
+.env
