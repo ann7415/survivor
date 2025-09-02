@@ -2,6 +2,7 @@ bin/
 obj/
 *.idea
 Properties/
+br/
 *.db
 *.user
 *.suo
