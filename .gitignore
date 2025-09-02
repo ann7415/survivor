@@ -107,3 +107,4 @@ testem.log
 .DS_Store
 Thumbs.db
 node_modules
+.angular
