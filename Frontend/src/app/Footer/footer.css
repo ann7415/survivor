@@ -1,0 +1,68 @@
+.footer {
+  background: #1b263b;
+  color: #fff;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column; /* Permet d’empiler footer1 et footer-separator */
+}
+
+/* Partie principale du footer */
+.footer1 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+/* Chaque section (Liens, Contact, Réseaux sociaux) */
+.footer-section h4 {
+  margin-bottom: 0.5rem;
+  color: #fca311;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  color: #fca311;
+}
+
+.socials a {
+  display: block;
+  margin: 0.3rem 0;
+}
+
+/* Séparateur / ligne du bas */
+.footer-separator {
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255, 0, 0, 1.0);
+  padding-top: 1rem;
+}
+
+/* Bandeau du bas */
+.footer-bottom {
+  text-align: center;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Responsive : empile les sections sur mobile */
+@media (max-width: 768px) {
+  .footer1 {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .socials a {
+    display: inline-block;
+    margin: 0 0.5rem;
+  }
+}
