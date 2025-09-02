@@ -4,6 +4,9 @@ obj/
 Properties/
 br/
 *.db
+*.db-shm
+*.db-wal
+*Api.http
 *.user
 *.suo
 *.pdb
