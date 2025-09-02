@@ -9,7 +9,11 @@ import { Image } from '../Components/Image/image.component';
   imports: [Button],
   styleUrls: ['./header.component.css'],
 })
-export class ButtonsSelectPageComponent {}
+export class ButtonsSelectPageComponent {
+  navigateTo(page: string) {
+    console.log(`Navigating to ${page}`);
+  }
+}
 
 // Component for the login and registration buttons
 @Component({
@@ -18,7 +22,15 @@ export class ButtonsSelectPageComponent {}
   imports: [Button],
   styleUrls: ['./header.component.css'],
 })
-export class RegisterLoginComponent {}
+export class RegisterLoginComponent {
+  onLogin() {
+    console.log("Login button clicked");
+  }
+
+  onRegister() {
+    console.log("Register button clicked");
+  }
+}
 
 // Component for the header
 @Component({
