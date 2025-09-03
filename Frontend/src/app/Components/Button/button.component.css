@@ -1,26 +1,148 @@
-/* HEADER */
-    /* Button to select a page in the HEADER */
-    .selectedPageButton {
-        background-color: white;
-        border:none;
-        padding: 3px;
-        font-size: 16px;
-        border-radius: 5px;
-    }
+/* ================================
+   Common Button Structure
+   ================================ */
+.button {
+    box-sizing: border-box;
+    font-family: var(--font-text);
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 0.5em 1.2em;
+    min-width: 90px;
+    max-width: 100%;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    line-height: 1.2;
+    outline: none;
+    border: none;
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    transition:
+        background 0.2s,
+        color 0.2s,
+        border-color 0.2s,
+        box-shadow 0.2s;
+    word-break: break-word;
+}
 
-    /* Styling for login and register buttons */
-    .login-button, .register-button {
-        padding: 5px;
+/* ================================
+   Responsive Button Sizing
+   ================================ */
+@media (max-width: 900px) {
+    .button {
+        font-size: 0.95rem;
+        padding: 0.45em 1em;
+        min-width: 70px;
     }
+}
 
-    /* Styling for login button */
-    .login-button {
-        background-color: violet;
-        border: none;
+@media (max-width: 600px) {
+    .button {
+        font-size: 0.88rem;
+        padding: 0.35em 0.7em;
+        min-width: 55px;
     }
+}
 
-    /* Styling for register button */
-    .register-button {
-        background-color: lightgreen;
-        border: none;
+@media (max-width: 350px) {
+    .button {
+        font-size: 0.8rem;
+        padding: 0.25em 0.5em;
+        min-width: 40px;
     }
+}
+
+/* ================================
+   Button Container Responsiveness
+   ================================ */
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 15px;
+    margin-left: auto;
+}
+
+@media (max-width: 900px) {
+    .button-container {
+        gap: 8px;
+        padding: 10px;
+    }
+}
+@media (max-width: 600px) {
+    .button-container {
+        gap: 5px;
+        padding: 6px;
+        justify-content: center;
+    }
+}
+
+/* ================================
+   Button Variants
+   ================================ */
+.button--login {
+    background-color: var(--color-hover);
+    border: 2px solid var(--color-focus);
+    color: var(--color-primary);
+}
+
+.button--register {
+    background-color: var(--color-secondary);
+    border: 2px solid var(--color-secondary);
+    color: var(--color-text-inverse);
+}
+
+.button--page {
+    background-color: var(--color-surface);
+    color: var(--color-primary);
+}
+
+/* ================================
+   Button Hover States
+   ================================ */
+.button:hover {
+    background-color: var(--color-hover);
+    border-color: var(--color-focus);
+}
+
+.button--login:hover {
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
+    border-color: var(--color-primary);
+}
+
+.button--register:hover {
+    background-color: var(--color-info);
+    color: var(--color-text-inverse);
+    border-color: var(--color-info);
+}
+
+/* ================================
+   Button Focus & Active States
+   ================================ */
+.button:focus,
+.button:active {
+    background-color: var(--color-focus);
+    color: var(--color-text-inverse);
+    border-color: var(--color-focus);
+    box-shadow: 0 0 0 2px var(--color-focus);
+}
+
+.button--login:focus,
+.button--login:active {
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary);
+}
+
+.button--register:focus,
+.button--register:active {
+    background-color: var(--color-info);
+    color: var(--color-text-inverse);
+    border-color: var(--color-info);
+    box-shadow: 0 0 0 2px var(--color-info);
+}
