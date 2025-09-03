@@ -21,7 +21,7 @@
   --color-primary: #F18585;
   --color-secondary: #B8A7D9;
   --color-accent: #A8E6C4;
-  
+
   --color-text-primary: #2B2B2B;
   --color-text-secondary: #666666;
   --color-text-inverse: #ECECEC;
@@ -34,7 +34,7 @@
   --color-warning: #E8D525;
   --color-error: #B63654;
   --color-info: #8E5BA6;
-  
+
   --color-border: #C94C6A;
   --color-hover: #F9C8C8;
   --color-disabled: #AAAAAA;
@@ -98,6 +98,7 @@ body {
 }
 
 html, body {
+  overscroll-behavior: none;
   margin: 0;
   padding: 0;
 }
