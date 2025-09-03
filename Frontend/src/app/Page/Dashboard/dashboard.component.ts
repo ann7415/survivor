@@ -10,9 +10,10 @@ import { HeroComponent } from '../../Components/Hero/hero.component';
   selector: 'app-line-demo',
   standalone: true,
   imports: [BaseChartDirective, HeaderComponent, FooterComponent, HeroComponent],
-  templateUrl: './dashboard.component.html'
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.css'],
 })
-export class LineDemoComponent {
+export class DashboardComponent {
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
   data = signal<ChartConfiguration<'line'>['data']>({
@@ -25,7 +26,7 @@ export class LineDemoComponent {
   options: ChartOptions<'line'> = {
     responsive: true,
     maintainAspectRatio: false,
-    plugins: { legend: { position: 'top' }, tooltip: { intersect: false, mode: 'index' } },
+    plugins: { legend: { position: 'bottom' }, tooltip: { intersect: false, mode: 'index' } },
     scales: { y: { beginAtZero: true } }
   };
 
