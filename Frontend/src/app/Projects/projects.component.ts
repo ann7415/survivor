@@ -1,3 +1,9 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** projects.component.ts
+*/
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../Header/header.component';
 

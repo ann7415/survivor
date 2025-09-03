@@ -1,3 +1,9 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** footer.ts
+*/
 import { Component } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { Button } from '../Components/Button/button.component';
