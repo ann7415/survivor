@@ -9,9 +9,14 @@
     <app-header></app-header>
     <app-hero [text]="'Home'" [customClass]="'hero'"></app-hero>
     <div class="incubator-presentation">
-        <h2 class="incubator-title">Incubator title</h2>
+        <h2 class="incubator-title">JEB Incubator</h2>
         <p class="incubator-description">
-            This is the presentation of the incubator
+            JEB is an innovation incubator dedicated to supporting ambitious, high-potential startups.
+            We support entrepreneurs from their earliest stages and empower them to transform their ideas into concrete, viable, and impactful projects.
+
+            Our mission is to uncover talent, connect project leaders with the right partners (investors, mentors, institutions), and foster a dynamic, supportive, and forward-looking ecosystem.
+
+            Thanks to our expertise, network, and tools, we enable each incubated startup to gain visibility, accelerate its growth, and benefit from tailored support.
         </p>
         <p class="incubator-description">
         </p>
@@ -19,7 +24,12 @@
 
     <div class="banner-container" *ngIf="startups$ | async as startups">
         <ng-container *ngFor="let s of startups">
-            <app-banner [title]="s.name" [text]="s.description" buttonText="View more" image="s."></app-banner>
+            <app-banner
+                [title]="s.name"
+                [text]="s.description"
+                buttonText="View more"
+                [image]="s.name">
+            </app-banner>
         </ng-container>
     </div>
 
