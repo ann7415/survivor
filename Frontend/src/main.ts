@@ -15,6 +15,10 @@ import { HomePage } from './app/Page/Home/home.component';
 import { ProjectsPage } from './app/Page/Projects/projects.component';
 import { NewsPage } from './app/Page/News/news.component';
 import { LoginPage } from './app/Page/Login/login.component';
+import { LineDemoComponent } from './app/Page/Dashboard/dashboard.component';
+// src/app/chartjs.register.ts
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -22,6 +26,7 @@ const routes: Routes = [
     { path: 'projects', component: ProjectsPage },
     { path: 'news', component: NewsPage },
     { path: 'login', component: LoginPage },
+    { path: 'dashboard', component: LineDemoComponent },
     { path: '**', component: UnknownPage },
 ];
 
