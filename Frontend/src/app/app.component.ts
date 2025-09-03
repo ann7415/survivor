@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** app.component
+*/
+
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 

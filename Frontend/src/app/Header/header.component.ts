@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** header.component
+*/
+
 import { Component } from '@angular/core';
 import { Button } from '../Components/Button/button.component';
 import { Image } from '../Components/Image/image.component';

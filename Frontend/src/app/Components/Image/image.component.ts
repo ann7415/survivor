@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** image.component
+*/
+
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
