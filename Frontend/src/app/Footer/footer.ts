@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { Button } from '../Components/Button/button.component';
+import { Image } from '../Components/Image/image.component';
 
 @Component({
   selector: 'app-footer',
@@ -9,7 +10,6 @@ import { Button } from '../Components/Button/button.component';
   templateUrl: './footer.html',
   styleUrls: ['./footer.css'],
 })
-
 export class FooterComponent {
   constructor(private router: Router) {}
 

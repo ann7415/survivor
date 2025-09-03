@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Header } from '../Header/header.component';
+import { HeaderComponent } from '../Header/header.component';
 
 
 @Component({
@@ -10,6 +10,6 @@ import { Header } from '../Header/header.component';
         <app-header></app-header>
         <p>Projects Page</p>
         `,
-    imports: [Header,],
+    imports: [HeaderComponent],
 })
 export class ProjectsPage {}
