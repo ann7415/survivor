@@ -212,9 +212,9 @@ namespace JebIncubator.Api.Controllers
                 var startupResult = await SyncStartups();
                 var newsResult = await SyncNews();
                 var eventsResult = await SyncEvents();
-                var startupData = ((ObjectResult)startupResult).Value as dynamic;
-                var newsData = ((ObjectResult)newsResult).Value as dynamic;
-                var eventsData = ((ObjectResult)eventsResult).Value as dynamic;
+                var startupData = (startupResult is ObjectResult srObj) ? srObj.Value : null;
+                var newsData = (newsResult is ObjectResult nrObj) ? nrObj.Value : null;
+                var eventsData = (eventsResult is ObjectResult erObj) ? erObj.Value : null;
 
                 return Ok(new 
                 { 
