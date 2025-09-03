@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Button } from '../Components/Button/button.component';
 import { Image } from '../Components/Image/image.component';
+import { Router } from '@angular/router';
 
 // Component for the selection of pages
 @Component ({
@@ -9,7 +10,14 @@ import { Image } from '../Components/Image/image.component';
   imports: [Button],
   styleUrls: ['./header.component.css'],
 })
-export class ButtonsSelectPageComponent {}
+export class ButtonsSelectPageComponent {
+  constructor(private router: Router) {}
+
+  navigateTo(page: string) {
+    console.log(`Navigating to ${page}`);
+    window.location.href = '/' + page;
+  }
+}
 
 // Component for the login and registration buttons
 @Component({
@@ -18,7 +26,15 @@ export class ButtonsSelectPageComponent {}
   imports: [Button],
   styleUrls: ['./header.component.css'],
 })
-export class RegisterLoginComponent {}
+export class RegisterLoginComponent {
+  onLogin() {
+    console.log("Login button clicked");
+  }
+
+  onRegister() {
+    console.log("Register button clicked");
+  }
+}
 
 // Component for the header
 @Component({
@@ -27,4 +43,4 @@ export class RegisterLoginComponent {}
   styleUrls: ['./header.component.css'],
   imports: [ButtonsSelectPageComponent, RegisterLoginComponent, Image],
 })
-export class Header {}
+export class HeaderComponent {}

@@ -1,15 +1,12 @@
 import { Component } from '@angular/core';
-import { Header } from './Header/header.component';
-import { FooterComponent } from './Footer/footer';
-import { BannerComponent } from './Components/Card/banner';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
-    selector: 'app-root',
-    standalone: true,
-    styleUrls: ['./app.component.css'],
-    template: `<app-header></app-header>
-               <app-banner title="Prout" text="Bienvenue à notre incubateur" image="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" buttonText="Nous contacter"></app-banner>
-               <app-footer></app-footer>`,
-    imports: [Header, BannerComponent, FooterComponent],
+  selector: 'app-root',
+  standalone: true,
+  template: `
+    <router-outlet></router-outlet>
+  `,
+  imports: [RouterOutlet],
 })
-export class App {}
+export class AppComponent {}
