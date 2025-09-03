@@ -115,9 +115,10 @@
 }
 
 .button--register:hover {
-    background-color: var(--color-info);
+    background-color: var(--color-secondary);
+    border: 2px solid var(--color-secondary);
     color: var(--color-text-inverse);
-    border-color: var(--color-info);
+    filter: brightness(1.1);
 }
 
 /* ================================
@@ -141,8 +142,9 @@
 
 .button--register:focus,
 .button--register:active {
-    background-color: var(--color-info);
+    background-color: var(--color-secondary);
+    border: 2px solid var(--color-secondary);
     color: var(--color-text-inverse);
-    border-color: var(--color-info);
-    box-shadow: 0 0 0 2px var(--color-info);
+    filter: brightness(0.85);
+    box-shadow: 0 0 0 2px var(--color-secondary);
 }
