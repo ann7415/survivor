@@ -29,7 +29,7 @@ namespace JebIncubator.Api.Services
 
             _httpClient.BaseAddress = new Uri(baseUrl);
             _httpClient.DefaultRequestHeaders.Add("X-Group-Authorization", token);
-            _logger.LogInformation($"JEB API configured: {baseUrl} with token: {token[..8]}...");
+            _logger.LogInformation($"JEB API configured: {baseUrl} with token: [configured]");
         }
 
         public async Task<List<Startup>> GetStartupsFromApiAsync()
