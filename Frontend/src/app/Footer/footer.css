@@ -4,17 +4,15 @@
   padding: 2rem;
   font-family: Arial, sans-serif;
   display: flex;
-  flex-direction: column; /* Permet d’empiler footer1 et footer-separator */
+  flex-direction: column;
 }
 
-/* Partie principale du footer */
 .footer1 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 2rem;
 }
 
-/* Chaque section (Liens, Contact, Réseaux sociaux) */
 .footer-section h4 {
   margin-bottom: 0.5rem;
   color: #fca311;
@@ -35,26 +33,30 @@
   color: #fca311;
 }
 
+.logo-footer img {
+  width: 100px;
+  height: auto;
+  display: block;
+}
+
+
 .socials a {
   display: block;
   margin: 0.3rem 0;
 }
 
-/* Séparateur / ligne du bas */
 .footer-separator {
   margin-top: 2rem;
   border-top: 1px solid rgba(255, 0, 0, 1.0);
   padding-top: 1rem;
 }
 
-/* Bandeau du bas */
 .footer-bottom {
   text-align: center;
   font-size: 0.9rem;
   opacity: 0.8;
 }
 
-/* Responsive : empile les sections sur mobile */
 @media (max-width: 768px) {
   .footer1 {
     grid-template-columns: 1fr;
