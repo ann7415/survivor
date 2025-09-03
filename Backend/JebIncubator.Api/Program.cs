@@ -13,17 +13,17 @@ using JebIncubator.Api.Data;
 using JebIncubator.Api.Services;
 using DotNetEnv;
 
-// Charger les variables d'environnement depuis le fichier .env
+// Load environment variables from .env file
 Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configuration Database depuis les variables d'environnement
+// Configuration Database from environment variable
 var connectionString = Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING") ?? "Data Source=JebIncubatorDb.db";
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(connectionString));
 
-// Configuration JWT depuis les variables d'environnement
+// Configuration JWT from environment variable
 var jwtSecretKey = Environment.GetEnvironmentVariable("JWT_SECRET_KEY") ?? throw new InvalidOperationException("JWT_SECRET_KEY must be set in environment variables");
 var jwtIssuer = Environment.GetEnvironmentVariable("JWT_ISSUER") ?? throw new InvalidOperationException("JWT_ISSUER must be set in environment variables");
 var jwtAudience = Environment.GetEnvironmentVariable("JWT_AUDIENCE") ?? throw new InvalidOperationException("JWT_AUDIENCE must be set in environment variables");
@@ -68,7 +68,7 @@ builder.Services.AddCors(options =>
         });
 });
 
-// Swagger pour dev
+// Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -86,7 +86,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
-// Initialiser la DB avec des données de TEST
+// Initialize Database and Seed Data
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
