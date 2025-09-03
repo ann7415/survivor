@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** banner
+*/
+
 import { Component, Input } from '@angular/core';
 import { Button } from '../Button/button.component';
 

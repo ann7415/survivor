@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** main
+*/
+
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
 import { HomePage } from './app/Page/Home/home.component';

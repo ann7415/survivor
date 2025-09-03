@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { Button } from '../Components/Button/button.component';
-import { Image } from '../Components/Image/image.component';
 
 @Component({
   selector: 'app-footer',

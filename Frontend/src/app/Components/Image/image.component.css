@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** image.component
+*/
+
 img {
     max-height: var(--img-max-h, 100%);
     border-radius: 8px;
