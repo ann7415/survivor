@@ -6,7 +6,7 @@ import { Image } from '../Components/Image/image.component';
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [RouterModule, Button, Image],
+  imports: [RouterModule, Button],
   templateUrl: './footer.html',
   styleUrls: ['./footer.css'],
 })
