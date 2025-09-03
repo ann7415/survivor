@@ -71,11 +71,6 @@ body {
   background: var(--color-bg);
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-title);
-  color: var(--color-text-primary);
-}
-
 .btn-primary {
   background: var(--color-primary);
   color: var(--color-bg);
