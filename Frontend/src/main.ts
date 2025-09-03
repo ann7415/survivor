@@ -19,7 +19,7 @@ const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomePage },
     { path: 'projects', component: ProjectsPage },
-    { path: 'search', component: SearchPage },
+    { path: 'advanced-search', component: SearchPage },
     { path: 'news', component: NewsPage },  
     { path: '**', component: UnknownPage },
 ];

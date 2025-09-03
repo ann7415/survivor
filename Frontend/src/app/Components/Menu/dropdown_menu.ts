@@ -1,5 +1,5 @@
 
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostListener, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -12,16 +12,60 @@ import { CommonModule } from '@angular/common';
 export class DropdownMenuComponent {
   isOpen = false;
   @Input() options: string[] = ['Web', 'Ecologie', 'Entreprise'];
-  @Output() selectionChange = new EventEmitter<string>();
+  @Input() multipleSelection: boolean = false;
+  @Output() selectionChange = new EventEmitter<string | string[]>();
   selected: string | null = null;
+  selectedMultiple: string[] = [];
+
+  constructor(private elementRef: ElementRef) {}
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: Event) {
+    if (!this.elementRef.nativeElement.contains(event.target)) {
+      this.isOpen = false;
+    }
+  }
 
   toggleMenu() {
     this.isOpen = !this.isOpen;
   }
 
   selectOption(option: string) {
-    this.selected = option;
-    this.isOpen = false;
-    this.selectionChange.emit(option);
+    if (this.multipleSelection) {
+      const index = this.selectedMultiple.indexOf(option);
+      if (index > -1) {
+        // Retirer l'option si elle est déjà sélectionnée
+        this.selectedMultiple.splice(index, 1);
+      } else {
+        // Ajouter l'option si elle n'est pas sélectionnée
+        this.selectedMultiple.push(option);
+      }
+      this.selectionChange.emit([...this.selectedMultiple]);
+      // Le menu reste ouvert en mode sélection multiple
+    } else {
+      this.selected = option;
+      this.isOpen = false;
+      this.selectionChange.emit(option);
+    }
+  }
+
+  isSelected(option: string): boolean {
+    if (this.multipleSelection) {
+      return this.selectedMultiple.includes(option);
+    }
+    return this.selected === option;
+  }
+
+  getDisplayText(): string {
+    if (this.multipleSelection) {
+      if (this.selectedMultiple.length === 0) {
+        return 'Sélectionner des options';
+      } else if (this.selectedMultiple.length === 1) {
+        return this.selectedMultiple[0];
+      } else {
+        return `${this.selectedMultiple.length} sélectionnés`;
+      }
+    }
+    return this.selected || 'Sélectionner une option';
   }
 }
