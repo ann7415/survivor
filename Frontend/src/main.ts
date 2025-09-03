@@ -14,12 +14,14 @@ import { UnknownPage } from './app/Page/Unknown/unknown.component';
 import { HomePage } from './app/Page/Home/home.component';
 import { ProjectsPage } from './app/Page/Projects/projects.component';
 import { NewsPage } from './app/Page/News/news.component';
+import { LoginPage } from './app/Page/Login/login.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomePage },
     { path: 'projects', component: ProjectsPage },
     { path: 'news', component: NewsPage },
+    { path: 'login', component: LoginPage },
     { path: '**', component: UnknownPage },
 ];
 
