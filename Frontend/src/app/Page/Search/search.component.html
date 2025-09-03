@@ -1,0 +1,11 @@
+<div class="search-page">
+    <app-header></app-header>
+    <div class="search-zone">
+        <app-dropdown-menu [options]="['Web', 'Ecologie', 'Entreprise', 'Pâte', 'Fibre', 'KiriDeBondy']" (selectionChange)="onFilter1Change($event)" style="margin-top: 15px;"></app-dropdown-menu>
+        <app-searchbar (searchChange)="onSearchChange($event)" style="margin-top: 15px;"></app-searchbar>
+        <app-dropdown-menu [options]="['Web', 'Ecologie', 'Entreprise', 'Pâte', 'Fibre', 'KiriDeBondy']" (selectionChange)="onFilter2Change($event)" style="margin-top: 15px;"></app-dropdown-menu>
+    </div>
+    <div class="results-zone">
+        <h2>Résultats pour "{{ searchValue }}" avec les filtres "{{ selectedFilter1 }}" et "{{ selectedFilter2 }}"</h2>
+    </div>
+</div>
