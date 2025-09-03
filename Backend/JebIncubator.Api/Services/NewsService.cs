@@ -68,7 +68,7 @@ namespace JebIncubator.Api.Services
                 Content = dto.Content,
                 Category = dto.Category,
                 IsPublished = dto.IsPublished,
-                PublishDate = dto.PublishDate == default ? DateTime.UtcNow : dto.PublishDate
+                PublishDate = dto.PublishDate ?? DateTime.UtcNow
             };
             _context.News.Add(news);
             await _context.SaveChangesAsync();
@@ -87,8 +87,8 @@ namespace JebIncubator.Api.Services
             news.Content = dto.Content;
             news.Category = dto.Category;
             news.IsPublished = dto.IsPublished;
-            if (dto.PublishDate != default)
-                news.PublishDate = dto.PublishDate;
+            if (dto.PublishDate.HasValue)
+                news.PublishDate = dto.PublishDate.Value;
             await _context.SaveChangesAsync();
             return true;
         }

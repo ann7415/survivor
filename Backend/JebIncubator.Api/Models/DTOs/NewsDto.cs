@@ -19,7 +19,7 @@ namespace JebIncubator.Api.Models.DTOs
         [Required]
         public string Content { get; set; } = string.Empty;
         
-        public DateTime PublishDate { get; set; } = DateTime.UtcNow;
+        public DateTime? PublishDate { get; set; } = DateTime.UtcNow;
         
         public string Category { get; set; } = string.Empty;
         
