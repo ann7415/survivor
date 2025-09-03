@@ -5,4 +5,4 @@
 ---- image.component
 --->
 
-<img src="{{ src }}" alt="{{ alt }}" [ngClass]="customClass" />
+<img src="{{ src }}" alt="{{ alt }}" [ngClass]="customClass" (click)="clicked.emit()"/>
