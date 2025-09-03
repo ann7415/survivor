@@ -1,8 +1,15 @@
+<!--
+---- EPITECH PROJECT, 2025
+---- survivor
+---- File description:
+---- selectedPage.component
+--->
+
 <div class="selectedPage">
-    <my-button text="Home"            customClass="selectedPageButton" (clicked)="navigateTo('home')"></my-button>
-    <my-button text="Projects"        customClass="selectedPageButton" (clicked)="navigateTo('projects')"></my-button>
-    <my-button text="News"            customClass="selectedPageButton" (clicked)="navigateTo('news')"></my-button>
-    <my-button text="Events"          customClass="selectedPageButton" (clicked)="navigateTo('events')"></my-button>
-    <my-button text="Advanced Search" customClass="selectedPageButton" (clicked)="navigateTo('advanced-search')"></my-button>
-    <my-button text="About"           customClass="selectedPageButton" (clicked)="navigateTo('about')"></my-button>
+    <my-button text="Home"            customClass="button button--page" (clicked)="navigateTo('home')"></my-button>
+    <my-button text="Projects"        customClass="button button--page" (clicked)="navigateTo('projects')"></my-button>
+    <my-button text="News"            customClass="button button--page" (clicked)="navigateTo('news')"></my-button>
+    <my-button text="Events"          customClass="button button--page" (clicked)="navigateTo('events')"></my-button>
+    <my-button text="Advanced Search" customClass="button button--page" (clicked)="navigateTo('advanced-search')"></my-button>
+    <my-button text="About"           customClass="button button--page" (clicked)="navigateTo('about')"></my-button>
 </div>

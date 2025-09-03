@@ -1,11 +1,18 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** news.component
+*/
+
 import { Component, Input } from '@angular/core';
 import { Image } from '../Image/image.component';
 
 @Component({
+    selector: 'app-news-card',
     standalone: true,
-    selector: 'app-news',
-    templateUrl: './news.component.html',
-    styleUrls: ['./news.component.css'],
+    templateUrl: './cardNews.component.html',
+    styleUrl: './cardNews.component.css',
     imports: [Image]
 })
 export class NewsComponent {

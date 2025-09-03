@@ -1,1 +1,8 @@
-<img src="{{ src }}" alt="{{ alt }}" [ngClass]="customClass" />
+<!--
+---- EPITECH PROJECT, 2025
+---- survivor
+---- File description:
+---- image.component
+--->
+
+<img src="{{ src }}" alt="{{ alt }}" [ngClass]="customClass" (click)="clicked.emit()"/>

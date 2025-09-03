@@ -1,42 +1,104 @@
-/* Header main div */
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** header.component
+*/
+
+/* ================================
+   Header Main Container
+   ================================ */
 .my-header {
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100%;
-    background-color: lightgrey;
-    overflow: hidden;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-surface);
+    height: 100px;
+    padding: 0 20px;
+    margin: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-bottom: 2px solid var(--color-border);
+    white-space: nowrap;
 }
 
-/* Div for the buttons (pages/login/register) */
-.button-container {
+.my-header::-webkit-scrollbar { display: none; }  /* Chrome, Safari */
+.my-header { scrollbar-width: none; }             /* Firefox */
+
+@media (max-width: 700px) {
+    .my-header {
+        height: 70px;
+        padding: 0 10px;
+    }
+}
+@media (max-width: 500px) {
+    .my-header {
+        height: 54px;
+        padding: 0 5px;
+    }
+}
+
+/* ================================
+   Logo Styling
+   ================================ */
+.my-header app-image.logo {
+    --img-max-h: 70px;
+    max-height: 70px;
+}
+@media (max-width: 700px) {
+    .my-header app-image.logo {
+        --img-max-h: 48px;
+        max-height: 48px;
+    }
+}
+@media (max-width: 500px) {
+    .my-header app-image.logo {
+        --img-max-h: 36px;
+        max-height: 36px;
+    }
+}
+
+/* ================================
+   Header Sub-Containers
+   ================================ */
+.button-container,
+.selectedPage,
+.LoginRegister {
+    display: flex;
     align-items: center;
+    background-color: transparent;
+    gap: 15px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+.button-container {
     justify-content: flex-end;
     padding: 15px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    background-color: transparent;
+    flex-wrap: nowrap;
+    white-space: nowrap;
     margin-left: auto;
 }
 
-/* Div for the selected page */
-.selectedPage {
-    align-items: center;
+.selectedPage,
+.LoginRegister {
     justify-content: center;
-    background-color: transparent;
-    display: flex;
-    background-color: transparent;
-    gap: 15px;
 }
 
-/* Div for the login/register buttons */
-.LoginRegister {
-    align-items: center;
-    justify-content: center;
-    background-color: transparent;
-    display: flex;
-    gap: 15px;
+@media (max-width: 700px) {
+    .button-container,
+    .selectedPage,
+    .LoginRegister {
+        gap: 10px;
+        padding: 10px;
+    }
+}
+@media (max-width: 500px) {
+    .button-container,
+    .selectedPage,
+    .LoginRegister {
+        gap: 5px;
+        padding: 5px;
+    }
 }
