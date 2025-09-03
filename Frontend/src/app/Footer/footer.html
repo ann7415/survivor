@@ -1,0 +1,43 @@
+<!--
+---- EPITECH PROJECT, 2025
+---- survivor
+---- File description:
+---- footer
+--->
+
+<footer class="footer">
+  <div class="footer1">
+    <div class="footer-section">
+      <h4>Useful links</h4>
+      <ul>
+        <li><my-button text="Home" customClass="button button--footer" (clicked)="navigateTo('home')"></my-button></li>
+        <li><my-button text="Projects" customClass="button button--footer" (clicked)="navigateTo('projects')"></my-button></li>
+        <li><my-button text="Contact" customClass="button button--footer" (clicked)="navigateTo('contact')"></my-button></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4>Contact</h4>
+      <p>Email : <a href="mailto:devteam@jeb-incubator.com">devteam@jeb-incubator.com</a></p>
+      <p>Phone : <a href="tel:+33222364112">(+33) 2 85 52 28 71</a></p>
+    </div>
+
+    <div class="footer-section">
+      <h4>Socials</h4>
+      <div class="socials">
+        <ul>
+          <li><my-button text="🐦 X (Twitter)" customClass="button button--footer button--social" (clicked)="navigateToExternal('https://x.com/epitech')"></my-button></li>
+          <li><my-button text="📘 Facebook" customClass="button button--footer button--social" (clicked)="navigateToExternal('https://facebook.com/epitech')"></my-button></li>
+          <li><my-button text="📸 Instagram" customClass="button button--footer button--social" (clicked)="navigateToExternal('https://instagram.com/epitech.officiel')"></my-button></li>
+          <li><my-button text="💼 LinkedIn" customClass="button button--footer button--social" (clicked)="navigateToExternal('https://www.linkedin.com/school/epitech---european-institute-of-technology')"></my-button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-separator">
+    <div class="footer-bottom">
+      <p>Copyright © 2025 JEB Incubator. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

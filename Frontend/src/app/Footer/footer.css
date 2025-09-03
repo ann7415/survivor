@@ -1,0 +1,158 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** footer.css
+*/
+/* ================================
+   Footer Main Container
+   ================================ */
+.footer {
+  background: var(--color-bg-alt);
+  color: var(--color-text-primary);
+  padding: 1.5rem 2rem;
+  margin-top: 2rem;
+  font-family: var(--font-body, Arial, sans-serif);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* ================================
+   Footer Content Grid
+   ================================ */
+.footer1 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+/* ================================
+   Footer Sections
+   ================================ */
+.footer-section h4 {
+  margin-bottom: 0.4rem;
+  color: var(--color-primary);
+  font-family: var(--font-title, inherit);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+  font-size: 0.95rem;
+}
+
+.footer-section a:hover {
+  color: var(--color-primary);
+}
+
+/* ================================
+   Footer Logo
+   ================================ */
+.logo-footer img {
+  width: 80px;
+  height: auto;
+  display: block;
+}
+
+/* ================================
+   Social Links
+   ================================ */
+.socials a {
+  display: block;
+  margin: 0.2rem 0;
+}
+
+/* ================================
+   Footer Divider
+   ================================ */
+.footer-separator {
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 0.8rem;
+}
+
+/* ================================
+   Footer Copyright
+   ================================ */
+.footer-bottom {
+  text-align: center;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* ================================
+   Responsive Design
+   ================================ */
+@media (max-width: 900px) {
+  .footer {
+    padding: 1.2rem;
+    margin-top: 1.5rem;
+  }
+  
+  .button--footer {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    margin-top: 1.2rem;
+  }
+  
+  .footer1 {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .logo-footer img {
+    margin: 0 auto;
+    width: 70px;
+  }
+
+  .socials a {
+    display: inline-block;
+    margin: 0 0.4rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer {
+    padding: 0.8rem;
+    margin-top: 1rem;
+  }
+  
+  .footer-section h4 {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .footer-section a {
+    font-size: 0.9rem;
+  }
+  
+  .footer-separator {
+    margin-top: 1rem;
+    padding-top: 0.6rem;
+  }
+  
+  .footer-bottom {
+    font-size: 0.75rem;
+  }
+  
+  .button--footer {
+    font-size: 0.8rem;
+    padding: 0.35em 0.8em;
+  }
+}

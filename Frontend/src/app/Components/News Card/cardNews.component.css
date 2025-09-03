@@ -1,0 +1,14 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** news.component
+*/
+
+/* News Card Styles */
+.news-card {
+    background-color: violet;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
