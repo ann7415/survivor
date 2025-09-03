@@ -32,3 +32,7 @@
     text-align: center;
     overflow: auto;
 }
+
+.team-card {
+    background-color: blue;
+}

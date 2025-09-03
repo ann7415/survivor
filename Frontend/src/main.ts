@@ -15,6 +15,7 @@ import { NewsPage } from './app/Page/News/news.component';
 import { Routes, provideRouter } from '@angular/router';
 import { SearchPage } from './app/Page/Search/search.component';
 import { EventPage } from './app/Page/Event/event.component';
+import { AboutPage } from './app/Page/About/about.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const routes: Routes = [
     { path: 'advanced-search', component: SearchPage },
     { path: 'news', component: NewsPage },
     { path: 'events', component: EventPage },
+    { path: 'about', component: AboutPage },
     { path: '**', component: UnknownPage },
 ];
 
