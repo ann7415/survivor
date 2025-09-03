@@ -47,18 +47,10 @@
     }
 }
 
-.banner-section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 50px;
-    margin: 10px 0;
-}
-
 .banner-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 0 auto;
+    padding: 2rem;
 }
