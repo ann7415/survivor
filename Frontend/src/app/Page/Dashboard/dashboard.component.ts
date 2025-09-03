@@ -1,3 +1,9 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** dashboard.component.ts
+*/
 // src/app/charts/line-demo.component.ts
 import { Component, signal, ViewChild } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';

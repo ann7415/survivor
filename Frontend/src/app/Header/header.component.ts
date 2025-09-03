@@ -1,3 +1,9 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** header.component.ts
+*/
 // src/app/Header/header.component.ts
 import { Component, HostListener, Renderer2, ElementRef, OnInit } from '@angular/core';
 import { Button } from '../Components/Button/button.component';
