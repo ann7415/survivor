@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../../Header/header.component';
+import { FooterComponent } from '../../Footer/footer';
 import { DropdownMenuComponent } from '../../Components/Menu/dropdown_menu';
 import { SearchbarComponent } from '../../Components/SearchBar/searchbar';
 import { SearchService } from './search.service';
@@ -9,7 +10,7 @@ import { SearchService } from './search.service';
     standalone: true,
     styleUrls: ['./search.component.css'],
     templateUrl: './search.component.html',
-        imports: [HeaderComponent, DropdownMenuComponent, SearchbarComponent],
+    imports: [HeaderComponent, DropdownMenuComponent, SearchbarComponent, FooterComponent],
 })
 export class SearchPage {
     searchValue: string = '';
