@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';  
+import { Component } from '@angular/core';
 import { Button } from '../Components/Button/button.component';
 import { Image } from '../Components/Image/image.component';
+import { Router } from '@angular/router';
 
 // Component for the selection of pages
 @Component ({
@@ -10,8 +11,11 @@ import { Image } from '../Components/Image/image.component';
   styleUrls: ['./header.component.css'],
 })
 export class ButtonsSelectPageComponent {
+  constructor(private router: Router) {}
+
   navigateTo(page: string) {
     console.log(`Navigating to ${page}`);
+    window.location.href = '/' + page;
   }
 }
 
