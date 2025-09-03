@@ -1,21 +1,34 @@
+/* ================================
+   Footer Main Container
+   ================================ */
 .footer {
-  background: #1b263b;
-  color: #fff;
+  background: var(--color-bg-alt);
+  color: var(--color-text-primary);
   padding: 2rem;
-  font-family: Arial, sans-serif;
+  font-family: var(--font-body, Arial, sans-serif);
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
 }
 
+/* ================================
+   Footer Content Grid
+   ================================ */
 .footer1 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 2rem;
 }
 
+/* ================================
+   Footer Sections
+   ================================ */
 .footer-section h4 {
   margin-bottom: 0.5rem;
-  color: #fca311;
+  color: var(--color-primary);
+  font-family: var(--font-title, inherit);
+  font-weight: 700;
 }
 
 .footer-section ul {
@@ -25,36 +38,61 @@
 }
 
 .footer-section a {
-  color: #fff;
+  color: var(--color-text-secondary);
   text-decoration: none;
+  transition: color 0.2s;
 }
 
 .footer-section a:hover {
-  color: #fca311;
+  color: var(--color-primary);
 }
 
+/* ================================
+   Footer Logo
+   ================================ */
 .logo-footer img {
   width: 100px;
   height: auto;
   display: block;
 }
 
-
+/* ================================
+   Social Links
+   ================================ */
 .socials a {
   display: block;
   margin: 0.3rem 0;
 }
 
+/* ================================
+   Footer Divider
+   ================================ */
 .footer-separator {
   margin-top: 2rem;
-  border-top: 1px solid rgba(255, 0, 0, 1.0);
+  border-top: 1px solid var(--color-border);
   padding-top: 1rem;
 }
 
+/* ================================
+   Footer Copyright
+   ================================ */
 .footer-bottom {
   text-align: center;
   font-size: 0.9rem;
   opacity: 0.8;
+}
+
+/* ================================
+   Responsive Design
+   ================================ */
+@media (max-width: 900px) {
+  .footer {
+    padding: 1.5rem;
+  }
+  
+  .button--footer {
+    font-size: 0.85rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -62,9 +100,32 @@
     grid-template-columns: 1fr;
     text-align: center;
   }
+  
+  .logo-footer img {
+    margin: 0 auto;
+  }
 
   .socials a {
     display: inline-block;
     margin: 0 0.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer {
+    padding: 1rem;
+  }
+  
+  .footer-section h4 {
+    font-size: 1.1rem;
+  }
+  
+  .footer-bottom {
+    font-size: 0.8rem;
+  }
+  
+  .button--footer {
+    font-size: 0.8rem;
+    padding: 0.35em 0.8em;
   }
 }
