@@ -1,0 +1,4 @@
+img {
+    max-height: var(--img-max-h, 100%);
+    border-radius: 8px;
+}
