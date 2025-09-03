@@ -1,58 +1,103 @@
+/* ================================
+   Banner Container
+   ================================ */
 .banner {
   display: flex;
   justify-content: center;
   padding: 2rem;
-  background-color: #f5f5f5;
+  background-color: var(--color-bg);
+  width: 100%;
+  box-sizing: border-box;
 }
 
+/* ================================
+   Banner Card
+   ================================ */
 .banner-card {
   display: flex;
   flex-direction: row;
   align-items: center;
   max-width: 750px;
   width: 100%;
-  background: #fff;
+  background: var(--color-surface);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   overflow: hidden;
+  transition: box-shadow 0.3s;
 }
 
+.banner-card:hover {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+/* ================================
+   Banner Image
+   ================================ */
 .banner-image {
   width: 200px;
   height: auto;
   margin-left: 15px;
+  object-fit: cover;
 }
 
-
+/* ================================
+   Banner Text Content
+   ================================ */
 .banner-text {
   padding: 2rem;
   width: 50%;
 }
 
 .banner-text h1 {
+  font-family: var(--font-title, inherit);
   font-size: 2rem;
   margin-bottom: 1rem;
+  color: var(--color-text-primary);
 }
 
 .banner-text p {
   font-size: 1.1rem;
   line-height: 1.5;
   margin-bottom: 1.5rem;
+  color: var(--color-text-secondary);
 }
 
+/* ================================
+   Banner Button
+   ================================ */
 .banner-button {
   display: inline-block;
   padding: 0.8rem 1.5rem;
-  background-color: #0d1b2a;
-  color: #fff;
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
   text-decoration: none;
   border-radius: 6px;
   font-weight: 500;
-  transition: background 0.3s;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  border: none;
+  cursor: pointer;
 }
 
 .banner-button:hover {
-  background-color: #fca311;
+  background-color: #da7575; /* Darkened primary color */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.banner-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-focus);
+}
+
+/* ================================
+   Responsive Design
+   ================================ */
+@media (max-width: 900px) {
+  .banner {
+    padding: 1.5rem;
+  }
+  .banner-text h1 {
+    font-size: 1.8rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -63,8 +108,30 @@
   .banner-text {
     width: 100%;
   }
+  .banner-image {
+    margin-left: 0;
+    margin-top: 15px;
+    height: auto;
+    max-height: 200px;
+  }
   .banner-text {
     padding: 1.5rem;
     text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .banner {
+    padding: 1rem;
+  }
+  .banner-text h1 {
+    font-size: 1.5rem;
+  }
+  .banner-text p {
+    font-size: 1rem;
+  }
+  .banner-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
   }
 }
