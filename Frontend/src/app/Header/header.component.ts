@@ -50,9 +50,13 @@ export class RegisterLoginComponent {
   imports: [ButtonsSelectPageComponent, RegisterLoginComponent, Image],
 })
 export class HeaderComponent implements OnInit {
+  navigateTo(page: string) {
+    console.log(`Navigating to ${page}`);
+    window.location.href = '/' + page;
+  }
   private lastScrollTop = 0;
   private headerVisible = true;
-  
+
   constructor(
     private renderer: Renderer2,
     private el: ElementRef
@@ -66,14 +70,14 @@ export class HeaderComponent implements OnInit {
   onWindowScroll() {
     const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
     const headerElement = this.el.nativeElement.querySelector('.my-header');
-    
+
     if (currentScroll <= 0) {
       this.renderer.removeClass(headerElement, 'header-hidden');
       this.renderer.addClass(headerElement, 'header-visible');
       this.headerVisible = true;
       return;
     }
-    
+
     if (currentScroll > this.lastScrollTop && this.headerVisible) {
       this.renderer.removeClass(headerElement, 'header-visible');
       this.renderer.addClass(headerElement, 'header-hidden');
@@ -83,7 +87,7 @@ export class HeaderComponent implements OnInit {
       this.renderer.addClass(headerElement, 'header-visible');
       this.headerVisible = true;
     }
-    
+
     this.lastScrollTop = currentScroll;
   }
 }
