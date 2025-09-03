@@ -7,27 +7,43 @@
     justify-content: space-between;
     align-items: center;
     background-color: var(--color-surface);
-    height: 100px;
+    height: 60px;
     padding: 0 20px;
     margin: 0;
     overflow-x: auto;
     overflow-y: hidden;
     border-bottom: 2px solid var(--color-border);
     white-space: nowrap;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: transform 0.3s ease;
 }
 
 .my-header::-webkit-scrollbar { display: none; }  /* Chrome, Safari */
 .my-header { scrollbar-width: none; }             /* Firefox */
 
+.my-header.header-hidden {
+    transform: translateY(-100%);
+}
+
+.my-header.header-visible {
+    transform: translateY(0);
+}
+
 @media (max-width: 700px) {
     .my-header {
-        height: 70px;
+        height: 50px;
         padding: 0 10px;
     }
 }
 @media (max-width: 500px) {
     .my-header {
-        height: 54px;
+        height: 40px;
         padding: 0 5px;
     }
 }
@@ -36,39 +52,54 @@
    Logo Styling
    ================================ */
 .my-header app-image.logo {
-    --img-max-h: 70px;
-    max-height: 70px;
+    --img-max-h: 50px;
+    max-height: 50px;
 }
 @media (max-width: 700px) {
     .my-header app-image.logo {
-        --img-max-h: 48px;
-        max-height: 48px;
+        --img-max-h: 38px;
+        max-height: 38px;
     }
 }
 @media (max-width: 500px) {
     .my-header app-image.logo {
-        --img-max-h: 36px;
-        max-height: 36px;
+        --img-max-h: 32px;
+        max-height: 32px;
     }
 }
+
 
 /* ================================
    Header Sub-Containers
    ================================ */
+.my-header .button {
+    padding: 0.2em 1em;
+    margin: 0;
+}
+
+.my-header .button-container {
+    padding: 0 15px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
 .button-container,
 .selectedPage,
 .LoginRegister {
     display: flex;
     align-items: center;
+    height: 100%;
     background-color: transparent;
     gap: 15px;
+    padding: 0 15px;
     flex-wrap: nowrap;
     white-space: nowrap;
+    box-sizing: border-box;
 }
 
 .button-container {
     justify-content: flex-end;
-    padding: 15px;
     flex-wrap: nowrap;
     white-space: nowrap;
     margin-left: auto;
@@ -79,12 +110,19 @@
     justify-content: center;
 }
 
+.button-container button,
+.selectedPage button,
+.LoginRegister button {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 @media (max-width: 700px) {
     .button-container,
     .selectedPage,
     .LoginRegister {
         gap: 10px;
-        padding: 10px;
+        padding: 0 10px;
     }
 }
 @media (max-width: 500px) {
@@ -92,6 +130,6 @@
     .selectedPage,
     .LoginRegister {
         gap: 5px;
-        padding: 5px;
+        padding: 0 5px;
     }
 }
