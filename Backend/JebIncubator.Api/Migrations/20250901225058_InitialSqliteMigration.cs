@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** 20250901225058_InitialSqliteMigration.cs
+*/
+
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 

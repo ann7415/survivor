@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** JebToDomainMapper.cs
+*/
+
 using JebIncubator.Api.Models.Entities;
 using JebIncubator.Api.Models;
 

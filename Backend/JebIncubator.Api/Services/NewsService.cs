@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** NewsService.cs
+*/
+
 using Microsoft.EntityFrameworkCore;
 using JebIncubator.Api.Data;
 using JebIncubator.Api.Models.DTOs;

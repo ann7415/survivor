@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** JebApiModels.cs
+*/
+
 using System;
 
 namespace JebIncubator.Api.Models

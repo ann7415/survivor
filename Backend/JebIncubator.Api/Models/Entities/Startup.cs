@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** Startup.cs
+*/
+
 using System.ComponentModel.DataAnnotations;
 
 namespace JebIncubator.Api.Models.Entities

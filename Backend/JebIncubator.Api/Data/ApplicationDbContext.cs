@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** ApplicationDbContext.cs
+*/
+
 using Microsoft.EntityFrameworkCore;
 using JebIncubator.Api.Models.Entities;
 

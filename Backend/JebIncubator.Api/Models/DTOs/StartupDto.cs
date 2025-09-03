@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** StartupDto.cs
+*/
+
 namespace JebIncubator.Api.Models.DTOs
 {
     public class StartupDto

@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** EventService.cs
+*/
+
 using Microsoft.EntityFrameworkCore;
 using JebIncubator.Api.Data;
 using JebIncubator.Api.Models.DTOs;
@@ -118,4 +125,3 @@ namespace JebIncubator.Api.Services
         }
     }
 }
-

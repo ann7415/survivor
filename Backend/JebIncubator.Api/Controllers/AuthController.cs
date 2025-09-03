@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** AuthController.cs
+*/
+
 using Microsoft.AspNetCore.Mvc;
 using JebIncubator.Api.Services;
 using JebIncubator.Api.Models.DTOs;
