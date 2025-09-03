@@ -37,8 +37,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 // Services
-builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<JebApiService>();
+builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<StartupService>();
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<NewsService>();
+builder.Services.AddScoped<EventService>();
 builder.Services.AddHttpClient();
 
 // Controllers
