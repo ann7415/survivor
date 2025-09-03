@@ -5,3 +5,13 @@
 ** dashboard.component
 */
 
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.canvas {
+    min-height: 200px;
+    padding: 20px;
+}
