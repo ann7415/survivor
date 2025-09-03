@@ -1,3 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap');
+
+:root {
+  --font-title: 'Montserrat', sans-serif;
+  --font-text: 'Open Sans', sans-serif;
+}
+
+.given-palette {
+  --color-primary: #F18585;
+  --color-secondary: #F49C9C;
+  --color-borders: #F6AEAE;
+  --color-bg: #F8CACF;
+
+  --color-danger: #E4BEF8;
+  --color-success: #CB90F1;
+
+  --color-text: #2B2B2B;
+}
+
+.our-palette {
+  --color-primary: #F18585;
+  --color-secondary: #B8A7D9;
+  --color-accent: #A8E6C4;
+  
+  --color-text-primary: #2B2B2B;
+  --color-text-secondary: #666666;
+  --color-text-inverse: #ECECEC;
+
+  --color-bg: #FFFFFF;
+  --color-bg-alt: #ECECEC;
+  --color-surface: #FAFAFA;
+
+  --color-success: #2E7D4E;
+  --color-warning: #E8D525;
+  --color-error: #B63654;
+  --color-info: #8E5BA6;
+  
+  --color-border: #C94C6A;
+  --color-hover: #F9C8C8;
+  --color-disabled: #AAAAAA;
+  --color-focus: #F18585;
+}
+
+:root {
+  --color-primary: #3A6EA5;
+  --color-secondary: #F18585;
+  --color-accent: #85F1A6;
+
+  --color-text-primary: #2B2B2B;
+  --color-text-secondary: #666666;
+  --color-text-inverse: #FFFFFF;
+
+  --color-bg: #FFFFFF;
+  --color-bg-alt: #ECECEC;
+  --color-surface: #FAFAFA;
+
+  --color-success: #4CAF50;
+  --color-warning: #FF9800;
+  --color-error: #F44336;
+  --color-info: #2196F3;
+
+  --color-border: #DDDDDD;
+  --color-hover: #EAEAEA;
+  --color-disabled: #AAAAAA;
+  --color-focus: #3A6EA5;
+}
+
+body {
+  font-family: var(--font-text);
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  color: var(--color-text-primary);
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-bg);
+}
+
+.btn-secondary {
+  background: var(--color-secondary);
+  color: var(--color-bg);
+}
+
 html, body {
   margin: 0;
   padding: 0;
