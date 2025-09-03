@@ -36,10 +36,12 @@ export class ButtonsSelectPageComponent {
 export class RegisterLoginComponent {
   onLogin() {
     console.log("Login button clicked");
+    window.location.href = '/login';
   }
 
   onRegister() {
     console.log("Register button clicked");
+    window.location.href = '/register';
   }
 }
 
