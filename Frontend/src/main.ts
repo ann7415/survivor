@@ -14,13 +14,15 @@ import { ProjectsPage } from './app/Page/Projects/projects.component';
 import { NewsPage } from './app/Page/News/news.component';
 import { Routes, provideRouter } from '@angular/router';
 import { SearchPage } from './app/Page/Search/search.component';
+import { EventPage } from './app/Page/Event/event.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomePage },
     { path: 'projects', component: ProjectsPage },
     { path: 'advanced-search', component: SearchPage },
-    { path: 'news', component: NewsPage },  
+    { path: 'news', component: NewsPage },
+    { path: 'events', component: EventPage },
     { path: '**', component: UnknownPage },
 ];
 

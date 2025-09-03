@@ -1,0 +1,31 @@
+<!--
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** calendar.component template
+-->
+
+<div class="calendar-container">
+  <div class="calendar-header">
+    <button class="nav-button" (click)="previousMonth()">&lt;</button>
+    <h2 class="month-year">{{ monthNames[currentMonth] }} {{ currentYear }}</h2>
+    <button class="nav-button" (click)="nextMonth()">&gt;</button>
+  </div>
+
+  <div class="calendar-grid">
+    <div class="day-header" *ngFor="let day of daysOfWeek">
+      {{ day }}
+    </div>
+
+    <div 
+      *ngFor="let day of calendarDays" 
+      class="calendar-day"
+      [class.empty-day]="!day"
+      [class.today]="isToday(day)"
+      [class.selected]="isSelected(day)"
+      [class.clickable]="day"
+      (click)="selectDate(day)">
+      {{ day }}
+    </div>
+  </div>
+</div>
