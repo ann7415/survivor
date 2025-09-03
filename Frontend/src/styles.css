@@ -62,7 +62,23 @@
   --color-border: #DDDDDD;
   --color-hover: #EAEAEA;
   --color-disabled: #AAAAAA;
-  --color-focus: #3A6EA5;
+  --color-focus: #95B6DA;
+}
+
+#main-content {
+  padding-top: 60px;
+}
+
+@media (max-width: 700px) {
+  #main-content {
+    padding-top: 50px;
+  }
+}
+
+@media (max-width: 500px) {
+  #main-content {
+    padding-top: 40px;
+  }
 }
 
 body {
