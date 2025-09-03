@@ -10,7 +10,8 @@
 .footer {
   background: var(--color-bg-alt);
   color: var(--color-text-primary);
-  padding: 2rem;
+  padding: 1.5rem 2rem;
+  margin-top: 2rem;
   font-family: var(--font-body, Arial, sans-serif);
   display: flex;
   flex-direction: column;
@@ -31,10 +32,11 @@
    Footer Sections
    ================================ */
 .footer-section h4 {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   color: var(--color-primary);
   font-family: var(--font-title, inherit);
   font-weight: 700;
+  font-size: 1.1rem;
 }
 
 .footer-section ul {
@@ -47,6 +49,7 @@
   color: var(--color-text-secondary);
   text-decoration: none;
   transition: color 0.2s;
+  font-size: 0.95rem;
 }
 
 .footer-section a:hover {
@@ -57,7 +60,7 @@
    Footer Logo
    ================================ */
 .logo-footer img {
-  width: 100px;
+  width: 80px;
   height: auto;
   display: block;
 }
@@ -67,16 +70,16 @@
    ================================ */
 .socials a {
   display: block;
-  margin: 0.3rem 0;
+  margin: 0.2rem 0;
 }
 
 /* ================================
    Footer Divider
    ================================ */
 .footer-separator {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   border-top: 1px solid var(--color-border);
-  padding-top: 1rem;
+  padding-top: 0.8rem;
 }
 
 /* ================================
@@ -84,7 +87,7 @@
    ================================ */
 .footer-bottom {
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   opacity: 0.8;
 }
 
@@ -93,7 +96,8 @@
    ================================ */
 @media (max-width: 900px) {
   .footer {
-    padding: 1.5rem;
+    padding: 1.2rem;
+    margin-top: 1.5rem;
   }
   
   .button--footer {
@@ -102,32 +106,49 @@
 }
 
 @media (max-width: 768px) {
+  .footer {
+    margin-top: 1.2rem;
+  }
+  
   .footer1 {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 1rem;
   }
   
   .logo-footer img {
     margin: 0 auto;
+    width: 70px;
   }
 
   .socials a {
     display: inline-block;
-    margin: 0 0.5rem;
+    margin: 0 0.4rem;
   }
 }
 
 @media (max-width: 600px) {
   .footer {
-    padding: 1rem;
+    padding: 0.8rem;
+    margin-top: 1rem;
   }
   
   .footer-section h4 {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .footer-section a {
+    font-size: 0.9rem;
+  }
+  
+  .footer-separator {
+    margin-top: 1rem;
+    padding-top: 0.6rem;
   }
   
   .footer-bottom {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
   
   .button--footer {
