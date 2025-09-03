@@ -43,4 +43,4 @@ export class RegisterLoginComponent {
   styleUrls: ['./header.component.css'],
   imports: [ButtonsSelectPageComponent, RegisterLoginComponent, Image],
 })
-export class Header {}
+export class HeaderComponent {}
