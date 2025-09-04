@@ -17,7 +17,7 @@ export class StartupsService {
     if (search) {
       params = params.set('search', search);
     }
-    params.set('limit', '100');
+    params = params.set('limit', '100');
     return this.apiService.get<Startup[]>(this.endpoint, params);
   }
 

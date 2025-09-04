@@ -9,10 +9,6 @@ export interface RegisterRequest {
   role?: 'Visitor'|'Startup'|'Admin';
 }
 
-export interface LoginResponse {
-  token: string;
-}
-
 export interface AuthResponse {
   token?: string;
   message: string;
