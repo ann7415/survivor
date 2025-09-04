@@ -190,7 +190,9 @@
     border: none;
     border-bottom: 1px solid darkgray;
     border-right: 1px solid darkgray;
-    padding: 15px;
+    padding: 10px;
+    padding-bottom: 15px;
     display: block;
     margin: 0;
+    font-size: 18px;
 }
