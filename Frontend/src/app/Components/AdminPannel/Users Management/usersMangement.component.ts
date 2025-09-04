@@ -25,6 +25,8 @@ export class usersManagement {
   users$: Observable<User[]> = this.usersService.getUsers();
 
   updateUser(id: number, role: string): void {
-    console.log(`Updating user with ID: ${id} to role: ${role}`);
+    this.usersService.getUser(id).subscribe(user => {
+      this.usersService.updateUser(id, { ...user, role }).subscribe();
+    });
   }
 }
