@@ -120,45 +120,32 @@ export class FilterService {
 
   private extractCountryFromLocation(location: string): string {
     if (!location) return '';
-    
-    // Supprimer les espaces en début et fin
     const trimmed = location.trim();
-    
-    // Séparer par virgule et prendre le dernier élément (généralement le pays)
     const parts = trimmed.split(',');
     let country = parts[parts.length - 1].trim();
-    
-    // Nettoyer le pays : supprimer les numéros, codes postaux, etc.
+
     country = country
-      .replace(/\d+/g, '') // Supprimer tous les chiffres
-      .replace(/\s+/g, ' ') // Remplacer les espaces multiples par un seul
-      .trim(); // Supprimer les espaces en début/fin
-    
-    // Si le pays est vide après nettoyage, essayer l'avant-dernier élément
+      .replace(/\d+/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
     if (!country && parts.length > 1) {
       country = parts[parts.length - 2].trim()
         .replace(/\d+/g, '')
         .replace(/\s+/g, ' ')
         .trim();
     }
-    
     return country;
   }
 
   getAllCountries(startups: Startup[]): Observable<string[]> {
     return this.eventsService.getEvents().pipe(
       map(events => {
-        // Récupérer les locations des startups et extraire les pays
         const startupCountries = startups
           .map(s => this.extractCountryFromLocation(s.location))
           .filter(Boolean);
-        
-        // Récupérer les locations des events et extraire les pays
         const eventCountries = events
           .map(e => this.extractCountryFromLocation(e.location))
           .filter(Boolean);
-        
-        // Combiner et supprimer les doublons
         const allCountries = [...new Set([...startupCountries, ...eventCountries])];
         
         return allCountries.sort();
@@ -169,19 +156,13 @@ export class FilterService {
   getAllSectors(startups: Startup[]): Observable<string[]> {
     return this.eventsService.getEvents().pipe(
       map(events => {
-        // Récupérer les secteurs des startups
         const startupSectors = startups
           .map(s => s.sector)
           .filter(Boolean);
-        
-        // Récupérer les types des events (qui correspondent aux secteurs)
         const eventSectors = events
           .map(e => e.type)
           .filter(Boolean);
-        
-        // Combiner et supprimer les doublons
         const allSectors = [...new Set([...startupSectors, ...eventSectors])];
-        
         return allSectors.sort();
       })
     );
