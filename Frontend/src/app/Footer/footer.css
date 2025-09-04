@@ -8,7 +8,7 @@
    Footer Main Container
    ================================ */
 .footer {
-  background: var(--color-bg-alt);
+  background: var(--color-surface);
   color: var(--color-text-primary);
   padding: 1.5rem 2rem;
   margin-top: 2rem;
@@ -33,7 +33,7 @@
    ================================ */
 .footer-section h4 {
   margin-bottom: 0.4rem;
-  color: var(--color-primary);
+  color: var(--color-secondary-hover);
   font-family: var(--font-title, inherit);
   font-weight: 700;
   font-size: 1.1rem;
@@ -53,7 +53,7 @@
 }
 
 .footer-section a:hover {
-  color: var(--color-primary);
+  color: var(--color-secondary-hover);
 }
 
 /* ================================
@@ -78,7 +78,7 @@
    ================================ */
 .footer-separator {
   margin-top: 1.5rem;
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-primary-active);
   padding-top: 0.8rem;
 }
 
