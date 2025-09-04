@@ -81,15 +81,6 @@
   box-shadow: 0 0 0 3px var(--color-focus);
 }
 
-/* ================================
-   Responsive Design
-   ================================ */
-@media (max-width: 1200px) {
-  .banner-card {
-    width: calc(50% - 1rem);
-  }
-}
-
 @media (max-width: 900px) {
   .banner-text h1 {
     font-size: 1.4rem;
