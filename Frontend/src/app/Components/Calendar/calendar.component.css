@@ -1,0 +1,120 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** calendar.component styles
+*/
+
+.calendar-container {
+  max-width: 350px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.month-year {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.nav-button {
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-button:hover {
+  background: #0056b3;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.day-header {
+  text-align: center;
+  font-weight: bold;
+  padding: 8px 4px;
+  background: #f8f9fa;
+  color: #666;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+.calendar-day {
+  text-align: center;
+  padding: 8px 4px;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.calendar-day.clickable {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.calendar-day.clickable:hover {
+  background-color: #e9ecef;
+}
+
+.calendar-day.empty-day {
+  visibility: hidden;
+}
+
+.calendar-day.today {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+.calendar-day.selected {
+  background-color: #28a745;
+  color: white;
+  font-weight: bold;
+}
+
+.calendar-day.today.selected {
+  background-color: #dc3545;
+}
+
+@media (max-width: 480px) {
+  .calendar-container {
+    max-width: 100%;
+    padding: 12px;
+  }
+  
+  .calendar-day {
+    min-height: 28px;
+    font-size: 12px;
+  }
+  
+  .month-year {
+    font-size: 16px;
+  }
+}

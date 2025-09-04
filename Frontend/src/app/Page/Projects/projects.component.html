@@ -8,8 +8,62 @@
 <div class="projects-page">
     <app-header></app-header>
     <app-hero [text]="'Projects'" [customClass]="'hero-projects'"></app-hero>
-    <app-project src="https://ih1.redbubble.net/image.4607708649.1907/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg"
-        companyName="company test" projectName="Angular Project"
-        description="description"></app-project>
+    <div *ngIf="isLoading" class="loading-container" style="text-align: center; padding: 20px;">
+        <p>Loading projects...</p>
+    </div>
+    <div *ngIf="errorMessage" class="error-container" style="text-align: center; padding: 20px; color: var(--color-secondary);">
+        <p>{{ errorMessage }}</p>
+        <button (click)="retryLoadData()" class="retry-button">Retry</button>
+    </div>
+    <div *ngIf="!isLoading && !errorMessage" class="filters-container" style="margin-top: 15px; display: flex; gap: 15px; flex-wrap: wrap; align-items: center;">
+        <app-dropdown-menu 
+            [menu_name]="'Filter by location'" 
+            [options]="locationOptions" 
+            [multipleSelection]="true" 
+            (selectionChange)="onLocationFilterChange($event)">
+        </app-dropdown-menu>
+        <app-dropdown-menu 
+            [menu_name]="'Filter by sector'" 
+            [options]="sectorOptions" 
+            [multipleSelection]="true" 
+            (selectionChange)="onSectorFilterChange($event)">
+        </app-dropdown-menu>
+        <app-sort-dropdown 
+            [placeholder]="'Sort by name'" 
+            [showResetOption]="true"
+            (sortChange)="onSortChange($event)">
+        </app-sort-dropdown>
+        <button 
+            *ngIf="selectedLocations.length > 0 || selectedSectors.length > 0 || currentSort !== 'none'"
+            (click)="resetAllFilters()" 
+            class="reset-all-button"
+            style="padding: 10px 15px; background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px; cursor: pointer;">
+            Reset all
+        </button>
+    </div>
+    <div *ngIf="!isLoading && !errorMessage" class="results-info" style="margin: 15px 0; padding: 0 15px;">
+        <p style="color: #666; font-size: 14px;">
+            {{ filteredStartups.length }} project{{ filteredStartups.length > 1 ? 's' : '' }} found
+            <span *ngIf="filteredStartups.length !== allStartups.length">
+                out of {{ allStartups.length }} total
+            </span>
+        </p>
+    </div>
+    <div *ngIf="!isLoading && !errorMessage" class="projects-list">
+        <div *ngIf="filteredStartups.length === 0" class="no-results" style="text-align: center; padding: 40px; color: #666;">
+            <p>No projects match your search criteria.</p>
+            <button (click)="resetAllFilters()" class="reset-button">Reset filters</button>
+        </div>
+        <app-project 
+            *ngFor="let startup of filteredStartups"
+            [src]="'https://via.placeholder.com/300x200?text='"
+            [companyName]="startup.name" 
+            [projectName]="startup.name" 
+            [description]="startup.description + ' - Sector: ' + startup.sector + ' | Location: ' + startup.location"
+            [alt]="'Logo of ' + startup.name"
+            class="project-card">
+        </app-project>
+    </div>
+    
     <app-footer></app-footer>
 </div>

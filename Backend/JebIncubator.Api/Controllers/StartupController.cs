@@ -30,6 +30,20 @@ namespace JebIncubator.Api.Controllers
             return Ok(startups);
         }
 
+        [HttpGet("locations")]
+        public async Task<IActionResult> GetLocations()
+        {
+            var locations = await _startupService.GetUniqueLocationsAsync();
+            return Ok(locations);
+        }
+
+        [HttpGet("sectors")]
+        public async Task<IActionResult> GetSectors()
+        {
+            var sectors = await _startupService.GetUniqueSectorsAsync();
+            return Ok(sectors);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetStartup(int id)
         {

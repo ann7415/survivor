@@ -1,0 +1,142 @@
+.sort-dropdown {
+  position: relative;
+  display: inline-block;
+  min-width: 180px;
+}
+
+.sort-dropdown-toggle {
+  width: 100%;
+  padding: 10px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sort-dropdown-toggle:hover {
+  border-color: #007bff;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.15);
+}
+
+.sort-dropdown-toggle:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.sort-icon {
+  margin-right: 8px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.arrow {
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+  color: #666;
+}
+
+.sort-dropdown.open .arrow {
+  transform: rotate(180deg);
+}
+
+.sort-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.sort-dropdown-menu li {
+  padding: 12px 15px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s ease;
+  font-size: 14px;
+}
+
+.sort-dropdown-menu li:last-child {
+  border-bottom: none;
+}
+
+.sort-dropdown-menu li:hover {
+  background-color: #f8f9fa;
+}
+
+.sort-dropdown-menu li.selected {
+  background-color: #e3f2fd;
+  color: #007bff;
+  font-weight: 600;
+}
+
+.sort-dropdown-menu li.selected .sort-icon {
+  color: #007bff;
+}
+
+.sort-dropdown-menu li.reset-option {
+  border-top: 1px solid #e0e0e0;
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.sort-dropdown-menu li.reset-option:hover {
+  background-color: #ffeaa7;
+}
+
+.sort-dropdown-menu li .sort-icon {
+  margin-right: 10px;
+  width: 16px;
+  text-align: center;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sort-dropdown-menu {
+  animation: slideDown 0.2s ease-out;
+}
+
+@media (max-width: 768px) {
+  .sort-dropdown {
+    min-width: 150px;
+  }
+  
+  .sort-dropdown-toggle {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  
+  .sort-dropdown-menu li {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+}

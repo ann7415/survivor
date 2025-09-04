@@ -6,6 +6,9 @@
 */
 
 import { bootstrapApplication } from '@angular/platform-browser';
+import { SearchPage } from './app/Page/Search/search.component';
+import { EventPage } from './app/Page/Event/event.component';
+import { AboutPage } from './app/Page/About/about.component';
 import { AppComponent } from './app/app.component';
 import { Routes, provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
@@ -24,6 +27,9 @@ const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomePage },
     { path: 'projects', component: ProjectsPage },
+    { path: 'advanced-search', component: SearchPage },
+    { path: 'events', component: EventPage },
+    { path: 'about', component: AboutPage },
     { path: 'news', component: NewsPage },
     { path: 'login', component: LoginPage },
     { path: 'dashboard', component: DashboardComponent },

@@ -110,5 +110,25 @@ namespace JebIncubator.Api.Services
             await _context.SaveChangesAsync();
             return true;
         }
+
+        public async Task<List<string>> GetUniqueLocationsAsync()
+        {
+            return await _context.Startups
+                .Where(s => !string.IsNullOrEmpty(s.Location))
+                .Select(s => s.Location)
+                .Distinct()
+                .OrderBy(l => l)
+                .ToListAsync();
+        }
+
+        public async Task<List<string>> GetUniqueSectorsAsync()
+        {
+            return await _context.Startups
+                .Where(s => !string.IsNullOrEmpty(s.Sector))
+                .Select(s => s.Sector)
+                .Distinct()
+                .OrderBy(s => s)
+                .ToListAsync();
+        }
     }
 }
