@@ -9,15 +9,20 @@
     <app-header></app-header>
     <div class="card">
         <h4 class="title">Log In!</h4>
-        <form>
+
+        <form (submit)="onSubmit($event, logemail.value, logpass.value)">
             <div class="field">
                 <p>📧</p>
-                <input autocomplete="off" id="logemail" placeholder="Email" class="input-field" name="logemail" type="email">
+                <input #logemail autocomplete="off" id="logemail" placeholder="Email"
+                    class="input-field" name="logemail" type="email" required>
             </div>
+
             <div class="field">
                 <p>🔑</p>
-                <input autocomplete="off" id="logpass" placeholder="Password" class="input-field" name="logpass" type="password">
+                <input #logpass autocomplete="off" id="logpass" placeholder="Password"
+                    class="input-field" name="logpass" type="password" required>
             </div>
+
             <button class="btn" type="submit">Login</button>
         </form>
     </div>

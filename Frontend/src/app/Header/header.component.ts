@@ -9,6 +9,8 @@ import { Component, HostListener, Renderer2, ElementRef, OnInit } from '@angular
 import { Button } from '../Components/Button/button.component';
 import { Image } from '../Components/Image/image.component';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { CommonModule } from '@angular/common';
 
 // Component for the selection of pages
 @Component ({
@@ -53,7 +55,7 @@ export class RegisterLoginComponent {
   standalone: true,
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  imports: [ButtonsSelectPageComponent, RegisterLoginComponent, Image],
+  imports: [ButtonsSelectPageComponent, RegisterLoginComponent, Image, CommonModule],
 })
 export class HeaderComponent implements OnInit {
   navigateTo(page: string) {
@@ -65,7 +67,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private renderer: Renderer2,
-    private el: ElementRef
+    private el: ElementRef,
+    public authService: AuthService
   ) {}
 
   ngOnInit() {
