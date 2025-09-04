@@ -168,7 +168,7 @@
     background-color: var(--color-surface);
     border: 3px solid var(--color-primary);
     border-radius: 30px 100px 100px 100px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 3px 8px var(--color-primary);
     outline: none;
     cursor: pointer;
     position: relative;
@@ -178,7 +178,7 @@
 /* Hover state */
 .checkbox-wrapper-41 input[type="checkbox"]:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px var(--color-primary-hover);
     border-color: var(--color-primary-hover);
 }
 
