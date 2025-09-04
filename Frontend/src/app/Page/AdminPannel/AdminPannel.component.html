@@ -2,7 +2,6 @@
     <app-header></app-header>
     <app-hero text="Admin Pannel" customClass="admin-hero"></app-hero>
     <div class="admin-pannel">
-        <div class="admin-pannel">
         <app-side-bar-admin
             [active]="active"
             (navigate)="onNavigate($event)"
@@ -17,7 +16,6 @@
             <app-project-management *ngSwitchCase="'events'"    class="admin-content"></app-project-management>
             <app-user-management    *ngSwitchCase="'users'"     class="admin-content"></app-user-management>
         </ng-container>
-        </div>
     </div>
     <app-footer customClass="admin-footer"></app-footer>
 </div>
