@@ -4,11 +4,13 @@
 ** File description:
 ** header.component.ts
 */
-// src/app/Header/header.component.ts
-import { Component, HostListener, Renderer2, ElementRef, OnInit } from '@angular/core';
+
+import { Component, HostListener, Renderer2, ElementRef, OnInit, OnDestroy } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 import { Button } from '../Components/Button/button.component';
 import { Image } from '../Components/Image/image.component';
 import { Router } from '@angular/router';
+import { PaletteService, Palette } from '../services/palette.service';
 
 // Component for the selection of pages
 @Component ({
@@ -23,7 +25,7 @@ export class ButtonsSelectPageComponent {
 
   navigateTo(page: string) {
     console.log(`Navigating to ${page}`);
-    window.location.href = '/' + page;
+    this.router.navigate([`/${page}`]);
   }
 }
 
@@ -36,14 +38,16 @@ export class ButtonsSelectPageComponent {
   styleUrls: ['./header.component.css'],
 })
 export class RegisterLoginComponent {
+  constructor(private router: Router) {}
+
   onLogin() {
     console.log("Login button clicked");
-    window.location.href = '/login';
+    this.router.navigate(['/login']);
   }
 
   onRegister() {
     console.log("Register button clicked");
-    window.location.href = '/register';
+    this.router.navigate(['/register']);
   }
 }
 
@@ -55,35 +59,56 @@ export class RegisterLoginComponent {
   styleUrls: ['./header.component.css'],
   imports: [ButtonsSelectPageComponent, RegisterLoginComponent, Image],
 })
-export class HeaderComponent implements OnInit {
-  navigateTo(page: string) {
-    console.log(`Navigating to ${page}`);
-    window.location.href = '/' + page;
-  }
+export class HeaderComponent implements OnInit, OnDestroy {
+  private destroy$ = new Subject<void>();
   private lastScrollTop = 0;
   private headerVisible = true;
-
+  currentPalette: Palette = 'given';
+  
   constructor(
     private renderer: Renderer2,
-    private el: ElementRef
+    private el: ElementRef,
+    private router: Router,
+    private paletteService: PaletteService
   ) {}
 
   ngOnInit() {
     this.renderer.addClass(this.el.nativeElement.querySelector('.my-header'), 'header-visible');
+    
+    this.paletteService.palette$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(palette => {
+        this.currentPalette = palette;
+      });
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  navigateTo(page: string) {
+    console.log(`Navigating to ${page}`);
+    this.router.navigate([`/${page}`]);
+  }
+
+  onPaletteToggle(event: Event) {
+    event.preventDefault();
+    this.paletteService.togglePalette();
   }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
     const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
     const headerElement = this.el.nativeElement.querySelector('.my-header');
-
+    
     if (currentScroll <= 0) {
       this.renderer.removeClass(headerElement, 'header-hidden');
       this.renderer.addClass(headerElement, 'header-visible');
       this.headerVisible = true;
       return;
     }
-
+    
     if (currentScroll > this.lastScrollTop && this.headerVisible) {
       this.renderer.removeClass(headerElement, 'header-visible');
       this.renderer.addClass(headerElement, 'header-hidden');
@@ -93,7 +118,7 @@ export class HeaderComponent implements OnInit {
       this.renderer.addClass(headerElement, 'header-visible');
       this.headerVisible = true;
     }
-
+    
     this.lastScrollTop = currentScroll;
   }
 }

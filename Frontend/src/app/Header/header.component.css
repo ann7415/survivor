@@ -19,7 +19,6 @@
     margin: 0;
     overflow-x: auto;
     overflow-y: hidden;
-    border-bottom: 2px solid var(--color-border);
     white-space: nowrap;
 
     position: fixed;
@@ -28,11 +27,11 @@
     right: 0;
     width: 100%;
     z-index: 1000;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.4s ease;
 }
 
-.my-header::-webkit-scrollbar { display: none; }  /* Chrome, Safari */
-.my-header { scrollbar-width: none; }             /* Firefox */
+.my-header::-webkit-scrollbar { display: none; }
+.my-header { scrollbar-width: none; }
 
 .my-header.header-hidden {
     transform: translateY(-100%);
@@ -59,19 +58,19 @@
    Logo Styling
    ================================ */
 .my-header app-image.logo {
-    --img-max-h: 50px;
-    max-height: 50px;
+    --img-max-h: 40px;
+    max-height: 40px;
 }
 @media (max-width: 700px) {
     .my-header app-image.logo {
-        --img-max-h: 38px;
-        max-height: 38px;
+        --img-max-h: 30px;
+        max-height: 30px;
     }
 }
 @media (max-width: 500px) {
     .my-header app-image.logo {
-        --img-max-h: 32px;
-        max-height: 32px;
+        --img-max-h: 25px;
+        max-height: 25px;
     }
 }
 
@@ -158,6 +157,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .checkbox-wrapper-41 input[type="checkbox"] {
@@ -166,13 +166,31 @@
     width: var(--size);
     height: calc(var(--size) / 2);
     background-color: var(--color-surface);
-    border: 3px solid var(--color-secondary);
+    border: 3px solid var(--color-primary);
     border-radius: 30px 100px 100px 100px;
-    box-shadow: 0 5px 10px var(--color-secondary);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
     outline: none;
     cursor: pointer;
     position: relative;
-    transition: all 0.5s;
+    transition: all 0.4s ease;
+}
+
+/* Hover state */
+.checkbox-wrapper-41 input[type="checkbox"]:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-color: var(--color-primary-hover);
+}
+
+/* Focus state */
+.checkbox-wrapper-41 input[type="checkbox"]:focus {
+    box-shadow: 0 0 0 3px var(--color-focus);
+    border-color: var(--color-primary-hover);
+}
+
+/* Active state */
+.checkbox-wrapper-41 input[type="checkbox"]:active {
+    transform: scale(0.95);
 }
 
 .checkbox-wrapper-41 input[type="checkbox"]::before {
@@ -183,20 +201,51 @@
     left: 0;
     top: 50%;
     transform: translateY(-50%) scale(0.7);
-    border: 3px solid var(--color-secondary);
+    border: 3px solid var(--color-primary);
     border-radius: 30px 100px 100px 100px;
-    background-color: var(--color-secondary);
+    background-color: var(--color-primary);
     box-sizing: border-box;
-    transition: all 0.5s;
+    transition: all 0.4s ease;
 }
 
+/* Checked state (our palette) */
 .checkbox-wrapper-41 input[type="checkbox"]:checked {
-    background-color: var(--color-secondary);
+    background-color: var(--color-primary-active);
     border-radius: 100px 100px 30px 100px;
+    border-color: var(--color-primary);
 }
 
 .checkbox-wrapper-41 input[type="checkbox"]:checked::before {
     left: 50%;
     background-color: var(--color-surface);
     border-radius: 100px 100px 30px 100px;
+    border-color: var(--color-primary);
+}
+
+/* Checked hover state */
+.checkbox-wrapper-41 input[type="checkbox"]:checked:hover {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary-hover);
+}
+
+/* Media queries for toggle button */
+@media (max-width: 700px) {
+    .checkbox-wrapper-41 {
+        --size: 40px;
+    }
+    
+    .theme-toggle-container {
+        margin-left: 15px;
+    }
+}
+
+@media (max-width: 500px) {
+    .checkbox-wrapper-41 {
+        --size: 32px;
+    }
+    
+    .theme-toggle-container {
+        margin-left: 10px;
+        padding: 3px;
+    }
 }
