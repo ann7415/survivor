@@ -1,6 +1,8 @@
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+
+# .NET Backend
 bin/
 obj/
-*.idea
 Properties/
 br/
 *.db
@@ -13,15 +15,13 @@ br/
 *.dll
 *.exe
 *.cache
-*.vscode
 *.log
 staticwebassets.*.json
 launchSettings.json
 appsettings.*.local.json
 .env
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
-# Compiled output
+# Angular Frontend - Compiled output
 /dist
 /tmp
 /out-tsc
@@ -29,10 +29,12 @@ appsettings.*.local.json
 
 # Node
 /node_modules
+node_modules
 npm-debug.log
 yarn-error.log
 
 # IDEs and editors
+*.idea
 .idea/
 .project
 .classpath
@@ -42,6 +44,7 @@ yarn-error.log
 *.sublime-workspace
 
 # Visual Studio Code
+*.vscode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -49,7 +52,7 @@ yarn-error.log
 !.vscode/extensions.json
 .history/*
 
-# Miscellaneous
+# Angular Miscellaneous
 .angular
 .sass-cache/
 /connect.lock
@@ -61,5 +64,3 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
-node_modules
-.angular

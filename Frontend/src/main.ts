@@ -6,31 +6,34 @@
 */
 
 import { bootstrapApplication } from '@angular/platform-browser';
-import { provideHttpClient } from '@angular/common/http';
-import { AppComponent } from './app/app.component';
-import { HomePage } from './app/Page/Home/home.component';
-import { UnknownPage } from './app/Page/Unknown/unknown.component';
-import { ProjectsPage } from './app/Page/Projects/projects.component';
-import { NewsPage } from './app/Page/News/news.component';
-import { Routes, provideRouter } from '@angular/router';
 import { SearchPage } from './app/Page/Search/search.component';
 import { EventPage } from './app/Page/Event/event.component';
 import { AboutPage } from './app/Page/About/about.component';
+import { AppComponent } from './app/app.component';
+import { Routes, provideRouter } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
+import { Chart, registerables } from 'chart.js';
+
+import { UnknownPage } from './app/Page/Unknown/unknown.component';
+import { HomePage } from './app/Page/Home/home.component';
+import { ProjectsPage } from './app/Page/Projects/projects.component';
+import { NewsPage } from './app/Page/News/news.component';
+import { LoginPage } from './app/Page/Login/login.component';
+import { DashboardComponent } from './app/Page/Dashboard/dashboard.component';
+
+Chart.register(...registerables);
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomePage },
     { path: 'projects', component: ProjectsPage },
     { path: 'advanced-search', component: SearchPage },
-    { path: 'news', component: NewsPage },
     { path: 'events', component: EventPage },
     { path: 'about', component: AboutPage },
+    { path: 'news', component: NewsPage },
+    { path: 'login', component: LoginPage },
+    { path: 'dashboard', component: DashboardComponent },
     { path: '**', component: UnknownPage },
 ];
 
-bootstrapApplication(AppComponent, { 
-    providers: [
-        provideRouter(routes),
-        provideHttpClient()
-    ] 
-}).catch(err => console.error(err));
+bootstrapApplication(AppComponent, { providers: [provideRouter(routes), provideHttpClient()] }).catch(err => console.error(err));

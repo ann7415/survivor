@@ -65,6 +65,8 @@
    ================================ */
 .button-container {
     display: flex;
+    padding: 0 15px;
+    height: 100%;
     flex-wrap: wrap;
     gap: 12px;
     justify-content: flex-end;
@@ -103,8 +105,21 @@
 }
 
 .button--page {
+    padding: 0.2em 1em;
+    margin: 0;
     background-color: var(--color-surface);
     color: var(--color-primary);
+}
+
+.button--footer {
+    background-color: var(--color-bg-alt);
+    color: color-mix(in srgb, var(--color-primary) 25%, var(--color-text-primary));
+    border: none;
+    font-size: 0.9rem;
+    padding: 0.4em 1em;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.2s ease;
 }
 
 /* ================================
@@ -122,9 +137,16 @@
 }
 
 .button--register:hover {
-    background-color: var(--color-info);
+    background-color: var(--color-secondary);
+    border: 2px solid var(--color-secondary);
     color: var(--color-text-inverse);
-    border-color: var(--color-info);
+    filter: brightness(1.1);
+}
+
+.button--footer:hover {
+  background-color: var(--color-bg-alt);
+  color: color-mix(in srgb, var(--color-primary) 25%, var(--color-text-primary));
+  transform: translateY(-1px);
 }
 
 /* ================================
@@ -148,8 +170,17 @@
 
 .button--register:focus,
 .button--register:active {
-    background-color: var(--color-info);
+    background-color: var(--color-secondary);
+    border: 2px solid var(--color-secondary);
     color: var(--color-text-inverse);
-    border-color: var(--color-info);
-    box-shadow: 0 0 0 2px var(--color-info);
+    filter: brightness(0.85);
+    box-shadow: 0 0 0 2px var(--color-secondary);
+}
+
+.button--footer:focus,
+.button--footer:active {
+  background-color: var(--color-bg-alt);
+  border-color: var(--color-bg-alt);
+  color: var(--color-primary);
+  transform: translateY(0);
 }

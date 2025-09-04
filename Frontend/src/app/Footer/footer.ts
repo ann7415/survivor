@@ -2,11 +2,10 @@
 ** EPITECH PROJECT, 2025
 ** survivor
 ** File description:
-** footer
+** footer.ts
 */
-
-import { Component} from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterModule, Router } from '@angular/router';
 import { Button } from '../Components/Button/button.component';
 
 @Component({
@@ -16,4 +15,16 @@ import { Button } from '../Components/Button/button.component';
   templateUrl: './footer.html',
   styleUrls: ['./footer.css'],
 })
-export class FooterComponent {}
+export class FooterComponent {
+  constructor(private router: Router) {}
+
+  navigateTo(page: string) {
+    console.log(`Navigating to ${page}`);
+    window.location.href = '/' + page;
+  }
+
+  navigateToExternal(url: string) {
+    console.log(`Opening external link: ${url}`);
+    window.open(url, '_blank');
+  }
+}

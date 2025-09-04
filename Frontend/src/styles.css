@@ -69,18 +69,29 @@
   --color-border: #DDDDDD;
   --color-hover: #EAEAEA;
   --color-disabled: #AAAAAA;
-  --color-focus: #3A6EA5;
+  --color-focus: #95B6DA;
+}
+
+#main-content {
+  padding-top: 60px;
+}
+
+@media (max-width: 700px) {
+  #main-content {
+    padding-top: 50px;
+  }
+}
+
+@media (max-width: 500px) {
+  #main-content {
+    padding-top: 40px;
+  }
 }
 
 body {
   font-family: var(--font-text);
   color: var(--color-text);
   background: var(--color-bg);
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-title);
-  color: var(--color-text-primary);
 }
 
 .btn-primary {

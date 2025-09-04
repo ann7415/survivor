@@ -7,11 +7,28 @@
 
 <div class="home-page">
     <app-header></app-header>
-    <app-hero [text]="'Home'" [customClass]="'hero-home'"></app-hero>
+    <app-hero [text]="'Home'" [customClass]="'hero'"></app-hero>
     <div class="incubator-presentation">
-        <p>This is the presentation of the incubator</p>
-        <p>blablablablablablablablablablablablablablablablablabla</p>
+        <h2 class="incubator-title">Incubator title</h2>
+        <p class="incubator-description">
+            This is the presentation of the incubator
+        </p>
+        <p class="incubator-description">
+        </p>
     </div>
-    <app-banner title="examples of projects" text="tests" buttonText="View More" image="https://ih1.redbubble.net/image.4607708649.1907/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg"></app-banner>
+    <div class="banner-container">
+        <div class="banner-section">
+            <app-banner title="Lucca" text="Lorem ipsum dolor sit amet" buttonText="Not functional"
+                image="https://www.lucca.fr/img/logo-lucca.svg"></app-banner>
+            <app-banner title="Proginov" text="Lorem ipsum dolor sit amet" buttonText="Not functional"
+                image="https://upload.wikimedia.org/wikipedia/commons/9/98/Logo-proginov-rvb-tp.png"></app-banner>
+        </div>
+        <div class="banner-section">
+            <app-banner title="Google Business" text="Lorem ipsum dolor sit amet" buttonText="Not functional"
+                image="https://upload.wikimedia.org/wikipedia/fr/a/a4/Google-My-Business_logo.svg"></app-banner>
+            <app-banner title="Apple" text="Lorem ipsum dolor sit amet" buttonText="Not functional"
+                image="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"></app-banner>
+        </div>
+    </div>
     <app-footer></app-footer>
 </div>
