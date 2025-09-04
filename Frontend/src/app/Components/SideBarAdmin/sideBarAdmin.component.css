@@ -1,0 +1,19 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** sideBarAdmin.component
+*/
+
+.admin-sidebar {
+    background-color: darkblue;
+    height: 100%;
+}
+
+.main-container {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: lightgray;
+    display: block;
+}

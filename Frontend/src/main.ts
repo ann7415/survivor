@@ -19,7 +19,7 @@ import { HomePage } from './app/Page/Home/home.component';
 import { ProjectsPage } from './app/Page/Projects/projects.component';
 import { NewsPage } from './app/Page/News/news.component';
 import { LoginPage } from './app/Page/Login/login.component';
-import { DashboardComponent } from './app/Page/Dashboard/dashboard.component';
+import { AdminPage } from './app/Page/AdminPannel/AdminPannel.component';
 
 Chart.register(...registerables);
 
@@ -32,7 +32,7 @@ const routes: Routes = [
     { path: 'about', component: AboutPage },
     { path: 'news', component: NewsPage },
     { path: 'login', component: LoginPage },
-    { path: 'dashboard', component: DashboardComponent },
+    { path: 'admin', component: AdminPage },
     { path: '**', component: UnknownPage },
 ];
 

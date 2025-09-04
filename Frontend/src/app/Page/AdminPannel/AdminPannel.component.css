@@ -1,0 +1,17 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** AdminPannel.component
+*/
+
+.admin-pannel {
+    display: grid;
+  grid-auto-flow: column;
+}
+
+.content {
+    flex: 1;
+    min-height: 100px;
+    background: lightgray;
+}

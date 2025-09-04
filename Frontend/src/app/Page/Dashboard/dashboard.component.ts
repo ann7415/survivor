@@ -13,13 +13,13 @@ import { FooterComponent } from '../../Footer/footer';
 import { HeroComponent } from '../../Components/Hero/hero.component';
 
 @Component({
-  selector: 'app-line-demo',
+  selector: 'app-dashboard',
   standalone: true,
   imports: [BaseChartDirective, HeaderComponent, FooterComponent, HeroComponent],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
-export class DashboardComponent {
+export class dashboardPage {
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
   data = signal<ChartConfiguration<'line'>['data']>({

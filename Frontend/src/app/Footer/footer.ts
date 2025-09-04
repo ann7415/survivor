@@ -7,6 +7,7 @@
 import { Component } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { Button } from '../Components/Button/button.component';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -16,6 +17,7 @@ import { Button } from '../Components/Button/button.component';
   styleUrls: ['./footer.css'],
 })
 export class FooterComponent {
+  @Input() customClass: string = '';
   constructor(private router: Router) {}
 
   navigateTo(page: string) {

@@ -1,0 +1,14 @@
+<!--
+---- EPITECH PROJECT, 2025
+---- survivor
+---- File description:
+---- sideBarAdmin.component
+--->
+
+<div class="main-container {{customClass}}">
+    <my-button customClass="admin-button" text="Dashboard" (clicked)="onClick('Dashboard')"></my-button>
+    <my-button customClass="admin-button" text="Project Management" (clicked)="onClick('project-management')"></my-button>
+    <my-button customClass="admin-button" text="News Management" (clicked)="onClick('news-management')"></my-button>
+    <my-button customClass="admin-button" text="Events Management" (clicked)="onClick('events-management')"></my-button>
+    <my-button customClass="admin-button" text="Users Management" (clicked)="onClick('users-management')"></my-button>
+</div>
