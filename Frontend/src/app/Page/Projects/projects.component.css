@@ -91,8 +91,8 @@
 
 .reset-all-button {
   padding: 10px 15px;
-  background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 5px;
   cursor: pointer;
   color: var(--color-text-secondary);
@@ -118,7 +118,7 @@
 }
 
 .results-info p {
-  color: #666;
+  color: var(--color-text-secondary);
   font-size: 14px;
   margin: 0;
   font-style: italic;
@@ -184,7 +184,7 @@
 .no-results {
   text-align: center;
   padding: 40px;
-  color: #666;
+  color: var(--color-text-secondary);
   background-color: var(--color-surface);
   border-radius: 12px;
   border: 2px dashed var(--color-border);
@@ -208,7 +208,7 @@
 }
 
 .reset-button:hover {
-  background-color: #da7575;
+  background-color: var(--color-hover);
 }
 
 /* ================================
