@@ -14,7 +14,7 @@
             <select #roleSel [value]="u.role" class="select-role">
                 <option value="Admin">Admin</option>
                 <option value="Startup">Startup</option>
-                <option value="Visitor">User</option>
+                <option value="Visitor">Visitor</option>
             </select>
 
             <button (click)="updateUser(u.id, roleSel.value)">Modify</button>

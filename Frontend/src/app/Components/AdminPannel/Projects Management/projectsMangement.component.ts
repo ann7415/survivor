@@ -2,9 +2,9 @@
 ** EPITECH PROJECT, 2025
 ** survivor
 ** File description:
-** dashboard.component.ts
+** projectsMangement.component
 */
-// src/app/charts/line-demo.component.ts
+
 import { Component } from '@angular/core';
 
 @Component({
