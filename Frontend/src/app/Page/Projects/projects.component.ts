@@ -17,7 +17,8 @@ import { FooterComponent } from '../../Footer/footer';
 import { DropdownMenuComponent } from '../../Components/Menu/dropdown_menu';
 import { SortDropdownComponent, SortOption } from '../../Components/Menu/sort_dropdown';
 
-import { StartupService, StartupDto } from '../../services/startup.service';
+import { StartupsService } from '../../services/startups.service';
+import { Startup } from '../../models/startup';
 import { FilterService } from '../../services/filter.service';
 
 @Component({
@@ -35,13 +36,13 @@ import { FilterService } from '../../services/filter.service';
         DropdownMenuComponent, 
         SortDropdownComponent
     ],
-    providers: [StartupService, FilterService]
+    providers: [StartupsService, FilterService]
 })
 export class ProjectsPage implements OnInit, OnDestroy {
     private destroy$ = new Subject<void>();
     
-    allStartups: StartupDto[] = [];
-    filteredStartups: StartupDto[] = [];
+    allStartups: Startup[] = [];
+    filteredStartups: Startup[] = [];
     
     locationOptions: string[] = [];
     sectorOptions: string[] = [];
@@ -54,7 +55,7 @@ export class ProjectsPage implements OnInit, OnDestroy {
     errorMessage = '';
 
     constructor(
-        private startupService: StartupService,
+        private startupService: StartupsService,
         private filterService: FilterService
     ) {}
 
