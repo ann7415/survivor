@@ -23,7 +23,7 @@ export class DashboardComponent {
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
   data = signal<ChartConfiguration<'line'>['data']>({
-    labels: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'],
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     datasets: [
       {
         data: [120, 200, 150, 300, 280, 350, 400],
@@ -32,6 +32,34 @@ export class DashboardComponent {
       }
     ]
   });
+// data = signal<ChartConfiguration<'line'>['data']>({
+//     labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+//     datasets: [
+//       {
+//         label: 'Views per day',
+//         data: [120, 200, 150, 300, 280, 350, 400],
+//         tension: 0.3,
+//         fill: false,
+        
+        // Dégradé dynamique (sera mis à jour dans ngAfterViewInit)
+  //       borderColor: this.getCSSVariable('--color-primary'),
+  //       backgroundColor: (context) => {
+  //         const chart = context.chart;
+  //         const { ctx } = chart;
+  //         return this.createGradient(ctx);
+  //       },
+        
+  //       pointBackgroundColor: this.getCSSVariable('--color-primary'),
+  //       pointBorderColor: this.getCSSVariable('--color-surface'),
+  //       pointHoverBackgroundColor: this.getCSSVariable('--color-secondary'),
+  //       pointHoverBorderColor: this.getCSSVariable('--color-primary'),
+  //       borderWidth: 3,
+  //       pointRadius: 6,
+  //       pointHoverRadius: 8,
+  //       pointBorderWidth: 2,
+  //     }
+  //   ]
+  // });
 
   options: ChartOptions<'line'> = {
     responsive: true,
