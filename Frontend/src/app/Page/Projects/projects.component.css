@@ -29,7 +29,7 @@
    ================================ */
 .loading-container {
   text-align: center;
-  padding: 3rem;
+  padding: 20px;
   color: var(--color-text-secondary);
 }
 
@@ -43,7 +43,7 @@
    ================================ */
 .error-container {
   text-align: center;
-  padding: 3rem;
+  padding: 20px;
   color: var(--color-secondary);
 }
 
@@ -73,25 +73,27 @@
    Filters Container
    ================================ */
 .filters-container {
-  margin: 1rem 5%;
+  margin-top: 15px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-left: 5%;
+  margin-right: 5%;
   padding: 1.5rem;
   background-color: var(--color-surface);
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  align-items: center;
   max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .reset-all-button {
-  padding: 0.6rem 1.2rem;
-  background-color: var(--color-bg-alt);
-  border: 1px solid var(--color-border);
-  border-radius: 6px;
+  padding: 10px 15px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
   cursor: pointer;
   color: var(--color-text-secondary);
   font-size: 0.9rem;
@@ -108,16 +110,16 @@
    Results Info
    ================================ */
 .results-info {
-  margin: 1rem 5%;
-  padding: 0 1rem;
+  margin: 15px 0;
+  padding: 0 15px;
   max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .results-info p {
-  color: var(--color-text-secondary);
-  font-size: 0.9rem;
+  color: #666;
+  font-size: 14px;
   margin: 0;
   font-style: italic;
 }
@@ -181,8 +183,8 @@
    ================================ */
 .no-results {
   text-align: center;
-  padding: 3rem;
-  color: var(--color-text-secondary);
+  padding: 40px;
+  color: #666;
   background-color: var(--color-surface);
   border-radius: 12px;
   border: 2px dashed var(--color-border);
