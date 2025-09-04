@@ -79,6 +79,9 @@
                     [projectName]="startup.name" 
                     [description]="startup.description + ' - Sector: ' + startup.sector + ' | Location: ' + startup.location"
                     [alt]="'Logo of ' + startup.name"
+                    [itemId]="startup.id"
+                    [itemType]="'startup'"
+                    (cardClick)="onCardClick($event)"
                     class="project-card">
                 </app-project>
             </div>
@@ -90,9 +93,12 @@
                     *ngFor="let event of filteredEvents"
                     [src]="'https://via.placeholder.com/300x200?text='"
                     [companyName]="event.type"
-                    [projectName]="event.description" 
-                    [description]="' - Location: ' + event.location + ' | Date: ' + event.date"
+                    [projectName]="event.title" 
+                    [description]="event.description + ' - Location: ' + event.location + ' | Date: ' + (event.date | date:'MMM dd, yyyy')"
                     [alt]="'Logo of ' + event.title"
+                    [itemId]="event.id"
+                    [itemType]="'event'"
+                    (cardClick)="onCardClick($event)"
                     class="project-card">
                 </app-project>
             </div>

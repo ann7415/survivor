@@ -8,6 +8,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { Subject, takeUntil, combineLatest } from 'rxjs';
 
 import { HeaderComponent } from '../../Header/header.component';
@@ -56,7 +57,8 @@ export class ProjectsPage implements OnInit, OnDestroy {
 
     constructor(
         private startupService: StartupsService,
-        private filterService: FilterService
+        private filterService: FilterService,
+        private router: Router
     ) {}
 
     ngOnInit(): void {
@@ -173,5 +175,11 @@ export class ProjectsPage implements OnInit, OnDestroy {
     retryLoadData(): void {
         this.errorMessage = '';
         this.loadData();
+    }
+
+    onCardClick(event: {id: number, type: 'startup' | 'event'}): void {
+        if (event.type === 'startup') {
+            this.router.navigate(['/startup', event.id]);
+        }
     }
 }
