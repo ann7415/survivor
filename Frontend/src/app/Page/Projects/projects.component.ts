@@ -87,8 +87,8 @@ export class ProjectsPage implements OnInit, OnDestroy {
                 this.applyCurrentFilters();
             },
             error: (error) => {
-                console.error('Erreur lors du chargement des données:', error);
-                this.errorMessage = 'Erreur lors du chargement des données';
+                console.error('Error loading data:', error);
+                this.errorMessage = 'Error loading data';
                 this.isLoading = false;
             }
         });
