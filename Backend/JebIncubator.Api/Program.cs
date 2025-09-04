@@ -91,7 +91,7 @@ using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     context.Database.Migrate();
-    
+
     if (!context.Users.Any())
     {
         var adminUser = new JebIncubator.Api.Models.Entities.User
@@ -101,32 +101,31 @@ using (var scope = app.Services.CreateScope())
             Role = "Admin"
         };
         context.Users.Add(adminUser);
-        
+
         var startups = new[]
         {
-            new JebIncubator.Api.Models.Entities.Startup 
-            { 
-                Name = "TechCorp", 
-                Description = "Innovation en IA", 
+            new JebIncubator.Api.Models.Entities.Startup
+            {
+                Name = "TechCorp",
+                Description = "Innovation en IA",
                 Sector = "Technology",
                 Location = "Paris",
                 Website = "https://techcorp.com",
                 ContactEmail = "contact@techcorp.com"
             },
-            new JebIncubator.Api.Models.Entities.Startup 
-            { 
-                Name = "EcoStart", 
-                Description = "Solutions écologiques", 
+            new JebIncubator.Api.Models.Entities.Startup
+            {
+                Name = "EcoStart",
+                Description = "Solutions écologiques",
                 Sector = "Environment",
                 Location = "Lyon",
                 Website = "https://ecostart.fr",
                 ContactEmail = "hello@ecostart.fr"
             }
         };
-        
+
         context.Startups.AddRange(startups);
         context.SaveChanges();
     }
 }
-
 app.Run();

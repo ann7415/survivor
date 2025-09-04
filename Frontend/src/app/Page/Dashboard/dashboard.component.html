@@ -8,12 +8,31 @@
 <div class="dashboard-page">
     <app-header></app-header>
     <app-hero text="Dashboard"></app-hero>
-    <div class="card">
-        <canvas class="canvas" baseChart
-        [type]="'line'"
-        [data]="data()"
-        [options]="options">
-        </canvas>
+    <div class="container-data">
+        <div class="card-info">
+            <h2>Day view</h2>
+            <div class="data-info">
+                <p>125</p>
+                <p>(+20%)</p>
+            </div>
+        </div>
+        <div class="card-info">
+            <h2>Click view</h2>
+            <div class="data-info">
+                <p>350</p>
+                <p>(+15%)</p>
+            </div>
+        </div>
+    </div>
+    <div class="card-graph">
+        <h2 class="title-canva">View per days</h2>
+        <div class="card-canva">
+            <canvas class="canvas" baseChart
+            [type]="'line'"
+            [data]="data()"
+            [options]="options">
+            </canvas>
+        </div>
     </div>
     <app-footer></app-footer>
 </div>

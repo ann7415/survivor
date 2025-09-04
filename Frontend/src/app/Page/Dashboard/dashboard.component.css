@@ -5,13 +5,60 @@
 ** dashboard.component
 */
 
-.card {
+/* Container for puts all the data */
+.container-data {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* Style for the card containing the information */
+.card-info {
+    border: 1px solid darkgray;
+    background-color: var(--color-surface);
+    text-align: center;
+    margin: 0 10px;
+    padding: 10px 0;
+    width: calc(100% - 10px);
+    border-radius: 15px;
+}
+
+/* Style for the container for the data */
+.data-info {
+    background-color: var(--color-surface);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+}
+
+.data-info p {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+}
+/* Style for the card containing the graph/text */
+.card-graph {
+    background-color: var(--color-surface);
+    width: 90%;
+    padding: 10px;
+    margin: auto;
+    border-radius: 15px;
+}
+
+/* Style for the graph */
 .canvas {
-    min-height: 200px;
-    padding: 20px;
+    min-height: auto;
+    padding: 10px;
+    min-height: 400px;
+    background-color: white;
+}
+
+/* Style for the text (top) of the graph */
+.title-canva {
+    text-align: center;
+    color: var(--color-primary);
+    font-size: 24px;
 }
