@@ -3,8 +3,6 @@ import { Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { ApiService } from './api.service';
 import { User, UserUpdate, UserRoleUpdate, UserStartupAssignment } from '../models/user';
-import { LoginRequest } from '../models/auth';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +14,6 @@ export class UsersService {
 
   getUsers(role?: string, search?: string): Observable<User[]> {
     let params = new HttpParams();
-
-    let authService = new AuthService(this.apiService);
-    authService.login({email: "admin@jeb.com", password: "admin123"}).subscribe();
 
     if (role) params = params.set('role', role);
     if (search) params = params.set('search', search);
