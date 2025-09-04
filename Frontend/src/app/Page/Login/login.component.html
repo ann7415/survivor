@@ -7,19 +7,21 @@
 
 <div class="login-page">
     <app-header></app-header>
-    <div class="card">
-        <h4 class="title">Log In!</h4>
-        <form>
-            <div class="field">
-                <p>📧</p>
-                <input autocomplete="off" id="logemail" placeholder="Email" class="input-field" name="logemail" type="email">
-            </div>
-            <div class="field">
-                <p>🔑</p>
-                <input autocomplete="off" id="logpass" placeholder="Password" class="input-field" name="logpass" type="password">
-            </div>
-            <button class="btn" type="submit">Login</button>
-        </form>
+    <div class="login-content">
+        <div class="card">
+            <h4 class="title">Log in to your JEB Account</h4>
+            <form>
+                <div class="field">
+                    <input autocomplete="off" id="logemail" placeholder="Email" class="input-field" name="logemail"
+                        type="email">
+                </div>
+                <div class="field">
+                    <input autocomplete="off" id="logpass" placeholder="Password" class="input-field" name="logpass"
+                        type="password">
+                </div>
+                <button class="btn" type="submit">Log in</button>
+            </form>
+        </div>
     </div>
     <app-footer></app-footer>
 </div>
