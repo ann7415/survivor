@@ -2,12 +2,11 @@
     <app-header></app-header>
     <app-hero text="Event"></app-hero>
     
-    <!-- Section filtre de calendrier -->
     <div class="calendar-filter-section">
         <div class="filter-controls">
             <button class="toggle-calendar-btn" (click)="toggleCalendar()">
-                <span *ngIf="!showCalendar">📅 Filtrer par date</span>
-                <span *ngIf="showCalendar">❌ Masquer le calendrier</span>
+                <span *ngIf="!showCalendar">Filter by date</span>
+                <span *ngIf="showCalendar">Hide calendar</span>
             </button>
             
             <div class="selected-date-info" *ngIf="selectedDate">
@@ -16,7 +15,6 @@
             </div>
         </div>
         
-        <!-- Calendrier -->
         <div class="calendar-container" *ngIf="showCalendar">
             <app-calendar (dateSelected)="onDateSelected($event)"></app-calendar>
         </div>

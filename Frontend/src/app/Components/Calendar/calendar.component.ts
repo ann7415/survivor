@@ -8,6 +8,12 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+interface CalendarDay {
+  day: number | null;
+  classes: string;
+  isClickable: boolean;
+}
+
 @Component({
   selector: 'app-calendar',
   standalone: true,
@@ -24,26 +30,24 @@ export class CalendarComponent {
   selectedDate: Date | null = null;
 
   monthNames = [
-    'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
-    'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
   ];
 
-  daysOfWeek = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
+  daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   get calendarDays(): (number | null)[] {
     const firstDay = new Date(this.currentYear, this.currentMonth, 1);
     const lastDay = new Date(this.currentYear, this.currentMonth + 1, 0);
-    const startDate = firstDay.getDay(); // Jour de la semaine du 1er jour du mois
+    const startDate = firstDay.getDay();
     const daysInMonth = lastDay.getDate();
 
     const days: (number | null)[] = [];
 
-    // Ajouter les jours vides au début du mois
     for (let i = 0; i < startDate; i++) {
       days.push(null);
     }
 
-    // Ajouter tous les jours du mois
     for (let day = 1; day <= daysInMonth; day++) {
       days.push(day);
     }
@@ -89,5 +93,35 @@ export class CalendarComponent {
     return day === this.selectedDate.getDate() && 
            this.currentMonth === this.selectedDate.getMonth() && 
            this.currentYear === this.selectedDate.getFullYear();
+  }
+
+  getCalendarDaysWithClasses(): CalendarDay[] {
+    return this.calendarDays.map(day => ({
+      day: day,
+      classes: this.getCalendarDayClasses(day),
+      isClickable: !!day
+    }));
+  }
+
+  private getCalendarDayClasses(day: number | null): string {
+    let classes = 'calendar-day';
+    
+    if (!day) {
+      classes += ' empty-day';
+    }
+    
+    if (this.isToday(day)) {
+      classes += ' today';
+    }
+    
+    if (this.isSelected(day)) {
+      classes += ' selected';
+    }
+    
+    if (day) {
+      classes += ' clickable';
+    }
+    
+    return classes;
   }
 }

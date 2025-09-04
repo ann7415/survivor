@@ -18,14 +18,10 @@
     </div>
 
     <div 
-      *ngFor="let day of calendarDays" 
-      class="calendar-day"
-      [class.empty-day]="!day"
-      [class.today]="isToday(day)"
-      [class.selected]="isSelected(day)"
-      [class.clickable]="day"
-      (click)="selectDate(day)">
-      {{ day }}
+      *ngFor="let dayObj of getCalendarDaysWithClasses()" 
+      [class]="dayObj.classes"
+      (click)="selectDate(dayObj.day)">
+      {{ dayObj.day }}
     </div>
   </div>
 </div>
