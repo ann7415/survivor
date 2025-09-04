@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 export class DropdownMenuComponent {
   isOpen = false;
   @Input() options: string[] = ['Web', 'Ecologie', 'Entreprise'];
+  @Input() menu_name: string = "Sélectionner une option";
   @Input() multipleSelection: boolean = false;
   @Output() selectionChange = new EventEmitter<string | string[]>();
   selected: string | null = null;
@@ -34,14 +35,11 @@ export class DropdownMenuComponent {
     if (this.multipleSelection) {
       const index = this.selectedMultiple.indexOf(option);
       if (index > -1) {
-        // Retirer l'option si elle est déjà sélectionnée
         this.selectedMultiple.splice(index, 1);
       } else {
-        // Ajouter l'option si elle n'est pas sélectionnée
         this.selectedMultiple.push(option);
       }
       this.selectionChange.emit([...this.selectedMultiple]);
-      // Le menu reste ouvert en mode sélection multiple
     } else {
       this.selected = option;
       this.isOpen = false;
@@ -59,13 +57,13 @@ export class DropdownMenuComponent {
   getDisplayText(): string {
     if (this.multipleSelection) {
       if (this.selectedMultiple.length === 0) {
-        return 'Sélectionner des options';
+        return this.menu_name;
       } else if (this.selectedMultiple.length === 1) {
         return this.selectedMultiple[0];
       } else {
         return `${this.selectedMultiple.length} sélectionnés`;
       }
     }
-    return this.selected || 'Sélectionner une option';
+    return this.selected || this.menu_name;
   }
 }
