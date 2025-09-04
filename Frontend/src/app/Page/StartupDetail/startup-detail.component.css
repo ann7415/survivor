@@ -1,0 +1,206 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** startup-detail.component.css
+*/
+
+.startup-detail-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.loading-container, .error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    text-align: center;
+}
+
+.error-content {
+    padding: 2rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.startup-content {
+    flex: 1;
+}
+
+.startup-details {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.startup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.startup-info h1 {
+    margin: 0 0 1rem 0;
+    color: #333;
+    font-size: 2.5rem;
+}
+
+.startup-meta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.startup-meta span {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.status {
+    color: white;
+}
+
+.status-active {
+    background-color: #28a745;
+}
+
+.status-inactive {
+    background-color: #6c757d;
+}
+
+.status-pending {
+    background-color: #ffc107;
+    color: #333;
+}
+
+.sector {
+    background-color: #007bff;
+    color: white;
+}
+
+.location {
+    background-color: #6f42c1;
+    color: white;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.startup-description {
+    background-color: #f8f9fa;
+    padding: 2rem;
+    border-radius: 8px;
+    border-left: 4px solid #007bff;
+}
+
+.startup-description h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.startup-description p {
+    line-height: 1.6;
+    color: #666;
+}
+
+.startup-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.info-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: 1px solid #e9ecef;
+}
+
+.info-card h3 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.info-card p {
+    margin: 0;
+    color: #666;
+}
+
+.contact-section {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.contact-section h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-item {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.contact-item a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.contact-item a:hover {
+    text-decoration: underline;
+}
+
+.back-button-container {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+@media (max-width: 768px) {
+    .startup-details {
+        padding: 1rem;
+    }
+    
+    .startup-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .startup-info h1 {
+        font-size: 2rem;
+    }
+    
+    .startup-meta {
+        justify-content: center;
+    }
+    
+    .action-buttons {
+        justify-content: center;
+    }
+    
+    .startup-info-grid {
+        grid-template-columns: 1fr;
+    }
+}
