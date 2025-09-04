@@ -1,14 +1,102 @@
+<!--
+---- EPITECH PROJECT, 2025
+---- survivor
+---- File description:
+---- search.component
+--->
+
 <div class="search-page">
     <app-header></app-header>
-    <app-hero text="Advanced Search"></app-hero>
-    <div class="search-zone">
-        <app-dropdown-menu [options]="['Web', 'Ecologie', 'Entreprise', 'Pâte', 'Fibre', 'KiriDeBondy']" [multipleSelection]="true" (selectionChange)="onFilter1Change($event)" style="margin-top: 15px;"></app-dropdown-menu>
-        <app-searchbar (searchChange)="onSearchChange($event)" style="margin-top: 15px;"></app-searchbar>
-        <app-dropdown-menu [options]="['Web', 'Ecologie', 'Entreprise', 'Pâte', 'Fibre', 'KiriDeBondy']" [multipleSelection]="true" (selectionChange)="onFilter2Change($event)" style="margin-top: 15px;"></app-dropdown-menu>
+    <app-hero [text]="'Advanced Search'" [customClass]="'hero-search'"></app-hero>
+    <div *ngIf="isLoading" class="loading-container">
+        <p>Loading projects...</p>
     </div>
-    <div class="results-zone">
-        <h2>Résultats pour "{{ searchValue }}" avec les filtres "{{ selectedFilter1.join(', ') }}" et "{{ selectedFilter2.join(', ') }}"</h2>
-        <app-project src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" companyName="5e dans la poche" projectName="Projet 1" description="BlaBlaBlaBleBleBleBlouBlouBlou"></app-project>
+    <div *ngIf="errorMessage" class="error-container">
+        <p>{{ errorMessage }}</p>
+        <button (click)="retryLoadData()" class="retry-button">Retry</button>
+    </div>
+    <div *ngIf="!isLoading && !errorMessage" class="search-zone">
+        <app-searchbar 
+            (searchChange)="onSearchChange($event)" 
+            style="margin-top: 15px;">
+        </app-searchbar>
+        <div class="filters-container">
+            <app-dropdown-menu 
+                [menu_name]="'Filter by location'" 
+                [options]="locationOptions" 
+                [multipleSelection]="true" 
+                (selectionChange)="onLocationFilterChange($event)">
+            </app-dropdown-menu>
+            <app-dropdown-menu 
+                [menu_name]="'Filter by sector'" 
+                [options]="sectorOptions" 
+                [multipleSelection]="true" 
+                (selectionChange)="onSectorFilterChange($event)">
+            </app-dropdown-menu>
+            <app-sort-dropdown 
+                [placeholder]="'Sort by name'" 
+                [showResetOption]="true"
+                (sortChange)="onSortChange($event)">
+            </app-sort-dropdown>
+            <button 
+                *ngIf="selectedLocations.length > 0 || selectedSectors.length > 0 || currentSort !== 'none' || searchValue.trim()"
+                (click)="resetAllFilters()" 
+                class="reset-all-button">
+                Reset all
+            </button>
+        </div>
+    </div>
+    <div *ngIf="!isLoading && !errorMessage" class="results-info">
+        <p>
+            {{ filteredStartups.length + filteredEvents.length }} result{{ (filteredStartups.length + filteredEvents.length) > 1 ? 's' : '' }} found
+            ({{ filteredStartups.length }} startup{{ filteredStartups.length > 1 ? 's' : '' }}, {{ filteredEvents.length }} event{{ filteredEvents.length > 1 ? 's' : '' }})
+            <span *ngIf="(filteredStartups.length + filteredEvents.length) !== (allStartups.length + allEvents.length)">
+                out of {{ allStartups.length + allEvents.length }} total
+            </span>
+            <span *ngIf="searchValue.trim()">
+                for "{{ searchValue }}"
+            </span>
+            <span *ngIf="selectedLocations.length > 0">
+                in {{ selectedLocations.join(', ') }}
+            </span>
+            <span *ngIf="selectedSectors.length > 0">
+                in sector{{ selectedSectors.length > 1 ? 's' : '' }} {{ selectedSectors.join(', ') }}
+            </span>
+        </p>
+    </div>
+    <div *ngIf="!isLoading && !errorMessage" class="results-zone">
+        <div *ngIf="filteredStartups.length === 0 && filteredEvents.length === 0" class="no-results">
+            <p>No projects or events match your search criteria.</p>
+            <button (click)="resetAllFilters()" class="reset-button">Reset filters</button>
+        </div>
+        <div *ngIf="filteredStartups.length > 0" class="startups-section">
+            <h3>Startups ({{ filteredStartups.length }})</h3>
+            <div class="startups-grid">
+                <app-project 
+                    *ngFor="let startup of filteredStartups"
+                    [src]="'https://via.placeholder.com/300x200?text='"
+                    [companyName]="startup.name" 
+                    [projectName]="startup.name" 
+                    [description]="startup.description + ' - Sector: ' + startup.sector + ' | Location: ' + startup.location"
+                    [alt]="'Logo of ' + startup.name"
+                    class="project-card">
+                </app-project>
+            </div>
+        </div>
+        <div *ngIf="filteredEvents.length > 0" class="events-section">
+            <h3>Events ({{ filteredEvents.length }})</h3>
+            <div class="events-grid">
+                <app-project 
+                    *ngFor="let event of filteredEvents"
+                    [src]="'https://via.placeholder.com/300x200?text='"
+                    [companyName]="event.type"
+                    [projectName]="event.description" 
+                    [description]="' - Location: ' + event.location + ' | Date: ' + event.date"
+                    [alt]="'Logo of ' + event.title"
+                    class="project-card">
+                </app-project>
+            </div>
+        </div>
     </div>
     <app-footer></app-footer>
 </div>

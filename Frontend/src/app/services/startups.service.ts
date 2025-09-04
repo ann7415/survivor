@@ -36,4 +36,12 @@ export class StartupsService {
   deleteStartup(id: number): Observable<void> {
     return this.apiService.delete<void>(`${this.endpoint}/${id}`);
   }
+
+  getLocations(): Observable<string[]> {
+    return this.apiService.get<string[]>(`${this.endpoint}/locations`);
+  }
+
+  getSectors(): Observable<string[]> {
+    return this.apiService.get<string[]>(`${this.endpoint}/sectors`);
+  }
 }
