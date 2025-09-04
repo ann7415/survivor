@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2025
-** survivor
-** File description:
-** 20250901225058_InitialSqliteMigration.cs
-*/
-
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
@@ -13,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace JebIncubator.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialSqliteMigration : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
