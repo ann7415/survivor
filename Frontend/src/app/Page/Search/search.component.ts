@@ -18,7 +18,10 @@ import { HeroComponent } from '../../Components/Hero/hero.component';
 import { ProjectComponent } from '../../Components/Project Card/project.component';
 import { SortDropdownComponent, SortOption } from '../../Components/Menu/sort_dropdown';
 
-import { StartupService, StartupDto } from '../../services/startup.service';
+import { StartupsService } from '../../services/startups.service';
+import { EventsService } from '../../services/events.service';
+import { Startup } from '../../models/startup';
+import { Event } from '../../models/event';
 import { FilterService } from '../../services/filter.service';
 
 @Component({
@@ -37,13 +40,15 @@ import { FilterService } from '../../services/filter.service';
         ProjectComponent,
         SortDropdownComponent
     ],
-    providers: [StartupService, FilterService]
+    providers: [StartupsService, EventsService, FilterService]
 })
 export class SearchPage implements OnInit, OnDestroy {
     private destroy$ = new Subject<void>();
     
-    allStartups: StartupDto[] = [];
-    filteredStartups: StartupDto[] = [];
+    allStartups: Startup[] = [];
+    allEvents: Event[] = [];
+    filteredStartups: Startup[] = [];
+    filteredEvents: Event[] = [];
     
     locationOptions: string[] = [];
     sectorOptions: string[] = [];
@@ -57,7 +62,8 @@ export class SearchPage implements OnInit, OnDestroy {
     errorMessage = '';
 
     constructor(
-        private startupService: StartupService,
+        private startupService: StartupsService,
+        private eventsService: EventsService,
         private filterService: FilterService
     ) {}
 
@@ -75,15 +81,26 @@ export class SearchPage implements OnInit, OnDestroy {
         
         combineLatest([
             this.startupService.getStartups(),
-            this.startupService.getLocations(),
-            this.startupService.getSectors()
+            this.eventsService.getEvents()
         ]).pipe(
             takeUntil(this.destroy$)
         ).subscribe({
-            next: ([startups, locations, sectors]) => {
+            next: ([startups, events]) => {
                 this.allStartups = startups;
-                this.locationOptions = locations;
-                this.sectorOptions = sectors;
+                this.allEvents = events;
+                
+                this.filterService.getAllCountries(startups).pipe(
+                    takeUntil(this.destroy$)
+                ).subscribe(locations => {
+                    this.locationOptions = locations;
+                });
+                
+                this.filterService.getAllSectors(startups).pipe(
+                    takeUntil(this.destroy$)
+                ).subscribe(sectors => {
+                    this.sectorOptions = sectors;
+                });
+                
                 this.isLoading = false;
                 
                 this.setupFilterSubscription();
@@ -108,12 +125,13 @@ export class SearchPage implements OnInit, OnDestroy {
 
     private applyCurrentFilters(): void {
         const filters = this.filterService.getCurrentFilters();
+        
         let filteredStartups = [...this.allStartups];
-
         if (filters.locations.length > 0) {
-            filteredStartups = filteredStartups.filter(startup => 
-                filters.locations.includes(startup.location)
-            );
+            filteredStartups = filteredStartups.filter(startup => {
+                const startupCountry = this.extractCountryFromLocation(startup.location);
+                return filters.locations.includes(startupCountry);
+            });
         }
         if (filters.sectors.length > 0) {
             filteredStartups = filteredStartups.filter(startup => 
@@ -128,6 +146,28 @@ export class SearchPage implements OnInit, OnDestroy {
                 startup.sector.toLowerCase().includes(searchLower)
             );
         }
+        
+        let filteredEvents = [...this.allEvents];
+        if (filters.locations.length > 0) {
+            filteredEvents = filteredEvents.filter(event => {
+                const eventCountry = this.extractCountryFromLocation(event.location);
+                return filters.locations.includes(eventCountry);
+            });
+        }
+        if (filters.sectors.length > 0) {
+            filteredEvents = filteredEvents.filter(event => 
+                filters.sectors.includes(event.type)
+            );
+        }
+        if (filters.searchText.trim()) {
+            const searchLower = filters.searchText.toLowerCase();
+            filteredEvents = filteredEvents.filter(event => 
+                event.title.toLowerCase().includes(searchLower) ||
+                event.description.toLowerCase().includes(searchLower) ||
+                event.type.toLowerCase().includes(searchLower)
+            );
+        }
+        
         switch (filters.sortOption) {
             case 'alphabetical':
                 filteredStartups.sort((a, b) => a.name.localeCompare(b.name));
@@ -142,8 +182,24 @@ export class SearchPage implements OnInit, OnDestroy {
                 );
                 break;
         }
+        
+        switch (filters.sortOption) {
+            case 'alphabetical':
+                filteredEvents.sort((a, b) => a.title.localeCompare(b.title));
+                break;
+            case 'reverse-alphabetical':
+                filteredEvents.sort((a, b) => b.title.localeCompare(a.title));
+                break;
+            case 'none':
+            default:
+                filteredEvents.sort((a, b) => 
+                    new Date(b.date).getTime() - new Date(a.date).getTime()
+                );
+                break;
+        }
 
         this.filteredStartups = filteredStartups;
+        this.filteredEvents = filteredEvents;
     }
 
     onSearchChange(value: string): void {
@@ -177,5 +233,28 @@ export class SearchPage implements OnInit, OnDestroy {
     retryLoadData(): void {
         this.errorMessage = '';
         this.loadData();
+    }
+
+    private extractCountryFromLocation(location: string): string {
+        if (!location) return '';
+        
+        const trimmed = location.trim();
+        
+        const parts = trimmed.split(',');
+        let country = parts[parts.length - 1].trim();
+        
+        country = country
+          .replace(/\d+/g, '')
+          .replace(/\s+/g, ' ')
+          .trim();
+
+        if (!country && parts.length > 1) {
+          country = parts[parts.length - 2].trim()
+            .replace(/\d+/g, '')
+            .replace(/\s+/g, ' ')
+            .trim();
+        }
+        
+        return country;
     }
 }
