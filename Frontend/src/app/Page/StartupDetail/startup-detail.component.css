@@ -48,8 +48,9 @@
 
 .startup-info h1 {
     margin: 0 0 1rem 0;
-    color: #333;
+    color: var(--color-text-primary);
     font-size: 2.5rem;
+    font-family: var(--font-title);
 }
 
 .startup-meta {
@@ -66,30 +67,30 @@
 }
 
 .status {
-    color: white;
+    color: var(--color-text-inverse);
 }
 
 .status-active {
-    background-color: #28a745;
+    background-color: var(--color-success);
 }
 
 .status-inactive {
-    background-color: #6c757d;
+    background-color: var(--color-disabled);
 }
 
 .status-pending {
-    background-color: #ffc107;
-    color: #333;
+    background-color: var(--color-warning);
+    color: var(--color-text-primary);
 }
 
 .sector {
-    background-color: #007bff;
-    color: white;
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
 }
 
 .location {
-    background-color: #6f42c1;
-    color: white;
+    background-color: var(--color-secondary);
+    color: var(--color-text-inverse);
 }
 
 .action-buttons {
@@ -99,20 +100,22 @@
 }
 
 .startup-description {
-    background-color: #f8f9fa;
+    background-color: var(--color-surface);
     padding: 2rem;
     border-radius: 8px;
-    border-left: 4px solid #007bff;
+    border-left: 4px solid var(--color-primary);
 }
 
 .startup-description h2 {
     margin-top: 0;
-    color: #333;
+    color: var(--color-text-primary);
+    font-family: var(--font-title);
 }
 
 .startup-description p {
     line-height: 1.6;
-    color: #666;
+    color: var(--color-text-secondary);
+    font-family: var(--font-text);
 }
 
 .startup-info-grid {
@@ -122,34 +125,37 @@
 }
 
 .info-card {
-    background-color: white;
+    background-color: var(--color-bg);
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    border: 1px solid #e9ecef;
+    border: 1px solid var(--color-border);
 }
 
 .info-card h3 {
     margin: 0 0 0.5rem 0;
-    color: #333;
+    color: var(--color-text-primary);
     font-size: 1.1rem;
+    font-family: var(--font-title);
 }
 
 .info-card p {
     margin: 0;
-    color: #666;
+    color: var(--color-text-secondary);
+    font-family: var(--font-text);
 }
 
 .contact-section {
-    background-color: #fff;
+    background-color: var(--color-bg);
     padding: 2rem;
     border-radius: 8px;
-    border: 1px solid #e9ecef;
+    border: 1px solid var(--color-border);
 }
 
 .contact-section h2 {
     margin-top: 0;
-    color: #333;
+    color: var(--color-text-primary);
+    font-family: var(--font-title);
 }
 
 .contact-details {
@@ -165,12 +171,13 @@
 }
 
 .contact-item a {
-    color: #007bff;
+    color: var(--color-primary);
     text-decoration: none;
 }
 
 .contact-item a:hover {
     text-decoration: underline;
+    color: var(--color-focus);
 }
 
 .back-button-container {
