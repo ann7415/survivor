@@ -22,6 +22,7 @@ import { LoginPage } from './app/Page/Login/login.component';
 import { DashboardComponent } from './app/Page/Dashboard/dashboard.component';
 import { StartupDetailComponent } from './app/Page/StartupDetail/startup-detail.component';
 import { EventDetailComponent } from './app/Page/EventDetail/event-detail.component';
+import { RegisterPage } from './app/Page/Register/register.component';
 
 Chart.register(...registerables);
 
@@ -36,6 +37,7 @@ const routes: Routes = [
     { path: 'about', component: AboutPage },
     { path: 'news', component: NewsPage },
     { path: 'login', component: LoginPage },
+    { path: 'register', component: RegisterPage },
     { path: 'dashboard', component: DashboardComponent },
     { path: '**', component: UnknownPage },
 ];
