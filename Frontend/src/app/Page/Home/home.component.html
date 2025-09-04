@@ -22,7 +22,7 @@
         <ng-container *ngFor="let s of startups">
             <app-banner
                 [title]="s.name"
-                [text]="s.description?.trim() ? s.description : 'No description available.'"
+                [text]="s.description.trim() ? s.description : 'No description available.'"
                 buttonText="View more"
                 [image]="s.name">
             </app-banner>
