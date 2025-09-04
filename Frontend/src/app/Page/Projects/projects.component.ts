@@ -40,20 +40,16 @@ import { FilterService } from '../../services/filter.service';
 export class ProjectsPage implements OnInit, OnDestroy {
     private destroy$ = new Subject<void>();
     
-    // Données
     allStartups: StartupDto[] = [];
     filteredStartups: StartupDto[] = [];
     
-    // Options pour les menus déroulants
     locationOptions: string[] = [];
     sectorOptions: string[] = [];
     
-    // État des filtres
     selectedLocations: string[] = [];
     selectedSectors: string[] = [];
     currentSort: SortOption = 'none';
     
-    // État de chargement
     isLoading = true;
     errorMessage = '';
 
@@ -74,7 +70,6 @@ export class ProjectsPage implements OnInit, OnDestroy {
     private loadData(): void {
         this.isLoading = true;
         
-        // Chargement en parallèle de toutes les données
         combineLatest([
             this.startupService.getStartups(),
             this.startupService.getLocations(),
@@ -99,9 +94,6 @@ export class ProjectsPage implements OnInit, OnDestroy {
         });
     }
 
-    /**
-     * Configure l'abonnement aux changements de filtres
-     */
     private setupFilterSubscription(): void {
         this.filterService.filterState$
             .pipe(takeUntil(this.destroy$))
@@ -110,9 +102,6 @@ export class ProjectsPage implements OnInit, OnDestroy {
             });
     }
 
-    /**
-     * Applique les filtres actuels aux données
-     */
     private applyCurrentFilters(): void {
         const filters = this.filterService.getCurrentFilters();
         let filteredStartups = [...this.allStartups];

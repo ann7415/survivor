@@ -24,9 +24,6 @@ export class FilterService {
 
   constructor() {}
 
-  /**
-   * Met à jour les localisations sélectionnées
-   */
   updateLocationFilter(locations: string[]): void {
     const currentState = this.filterState.value;
     this.filterState.next({
@@ -35,9 +32,6 @@ export class FilterService {
     });
   }
 
-  /**
-   * Met à jour les secteurs sélectionnés
-   */
   updateSectorFilter(sectors: string[]): void {
     const currentState = this.filterState.value;
     this.filterState.next({
@@ -46,9 +40,6 @@ export class FilterService {
     });
   }
 
-  /**
-   * Met à jour l'option de tri
-   */
   updateSortOption(sortOption: 'none' | 'alphabetical' | 'reverse-alphabetical'): void {
     const currentState = this.filterState.value;
     this.filterState.next({
@@ -57,9 +48,6 @@ export class FilterService {
     });
   }
 
-  /**
-   * Met à jour le texte de recherche
-   */
   updateSearchText(searchText: string): void {
     const currentState = this.filterState.value;
     this.filterState.next({
@@ -68,9 +56,6 @@ export class FilterService {
     });
   }
 
-  /**
-   * Réinitialise tous les filtres
-   */
   resetFilters(): void {
     this.filterState.next({
       locations: [],
@@ -80,29 +65,23 @@ export class FilterService {
     });
   }
 
-  /**
-   * Applique les filtres et le tri à une liste de startups
-   */
   applyFilters(startups: StartupDto[]): Observable<StartupDto[]> {
     return this.filterState$.pipe(
       map(filters => {
         let filteredStartups = [...startups];
 
-        // Appliquer le filtre de localisation
         if (filters.locations.length > 0) {
           filteredStartups = filteredStartups.filter(startup => 
             filters.locations.includes(startup.location)
           );
         }
 
-        // Appliquer le filtre de secteur
         if (filters.sectors.length > 0) {
           filteredStartups = filteredStartups.filter(startup => 
             filters.sectors.includes(startup.sector)
           );
         }
 
-        // Appliquer le filtre de recherche textuelle
         if (filters.searchText.trim()) {
           const searchLower = filters.searchText.toLowerCase();
           filteredStartups = filteredStartups.filter(startup => 
@@ -112,7 +91,6 @@ export class FilterService {
           );
         }
 
-        // Appliquer le tri
         switch (filters.sortOption) {
           case 'alphabetical':
             filteredStartups.sort((a, b) => a.name.localeCompare(b.name));
@@ -122,7 +100,6 @@ export class FilterService {
             break;
           case 'none':
           default:
-            // Garder l'ordre original (ou tri par date de création par défaut)
             filteredStartups.sort((a, b) => 
               new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime()
             );
@@ -134,9 +111,6 @@ export class FilterService {
     );
   }
 
-  /**
-   * Obtient l'état actuel des filtres
-   */
   getCurrentFilters(): FilterState {
     return this.filterState.value;
   }
