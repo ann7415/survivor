@@ -5,13 +5,19 @@
 ** dashboard.component
 */
 
+.dashboard-page {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
 /* Container for puts all the data */
 .container-data {
+    padding: 20px 0;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 90%;
-    margin: auto;
     padding-bottom: 10px;
     background-color: var(--color-surface);
     gap: 10px;
