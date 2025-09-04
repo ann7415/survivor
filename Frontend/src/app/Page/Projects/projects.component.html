@@ -8,14 +8,14 @@
 <div class="projects-page">
     <app-header></app-header>
     <app-hero [text]="'Projects'" [customClass]="'hero-projects'"></app-hero>
-    <div *ngIf="isLoading" class="loading-container" style="text-align: center; padding: 20px;">
+    <div *ngIf="isLoading" class="loading-container">
         <p>Loading projects...</p>
     </div>
-    <div *ngIf="errorMessage" class="error-container" style="text-align: center; padding: 20px; color: var(--color-secondary);">
+    <div *ngIf="errorMessage" class="error-container">
         <p>{{ errorMessage }}</p>
         <button (click)="retryLoadData()" class="retry-button">Retry</button>
     </div>
-    <div *ngIf="!isLoading && !errorMessage" class="filters-container" style="margin-top: 15px; display: flex; gap: 15px; flex-wrap: wrap; align-items: center;">
+    <div *ngIf="!isLoading && !errorMessage" class="filters-container">
         <app-dropdown-menu 
             [menu_name]="'Filter by location'" 
             [options]="locationOptions" 
@@ -36,13 +36,12 @@
         <button 
             *ngIf="selectedLocations.length > 0 || selectedSectors.length > 0 || currentSort !== 'none'"
             (click)="resetAllFilters()" 
-            class="reset-all-button"
-            style="padding: 10px 15px; background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px; cursor: pointer;">
+            class="reset-all-button">
             Reset all
         </button>
     </div>
-    <div *ngIf="!isLoading && !errorMessage" class="results-info" style="margin: 15px 0; padding: 0 15px;">
-        <p style="color: #666; font-size: 14px;">
+    <div *ngIf="!isLoading && !errorMessage" class="results-info">
+        <p>
             {{ filteredStartups.length }} project{{ filteredStartups.length > 1 ? 's' : '' }} found
             <span *ngIf="filteredStartups.length !== allStartups.length">
                 out of {{ allStartups.length }} total
@@ -50,7 +49,7 @@
         </p>
     </div>
     <div *ngIf="!isLoading && !errorMessage" class="projects-list">
-        <div *ngIf="filteredStartups.length === 0" class="no-results" style="text-align: center; padding: 40px; color: #666;">
+        <div *ngIf="filteredStartups.length === 0" class="no-results">
             <p>No projects match your search criteria.</p>
             <button (click)="resetAllFilters()" class="reset-button">Reset filters</button>
         </div>
