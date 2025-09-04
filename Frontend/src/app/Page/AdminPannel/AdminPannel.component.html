@@ -2,8 +2,22 @@
     <app-header></app-header>
     <app-hero text="Admin Pannel" customClass="admin-hero"></app-hero>
     <div class="admin-pannel">
-        <app-side-bar-admin customClass="admin-sidebar"></app-side-bar-admin>
-        <app-dashboard customClass="admin-content"></app-dashboard>
+        <div class="admin-pannel">
+        <app-side-bar-admin
+            [active]="active"
+            (navigate)="onNavigate($event)"
+            customClass="admin-sidebar"
+        >
+        </app-side-bar-admin>
+
+        <ng-container [ngSwitch]="active">
+            <app-dashboard *ngSwitchCase="'dashboard'" class="admin-content"></app-dashboard>
+            <app-project-management *ngSwitchCase="'projects'"  class="admin-content"></app-project-management>
+            <app-project-management *ngSwitchCase="'news'"      class="admin-content"></app-project-management>
+            <app-project-management *ngSwitchCase="'events'"    class="admin-content"></app-project-management>
+            <app-project-management *ngSwitchCase="'users'"     class="admin-content"></app-project-management>
+        </ng-container>
+        </div>
     </div>
     <app-footer customClass="admin-footer"></app-footer>
 </div>

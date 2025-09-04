@@ -5,8 +5,9 @@
 ** sideBarAdmin.component
 */
 
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Button  } from '../Button/button.component';
+type AdminPage = 'dashboard'|'projects'|'news'|'events'|'users';
 
 @Component({
     selector: 'app-side-bar-admin',
@@ -18,7 +19,7 @@ import { Button  } from '../Button/button.component';
 export class SideBarAdminComponent {
     @Input() customClass = '';
 
-    onClick(message: string) {
-      console.log(message);
-    }
+  @Input()  active: AdminPage = 'dashboard';
+  @Output() navigate = new EventEmitter<AdminPage>();
+  go(page: AdminPage) { console.log(page); this.navigate.emit(page);  }
 }

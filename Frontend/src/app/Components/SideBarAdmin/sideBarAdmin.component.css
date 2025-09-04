@@ -8,6 +8,8 @@
 .admin-sidebar {
     background-color: darkblue;
     height: 100%;
+    max-width: 30%;
+    min-width: 300px;
 }
 
 .main-container {

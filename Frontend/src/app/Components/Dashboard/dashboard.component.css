@@ -5,6 +5,12 @@
 ** dashboard.component
 */
 
+.dashboard-page {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
 /* Container for puts all the data */
 .container-data {
     padding: 20px 0;
@@ -12,9 +18,8 @@
     justify-content: center;
     align-items: center;
     width: 90%;
-    margin: auto;
     padding-bottom: 10px;
-    background-color: var(--color-surface);
+    /* background-color: var(--color-surface); */
     gap: 10px;
 }
 
@@ -25,7 +30,7 @@
     align-items: center;
     justify-content: center;
     border: 1px solid darkgray;
-    background-color: var(--color-surface);
+    /* background-color: var(--color-surface); */
     text-align: center;
     padding: 10px 0;
     width: calc(100% - 10px);
@@ -39,7 +44,7 @@
 
 /* Style for the container for the data */
 .data-info {
-    background-color: var(--color-surface);
+    /* background-color: var(--color-surface); */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,7 +60,7 @@
 }
 /* Style for the card containing the graph/text */
 .card-graph {
-    background-color: var(--color-surface);
+    /* background-color: var(--color-surface); */
     width: 90%;
     padding: 10px;
     margin: auto;
@@ -67,7 +72,7 @@
     min-height: auto;
     padding: 10px;
     min-height: 400px;
-    background-color: white;
+    /* background-color: white; */
 }
 
 /* Style for the text (top) of the graph */
