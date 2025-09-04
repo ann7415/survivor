@@ -1,0 +1,14 @@
+<div class="search-page">
+    <app-header></app-header>
+    <app-hero text="Advanced Search"></app-hero>
+    <div class="search-zone">
+        <app-dropdown-menu [options]="['Web', 'Ecologie', 'Entreprise', 'Pâte', 'Fibre', 'KiriDeBondy']" [multipleSelection]="true" (selectionChange)="onFilter1Change($event)" style="margin-top: 15px;"></app-dropdown-menu>
+        <app-searchbar (searchChange)="onSearchChange($event)" style="margin-top: 15px;"></app-searchbar>
+        <app-dropdown-menu [options]="['Web', 'Ecologie', 'Entreprise', 'Pâte', 'Fibre', 'KiriDeBondy']" [multipleSelection]="true" (selectionChange)="onFilter2Change($event)" style="margin-top: 15px;"></app-dropdown-menu>
+    </div>
+    <div class="results-zone">
+        <h2>Résultats pour "{{ searchValue }}" avec les filtres "{{ selectedFilter1.join(', ') }}" et "{{ selectedFilter2.join(', ') }}"</h2>
+        <app-project src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" companyName="5e dans la poche" projectName="Projet 1" description="BlaBlaBlaBleBleBleBlouBlouBlou"></app-project>
+    </div>
+    <app-footer></app-footer>
+</div>

@@ -1,0 +1,29 @@
+<div class="event-page">
+    <app-header></app-header>
+    <app-hero text="Event"></app-hero>
+    
+    <div class="calendar-filter-section">
+        <div class="filter-controls">
+            <button class="toggle-calendar-btn" (click)="toggleCalendar()">
+                <span *ngIf="!showCalendar">Filter by date</span>
+                <span *ngIf="showCalendar">Hide calendar</span>
+            </button>
+            
+            <div class="selected-date-info" *ngIf="selectedDate">
+                <span>Événements du {{ selectedDate | date:'fullDate':'fr' }}</span>
+                <button class="clear-filter-btn" (click)="clearDateFilter()">Effacer</button>
+            </div>
+        </div>
+        
+        <div class="calendar-container" *ngIf="showCalendar">
+            <app-calendar (dateSelected)="onDateSelected($event)"></app-calendar>
+        </div>
+    </div>
+    
+    <div class="events-grid">
+        <app-event_card eventTitle="Event Title" image="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" title="Event Name" text="This is a description of the event. It provides details about what the event is about, when it will take place, and other relevant information." buttonText="Join Now" customClass="primary-button"></app-event_card>
+        <app-event_card eventTitle="Event Title" image="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" title="Event Name" text="This is a description of the event. It provides details about what the event is about, when it will take place, and other relevant information." buttonText="Join Now" customClass="primary-button"></app-event_card>
+        <app-event_card eventTitle="Event Title" image="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" title="Event Name" text="This is a description of the event. It provides details about what the event is about, when it will take place, and other relevant information." buttonText="Join Now" customClass="primary-button"></app-event_card>
+    </div>
+    <app-footer></app-footer>
+</div>

@@ -1,0 +1,21 @@
+<div class="dropdown">
+  <button class="dropdown-toggle" (click)="toggleMenu()">
+    {{ getDisplayText() }}
+    <span class="arrow">▼</span>
+  </button>
+  <ul class="dropdown-menu" *ngIf="isOpen">
+    <li *ngFor="let option of options" 
+        (click)="selectOption(option)"
+        [class.selected]="isSelected(option)">
+      <span *ngIf="multipleSelection" class="checkbox">
+        {{ isSelected(option) ? '✓' : '☐' }}
+      </span>
+      {{ option }}
+    </li>
+    <li *ngIf="multipleSelection && selectedMultiple.length > 0" 
+        class="close-button" 
+        (click)="isOpen = false">
+      <strong>✕ Close</strong>
+    </li>
+  </ul>
+</div>
