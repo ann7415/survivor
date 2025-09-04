@@ -1,0 +1,27 @@
+<!--
+---- EPITECH PROJECT, 2025
+---- survivor
+---- File description:
+---- dashboard.component
+--->
+
+<div class="users-page">
+    <div class="banner-container" *ngIf="users$ | async as users; else nothing">
+        <ng-container *ngFor="let u of users">
+            <input type="text" [value]="u.id" readonly />
+            <input type="text" [value]="u.email" readonly />
+
+            <select #roleSel [value]="u.role" class="select-role">
+                <option value="Admin">Admin</option>
+                <option value="Startup">Startup</option>
+                <option value="Visitor">User</option>
+            </select>
+
+            <button (click)="updateUser(u.id, roleSel.value)">Modify</button>
+            <button>Delete User</button>
+        </ng-container>
+    </div>
+    <ng-template #nothing>
+        <p>No users found.</p>
+    </ng-template>
+</div>
