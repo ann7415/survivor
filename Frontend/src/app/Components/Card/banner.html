@@ -6,7 +6,7 @@
 --->
 
 <section class="banner">
-  <div class="banner-card">
+  <div class="banner-card" (click)="onBannerClick()" [style.cursor]="startupId ? 'pointer' : 'default'">
     <img src="{{image}}"
      alt="Incubateur" class="banner-image" />
     <div class="banner-text">
@@ -14,7 +14,7 @@
       <p>
         {{text}}
       </p>
-      <my-button text="{{buttonText}}" customClass="{{customClass || 'button'}}"></my-button>
+      <my-button text="{{buttonText}}" customClass="{{customClass || 'button'}}" (click)="$event.stopPropagation(); onBannerClick()"></my-button>
     </div>
   </div>
 </section>

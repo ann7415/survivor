@@ -20,6 +20,8 @@ import { ProjectsPage } from './app/Page/Projects/projects.component';
 import { NewsPage } from './app/Page/News/news.component';
 import { LoginPage } from './app/Page/Login/login.component';
 import { AdminPage } from './app/Page/AdminPannel/AdminPannel.component';
+import { StartupDetailComponent } from './app/Page/StartupDetail/startup-detail.component';
+import { EventDetailComponent } from './app/Page/EventDetail/event-detail.component';
 
 Chart.register(...registerables);
 
@@ -27,8 +29,10 @@ const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomePage },
     { path: 'projects', component: ProjectsPage },
+    { path: 'startup/:id', component: StartupDetailComponent },
     { path: 'advanced-search', component: SearchPage },
     { path: 'events', component: EventPage },
+    { path: 'event/:id', component: EventDetailComponent },
     { path: 'about', component: AboutPage },
     { path: 'news', component: NewsPage },
     { path: 'login', component: LoginPage },

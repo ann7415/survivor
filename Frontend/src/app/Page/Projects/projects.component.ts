@@ -8,6 +8,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { Subject, takeUntil, combineLatest } from 'rxjs';
 
 import { HeaderComponent } from '../../Header/header.component';
@@ -17,7 +18,8 @@ import { FooterComponent } from '../../Footer/footer';
 import { DropdownMenuComponent } from '../../Components/Menu/dropdown_menu';
 import { SortDropdownComponent, SortOption } from '../../Components/Menu/sort_dropdown';
 
-import { StartupService, StartupDto } from '../../services/startup.service';
+import { StartupsService } from '../../services/startups.service';
+import { Startup } from '../../models/startup';
 import { FilterService } from '../../services/filter.service';
 
 @Component({
@@ -35,13 +37,13 @@ import { FilterService } from '../../services/filter.service';
         DropdownMenuComponent, 
         SortDropdownComponent
     ],
-    providers: [StartupService, FilterService]
+    providers: [StartupsService, FilterService]
 })
 export class ProjectsPage implements OnInit, OnDestroy {
     private destroy$ = new Subject<void>();
     
-    allStartups: StartupDto[] = [];
-    filteredStartups: StartupDto[] = [];
+    allStartups: Startup[] = [];
+    filteredStartups: Startup[] = [];
     
     locationOptions: string[] = [];
     sectorOptions: string[] = [];
@@ -54,8 +56,9 @@ export class ProjectsPage implements OnInit, OnDestroy {
     errorMessage = '';
 
     constructor(
-        private startupService: StartupService,
-        private filterService: FilterService
+        private startupService: StartupsService,
+        private filterService: FilterService,
+        private router: Router
     ) {}
 
     ngOnInit(): void {
@@ -172,5 +175,11 @@ export class ProjectsPage implements OnInit, OnDestroy {
     retryLoadData(): void {
         this.errorMessage = '';
         this.loadData();
+    }
+
+    onCardClick(event: {id: number, type: 'startup' | 'event'}): void {
+        if (event.type === 'startup') {
+            this.router.navigate(['/startup', event.id]);
+        }
     }
 }

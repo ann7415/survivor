@@ -5,7 +5,7 @@
 ---- project.component
 --->
 
-<div class="container-project">
+<div class="container-project" (click)="onCardClick()" [style.cursor]="itemId && itemType ? 'pointer' : 'default'">
     <div class="image-container">
         <app-image [src]="src" [alt]="alt" [customClass]="customClass"></app-image>
     </div>

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, combineLatest, map } from 'rxjs';
-import { StartupDto } from './startup.service';
+import { Startup } from '../models/startup';
+import { Event } from '../models/event';
+import { EventsService } from './events.service';
 
 export interface FilterState {
   locations: string[];
@@ -22,7 +24,7 @@ export class FilterService {
 
   public filterState$ = this.filterState.asObservable();
 
-  constructor() {}
+  constructor(private eventsService: EventsService) {}
 
   updateLocationFilter(locations: string[]): void {
     const currentState = this.filterState.value;
@@ -65,15 +67,16 @@ export class FilterService {
     });
   }
 
-  applyFilters(startups: StartupDto[]): Observable<StartupDto[]> {
+  applyFilters(startups: Startup[]): Observable<Startup[]> {
     return this.filterState$.pipe(
       map(filters => {
         let filteredStartups = [...startups];
 
         if (filters.locations.length > 0) {
-          filteredStartups = filteredStartups.filter(startup => 
-            filters.locations.includes(startup.location)
-          );
+          filteredStartups = filteredStartups.filter(startup => {
+            const startupCountry = this.extractCountryFromLocation(startup.location);
+            return filters.locations.includes(startupCountry);
+          });
         }
 
         if (filters.sectors.length > 0) {
@@ -113,5 +116,55 @@ export class FilterService {
 
   getCurrentFilters(): FilterState {
     return this.filterState.value;
+  }
+
+  private extractCountryFromLocation(location: string): string {
+    if (!location) return '';
+    const trimmed = location.trim();
+    const parts = trimmed.split(',');
+    let country = parts[parts.length - 1].trim();
+
+    country = country
+      .replace(/\d+/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+    if (!country && parts.length > 1) {
+      country = parts[parts.length - 2].trim()
+        .replace(/\d+/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+    return country;
+  }
+
+  getAllCountries(startups: Startup[]): Observable<string[]> {
+    return this.eventsService.getEvents().pipe(
+      map(events => {
+        const startupCountries = startups
+          .map(s => this.extractCountryFromLocation(s.location))
+          .filter(Boolean);
+        const eventCountries = events
+          .map(e => this.extractCountryFromLocation(e.location))
+          .filter(Boolean);
+        const allCountries = [...new Set([...startupCountries, ...eventCountries])];
+        
+        return allCountries.sort();
+      })
+    );
+  }
+
+  getAllSectors(startups: Startup[]): Observable<string[]> {
+    return this.eventsService.getEvents().pipe(
+      map(events => {
+        const startupSectors = startups
+          .map(s => s.sector)
+          .filter(Boolean);
+        const eventSectors = events
+          .map(e => e.type)
+          .filter(Boolean);
+        const allSectors = [...new Set([...startupSectors, ...eventSectors])];
+        return allSectors.sort();
+      })
+    );
   }
 }
