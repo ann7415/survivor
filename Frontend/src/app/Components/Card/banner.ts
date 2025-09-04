@@ -5,7 +5,7 @@
 ** banner
 */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Button } from '../Button/button.component';
 
 @Component({
@@ -21,4 +21,13 @@ export class BannerComponent {
   @Input({ required: true }) buttonText!: string;
   @Input({ required: true }) image!: string;
   @Input() customClass?: string;
+  @Input() startupId?: number;
+  
+  @Output() bannerClick = new EventEmitter<number>();
+
+  onBannerClick(): void {
+    if (this.startupId) {
+      this.bannerClick.emit(this.startupId);
+    }
+  }
 }

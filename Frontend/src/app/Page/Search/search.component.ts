@@ -8,6 +8,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { Subject, takeUntil, combineLatest } from 'rxjs';
 
 import { HeaderComponent } from '../../Header/header.component';
@@ -64,7 +65,8 @@ export class SearchPage implements OnInit, OnDestroy {
     constructor(
         private startupService: StartupsService,
         private eventsService: EventsService,
-        private filterService: FilterService
+        private filterService: FilterService,
+        private router: Router
     ) {}
 
     ngOnInit(): void {
@@ -256,5 +258,13 @@ export class SearchPage implements OnInit, OnDestroy {
         }
         
         return country;
+    }
+
+    onCardClick(event: {id: number, type: 'startup' | 'event'}): void {
+        if (event.type === 'startup') {
+            this.router.navigate(['/startup', event.id]);
+        } else if (event.type === 'event') {
+            this.router.navigate(['/event', event.id]);
+        }
     }
 }

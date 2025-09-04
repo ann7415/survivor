@@ -7,6 +7,7 @@
 
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 import { HeaderComponent } from '../../Header/header.component';
 import { HeroComponent } from '../../Components/Hero/hero.component';
@@ -25,6 +26,11 @@ import { Observable } from 'rxjs';
 })
 export class HomePage {
   private startupsService = inject(StartupsService);
+  private router = inject(Router);
 
   startups$: Observable<Startup[]> = this.startupsService.getStartups();
+
+  onBannerClick(startupId: number): void {
+    this.router.navigate(['/startup', startupId]);
+  }
 }

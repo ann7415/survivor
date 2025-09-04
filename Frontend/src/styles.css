@@ -70,6 +70,9 @@
   --color-hover: #EAEAEA;
   --color-disabled: #AAAAAA;
   --color-focus: #95B6DA;
+
+  --font-title: 'Montserrat', sans-serif;
+  --font-text: 'Open Sans', sans-serif;
 }
 
 #main-content {
