@@ -25,14 +25,18 @@ export class DashboardComponent {
   data = signal<ChartConfiguration<'line'>['data']>({
     labels: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'],
     datasets: [
-      { label: 'Vues', data: [120, 200, 150, 300, 280, 350, 400], tension: 0.3, fill: true }
+      {
+        data: [120, 200, 150, 300, 280, 350, 400],
+        tension: 0.3,
+        fill: false
+      }
     ]
   });
 
   options: ChartOptions<'line'> = {
     responsive: true,
     maintainAspectRatio: false,
-    plugins: { legend: { position: 'bottom' }, tooltip: { intersect: false, mode: 'index' } },
+    plugins: { legend: {display: false}, tooltip: { intersect: false, mode: 'index' } },
     scales: { y: { beginAtZero: true } }
   };
 

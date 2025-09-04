@@ -15,7 +15,7 @@ import { Image } from '../Image/image.component';
     styleUrl: './cardNews.component.css',
     imports: [Image]
 })
-export class NewsComponent {
+export class cardNewsComponent {
     @Input({required: true}) title!: string;
     @Input({required: true}) imageUrl!: string;
 }
