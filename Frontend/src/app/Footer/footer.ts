@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { Button } from '../Components/Button/button.component';
 import { Input } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-footer',
@@ -18,11 +19,17 @@ import { Input } from '@angular/core';
 })
 export class FooterComponent {
   @Input() customClass: string = '';
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {
+  }
 
   navigateTo(page: string) {
     console.log(`Navigating to ${page}`);
     window.location.href = '/' + page;
+  }
+
+  logout() {
+    this.authService.logout();
+    window.location.href = '/home';
   }
 
   navigateToExternal(url: string) {
