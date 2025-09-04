@@ -8,18 +8,18 @@
     <li (click)="selectSort('alphabetical')" 
         [class.selected]="currentSort === 'alphabetical'">
       <span class="sort-icon">🔤</span>
-      A → Z (Alphabétique)
+      A → Z
     </li>
     <li (click)="selectSort('reverse-alphabetical')" 
         [class.selected]="currentSort === 'reverse-alphabetical'">
       <span class="sort-icon">🔤</span>
-      Z → A (Inverse alphabétique)
+      Z → A
     </li>
     <li *ngIf="showResetOption && currentSort !== 'none'" 
         (click)="selectSort('none')" 
         class="reset-option">
       <span class="sort-icon">↺</span>
-      Réinitialiser
+      Reset
     </li>
   </ul>
 </div>

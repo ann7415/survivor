@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 export class DropdownMenuComponent {
   isOpen = false;
   @Input() options: string[] = ['Web', 'Ecologie', 'Entreprise'];
-  @Input() menu_name: string = "Sélectionner une option";
+  @Input() menu_name: string = "Select an option";
   @Input() multipleSelection: boolean = false;
   @Output() selectionChange = new EventEmitter<string | string[]>();
   selected: string | null = null;
@@ -61,7 +61,7 @@ export class DropdownMenuComponent {
       } else if (this.selectedMultiple.length === 1) {
         return this.selectedMultiple[0];
       } else {
-        return `${this.selectedMultiple.length} sélectionnés`;
+        return `${this.selectedMultiple.length} selected`;
       }
     }
     return this.selected || this.menu_name;
