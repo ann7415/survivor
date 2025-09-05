@@ -32,7 +32,7 @@ The application retrieves data from the existing JEB API and allows full CRUD ma
 
 ---
 
-## ⚙️ Installation
+## ⚙︝ Installation
 
 ### Prerequisites
 
@@ -120,7 +120,7 @@ ng serve
 
 ---
 
-## 🌐 Launch
+## 🌝 Launch
 
 ### Full Startup
 
@@ -129,18 +129,17 @@ ng serve
 cd JebIncubator.Api
 dotnet run --urls "http://localhost:5000"
 ```
-➡️ **API available at:** http://localhost:5000  
-➡️ **Swagger docs:** http://localhost:5000/swagger
+➡︝ **API available at:** http://localhost:5000
+➡︝ **Swagger docs:** http://localhost:5000/swagger
 
 2. **Angular Frontend**:
 ```bash
 cd jeb-incubator-frontend
 ng serve
 ```
-➡️ **Web app:** http://localhost:4200
+➡︝ **Web app:** http://localhost:4200
 
 ### Test Accounts
-- **Admin**: `admin@jeb.com` / `admin123`
 - **Test User**: Create via signup form
 
 ---
@@ -176,7 +175,7 @@ cd JebIncubator.Api
 sqlite3 jeb-incubator.db
 
 # In SQLite CLI
-DELETE FROM Users WHERE Email != 'admin@jeb.com';
+DELETE FROM Users WHERE Email != 'ADMIN_EMAIL';
 DELETE FROM Startups;
 DELETE FROM News;
 DELETE FROM Events;
@@ -226,7 +225,7 @@ Once logged in as Admin:
 
 ---
 
-## 📁 Project Structure
+## 📝 Project Structure
 
 ```
 JebIncubator/
@@ -260,7 +259,7 @@ JebIncubator/
 
 ---
 
-## 🐛 Troubleshooting
+## 🝛 Troubleshooting
 
 ### Common Issues
 

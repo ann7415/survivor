@@ -1,20 +1,24 @@
 export interface News {
-  imageUrl: string;
   id: number;
   title: string;
-  content: string;
-  publishDate: string;
+  description: string;
+  location: string;
   category: string;
+  startup_id: number;
+  publishDate: Date;
   isPublished: boolean;
+  imageUrls: string;
 }
 
 export interface NewsCreate {
   title: string;
-  content: string;
+  description: string;
+  location: string;
   category: string;
+  startup_id: number;
   publishDate?: Date;
   isPublished: boolean;
-  imageUrl?: string;
+  imageUrl: string;
 }
 
 export interface NewsUpdate extends NewsCreate {}

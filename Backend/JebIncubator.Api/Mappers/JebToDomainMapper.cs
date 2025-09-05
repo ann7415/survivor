@@ -28,16 +28,19 @@ namespace JebIncubator.Api.Mappers
             };
         }
 
-        public static News ToNews(this JebApiNews jn)
+        public static News ToNews(this JebApiNews jn, List<string>? imageUrls = null)
         {
             return new News
             {
                 Title = jn.Title ?? "No Title",
-                Content = jn.Content ?? "",
-                PublishDate = jn.PublishDate != default ? jn.PublishDate : DateTime.UtcNow,
-                Category = jn.Category ?? "",
+                Description = jn.Description ?? "No Description",
+                NewsDate = jn.NewsDate != default ? jn.NewsDate : DateTime.UtcNow,
+                Location = string.IsNullOrWhiteSpace(jn.Location) ? null : jn.Location,
+                Category = string.IsNullOrWhiteSpace(jn.Category) ? "General" : jn.Category,
+                StartupId = jn.StartupId,
                 ExternalApiId = jn.Id,
-                IsPublished = true
+                IsPublished = true,
+                Images = imageUrls?.Select(url => new NewsImage { Url = url }).ToList() ?? new List<NewsImage>()
             };
         }
 

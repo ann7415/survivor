@@ -34,7 +34,7 @@ import { Event } from '../../models/event';
 })
 export class EventDetailComponent implements OnInit, OnDestroy {
     private destroy$ = new Subject<void>();
-    
+
     event: Event | null = null;
     isLoading = true;
     errorMessage = '';
@@ -85,12 +85,12 @@ export class EventDetailComponent implements OnInit, OnDestroy {
 
     isEventPast(): boolean {
         if (!this.event) return false;
-        return new Date(this.event.date) < new Date();
+        return new Date(this.event.dates) < new Date();
     }
 
     isEventToday(): boolean {
         if (!this.event) return false;
-        const eventDate = new Date(this.event.date);
+        const eventDate = new Date(this.event.dates);
         const today = new Date();
         return eventDate.toDateString() === today.toDateString();
     }
