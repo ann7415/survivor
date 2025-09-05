@@ -97,7 +97,7 @@
                     [src]="'https://via.placeholder.com/300x200?text='"
                     [companyName]="event.type"
                     [projectName]="event.title"
-                    [description]="event.description + ' - Location: ' + event.location + ' | Date: ' + (event.dates | date:'MMM dd, yyyy')"
+                    [description]="event.description + ' - Location: ' + event.location + ' | Date: ' + (event.date | date:'MMM dd, yyyy')"
                     [alt]="'Logo of ' + event.title"
                     [itemId]="event.id"
                     [itemType]="'event'"

@@ -4,7 +4,7 @@ export interface Event {
   description: string;
   location: string;
   category: string;
-  dates: Date;
+  date: Date;
   type: string;
   imageUrls: string[];
 }
@@ -14,7 +14,7 @@ export interface EventCreate {
   description: string;
   location: string;
   category: string;
-  dates: Date;
+  date: Date;
   type: string;
   imageUrl?: string;
 }

@@ -61,19 +61,16 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     }
 
     private loadEvent(id: number): void {
-        this.eventsService.getEvents().pipe(
+        this.eventsService.getEvent(id).pipe(
             takeUntil(this.destroy$)
         ).subscribe({
-            next: (events) => {
-                this.event = events.find(e => e.id === id) || null;
-                if (!this.event) {
-                    this.errorMessage = 'Event not found';
-                }
+            next: (event) => {
+                this.event = event;
                 this.isLoading = false;
             },
             error: (error) => {
                 console.error('Error loading event:', error);
-                this.errorMessage = 'Error loading event details';
+                this.errorMessage = 'Event not found or error loading event details';
                 this.isLoading = false;
             }
         });
@@ -85,12 +82,12 @@ export class EventDetailComponent implements OnInit, OnDestroy {
 
     isEventPast(): boolean {
         if (!this.event) return false;
-        return new Date(this.event.dates) < new Date();
+        return new Date(this.event.date) < new Date();
     }
 
     isEventToday(): boolean {
         if (!this.event) return false;
-        const eventDate = new Date(this.event.dates);
+        const eventDate = new Date(this.event.date);
         const today = new Date();
         return eventDate.toDateString() === today.toDateString();
     }
