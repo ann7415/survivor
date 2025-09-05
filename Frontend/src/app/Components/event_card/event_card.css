@@ -24,6 +24,8 @@
   border-radius: 12px;
   box-shadow: 0 4px 12px var(--color-bg-alt);
   overflow: hidden;
+  padding: 15px;
+  padding-bottom: 0;
 }
 
 .event_card-title {

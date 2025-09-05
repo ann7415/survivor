@@ -113,9 +113,11 @@ namespace JebIncubator.Api.Controllers
                     else
                     {
                         existingNews.Title = newsItem.Title;
-                        existingNews.Content = newsItem.Content;
+                        existingNews.Description = newsItem.Description;
+                        existingNews.NewsDate = newsItem.NewsDate;
                         existingNews.Category = newsItem.Category;
-                        existingNews.PublishDate = newsItem.PublishDate;
+                        existingNews.Location = newsItem.Location;
+                        existingNews.StartupId = newsItem.StartupId;
                         existingNews.IsPublished = newsItem.IsPublished;
                         updated++;
                         _logger.LogInformation($"Updating news: {newsItem.Title}");

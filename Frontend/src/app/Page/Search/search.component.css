@@ -102,19 +102,60 @@
 }
 
 .reset-all-button {
-  padding: 10px 15px;
-  background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
-  border-radius: 5px;
+  box-sizing: border-box;
+  font-family: var(--font-text);
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.5em 1.2em;
+  min-width: 90px;
+  max-width: 100%;
+  display: inline-block;
+  text-align: center;
   cursor: pointer;
-  color: var(--color-text-secondary);
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
+  line-height: 1.2;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s;
+  word-break: break-word;
 }
 
 .reset-all-button:hover {
-  background-color: #e9ecef;
-  border-color: #adb5bd;
+  background-color: var(--color-hover);
+  border-color: var(--color-focus);
+}
+
+/* ================================
+   Responsive Button Sizing
+   ================================ */
+@media (max-width: 900px) {
+  .reset-all-button {
+    font-size: 0.95rem;
+    padding: 0.45em 1em;
+    min-width: 70px;
+  }
+}
+
+@media (max-width: 600px) {
+  .reset-all-button {
+    font-size: 0.88rem;
+    padding: 0.35em 0.7em;
+    min-width: 55px;
+  }
+}
+
+@media (max-width: 350px) {
+  .reset-all-button {
+    font-size: 0.8rem;
+    padding: 0.25em 0.5em;
+    min-width: 40px;
+  }
 }
 
 /* ================================
@@ -192,11 +233,18 @@
 .project-card {
   margin-bottom: 1.5rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  box-sizing: border-box;
+  clear: both;
+  display: block;
 }
 
 .project-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  z-index: 2;
 }
 
 /* ================================

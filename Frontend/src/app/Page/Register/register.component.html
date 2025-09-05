@@ -1,0 +1,74 @@
+<!--
+---- EPITECH PROJECT, 2025
+---- survivor
+---- File description:
+---- register.component
+--->
+
+<div class="register-page">
+    <app-header></app-header>
+    <div class="register-content">
+        <div class="card">
+            <h4 class="title">Register!</h4>
+            
+            <div *ngIf="successMessage" class="alert alert-success">
+                {{ successMessage }}
+            </div>
+            
+            <div *ngIf="errorMessage" class="alert alert-error">
+                {{ errorMessage }}
+            </div>
+            
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="field">
+                    <p>📧</p>
+                    <input 
+                        autocomplete="off" 
+                        id="email" 
+                        placeholder="Email" 
+                        class="input-field" 
+                        formControlName="email" 
+                        type="email"
+                        [class.error]="email?.invalid && email?.touched">
+                    <div *ngIf="email?.invalid && email?.touched" class="field-error">
+                        <span *ngIf="email?.errors?.['required']">Email is required</span>
+                        <span *ngIf="email?.errors?.['email']">Please enter a valid email</span>
+                    </div>
+                </div>
+                
+                <div class="field">
+                    <p>🔑</p>
+                    <input 
+                        autocomplete="off" 
+                        id="password" 
+                        placeholder="Password" 
+                        class="input-field" 
+                        formControlName="password" 
+                        type="password"
+                        [class.error]="password?.invalid && password?.touched">
+                    <div *ngIf="password?.invalid && password?.touched" class="field-error">
+                        <span *ngIf="password?.errors?.['required']">Password is required</span>
+                        <span *ngIf="password?.errors?.['minlength']">Password must be at least 6 characters</span>
+                    </div>
+                </div>
+                
+                <div class="field">
+                    <p>👤</p>
+                    <select formControlName="role" class="input-field">
+                        <option value="Visitor">Visitor</option>
+                        <option value="Startup">Startup</option>
+                    </select>
+                </div>
+                
+                <button 
+                    class="btn" 
+                    type="submit" 
+                    [disabled]="isLoading || registerForm.invalid">
+                    <span *ngIf="isLoading">Registering...</span>
+                    <span *ngIf="!isLoading">Register</span>
+                </button>
+            </form>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

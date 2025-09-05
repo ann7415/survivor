@@ -1,29 +1,32 @@
 <div class="event-page">
-    <app-header></app-header>
-    <app-hero text="Event"></app-hero>
-    
+  <app-header></app-header>
+  <app-hero text="Events"></app-hero>
+
+  <div *ngIf="loading" class="loading">Loading events...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div *ngIf="!loading && !error">
     <div class="calendar-filter-section">
-        <div class="filter-controls">
-            <button class="toggle-calendar-btn" (click)="toggleCalendar()">
-                <span *ngIf="!showCalendar">Filter by date</span>
-                <span *ngIf="showCalendar">Hide calendar</span>
-            </button>
-            
-            <div class="selected-date-info" *ngIf="selectedDate">
-                <span>Events of {{ selectedDate | date:'fullDate':'en' }}</span>
-                <button class="clear-filter-btn" (click)="clearDateFilter()">Erase</button>
-            </div>
+      <div class="filter-controls">
+        <button class="toggle-calendar-btn" (click)="toggleCalendar()">
+          <span *ngIf="!showCalendar">Filter by date</span>
+          <span *ngIf="showCalendar">Hide calendar</span>
+        </button>
+        <div class="selected-date-info" *ngIf="selectedDate">
+          <span>Events on: {{ selectedDate | date: 'fullDate' }}</span>
+          <button class="clear-filter-btn" (click)="clearDateFilter()">Erase</button>
         </div>
-        
-        <div class="calendar-container" *ngIf="showCalendar">
-            <app-calendar (dateSelected)="onDateSelected($event)"></app-calendar>
-        </div>
+      </div>
+      <div class="calendar-container" *ngIf="showCalendar">
+        <app-calendar (dateSelected)="onDateSelected($event)"></app-calendar>
+      </div>
     </div>
-    
+
     <div class="events-grid">
-        <app-event_card eventTitle="Event Title" image="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" title="Event Name" text="This is a description of the event. It provides details about what the event is about, when it will take place, and other relevant information." buttonText="Join Now" customClass="primary-button"></app-event_card>
-        <app-event_card eventTitle="Event Title" image="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" title="Event Name" text="This is a description of the event. It provides details about what the event is about, when it will take place, and other relevant information." buttonText="Join Now" customClass="primary-button"></app-event_card>
-        <app-event_card eventTitle="Event Title" image="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" title="Event Name" text="This is a description of the event. It provides details about what the event is about, when it will take place, and other relevant information." buttonText="Join Now" customClass="primary-button"></app-event_card>
+      <app-event_card *ngFor="let e of events; trackBy: trackByEventId" [eventTitle]="e.type" [title]="e.title"
+        [text]="e.description" [image]="'/assets/images/default-event.png'" [customClass]="'primary-button'">
+      </app-event_card>
     </div>
-    <app-footer></app-footer>
+  </div>
+  <app-footer></app-footer>
 </div>

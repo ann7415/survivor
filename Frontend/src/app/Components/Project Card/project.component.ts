@@ -5,7 +5,7 @@
 ** project.component
 */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Image } from '../Image/image.component';
 
 @Component({
@@ -22,4 +22,14 @@ export class ProjectComponent {
     @Input({ required: true }) companyName!: string;
     @Input({ required: true }) projectName!: string;
     @Input({ required: true }) description!: string;
+    @Input() itemId?: number;
+    @Input() itemType?: 'startup' | 'event';
+    
+    @Output() cardClick = new EventEmitter<{id: number, type: 'startup' | 'event'}>();
+
+    onCardClick(): void {
+        if (this.itemId && this.itemType) {
+            this.cardClick.emit({ id: this.itemId, type: this.itemType });
+        }
+    }
 }

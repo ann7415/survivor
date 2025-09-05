@@ -1,0 +1,101 @@
+<!--
+---- EPITECH PROJECT, 2025
+---- survivor
+---- File description:
+---- startup-detail.component
+--->
+
+<div class="startup-detail-page">
+    <app-header></app-header>
+
+    <div *ngIf="isLoading" class="loading-container">
+        <p>Loading startup details...</p>
+    </div>
+
+    <div *ngIf="errorMessage" class="error-container">
+        <app-hero [text]="'Error'" [customClass]="'hero-error'"></app-hero>
+        <div class="error-content">
+            <p>{{ errorMessage }}</p>
+            <my-button [text]="'Go Back'" (onClick)="goBack()" [customClass]="'btn-primary'"></my-button>
+        </div>
+    </div>
+
+    <div *ngIf="!isLoading && !errorMessage && startup" class="startup-content">
+        <app-hero [text]="startup.name" [customClass]="'hero-startup'"></app-hero>
+
+        <div class="startup-details">
+            <div class="startup-header">
+                <div class="startup-info">
+                    <h1>{{ startup.name }}</h1>
+                    <div class="startup-meta">
+                        <span class="status" [class]="'status-' + startup.status.toLowerCase()">
+                            {{ startup.status }}
+                        </span>
+                        <span class="sector">{{ startup.sector }}</span>
+                        <span class="location">{{ startup.location }}</span>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <my-button
+                        *ngIf="startup.website"
+                        [text]="'Visit Website'"
+                        (onClick)="visitWebsite()"
+                        [customClass]="'btn-primary'">
+                    </my-button>
+                    <my-button
+                        *ngIf="startup.contactEmail"
+                        [text]="'Contact'"
+                        (onClick)="sendEmail()"
+                        [customClass]="'btn-secondary'">
+                    </my-button>
+                </div>
+            </div>
+
+            <div class="startup-description">
+                <h2>About {{ startup.name }}</h2>
+                <p>{{ startup.description }}</p>
+            </div>
+
+            <div class="startup-info-grid">
+                <div class="info-card">
+                    <h3>Sector</h3>
+                    <p>{{ startup.sector }}</p>
+                </div>
+                <div class="info-card">
+                    <h3>Location</h3>
+                    <p>{{ startup.location }}</p>
+                </div>
+                <div class="info-card">
+                    <h3>Status</h3>
+                    <p class="status" [class]="'status-' + startup.status.toLowerCase()">
+                        {{ startup.status }}
+                    </p>
+                </div>
+                <div class="info-card">
+                    <h3>Founded</h3>
+                    <p>{{ startup.createdDate | date:'MMMM yyyy' }}</p>
+                </div>
+            </div>
+
+            <div class="contact-section" *ngIf="startup.contactEmail || startup.website">
+                <h2>Get in Touch</h2>
+                <div class="contact-details">
+                    <div *ngIf="startup.contactEmail" class="contact-item">
+                        <strong>Email:</strong>
+                        <a [href]="'mailto:' + startup.contactEmail">{{ startup.contactEmail }}</a>
+                    </div>
+                    <div *ngIf="startup.website" class="contact-item">
+                        <strong>Website:</strong>
+                        <a [href]="startup.website" target="_blank">{{ startup.website }}</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="back-button-container">
+                <my-button [text]="'Back to Projects'" (onClick)="goBack()" [customClass]="'btn-outline'"></my-button>
+            </div>
+        </div>
+    </div>
+
+    <app-footer></app-footer>
+</div>

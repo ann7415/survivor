@@ -8,18 +8,15 @@
 import { Component, signal, ViewChild } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration, ChartOptions } from 'chart.js';
-import { HeaderComponent } from '../../Header/header.component';
-import { FooterComponent } from '../../Footer/footer';
-import { HeroComponent } from '../../Components/Hero/hero.component';
 
 @Component({
-  selector: 'app-line-demo',
+  selector: 'app-dashboard',
   standalone: true,
-  imports: [BaseChartDirective, HeaderComponent, FooterComponent, HeroComponent],
+  imports: [BaseChartDirective],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
-export class DashboardComponent {
+export class dashboardPage {
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
   data = signal<ChartConfiguration<'line'>['data']>({

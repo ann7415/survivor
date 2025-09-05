@@ -10,6 +10,8 @@ import { Subject, takeUntil } from 'rxjs';
 import { Button } from '../Components/Button/button.component';
 import { Image } from '../Components/Image/image.component';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { CommonModule } from '@angular/common';
 import { PaletteService, Palette } from '../services/palette.service';
 
 // Component for the selection of pages
@@ -57,7 +59,7 @@ export class RegisterLoginComponent {
   standalone: true,
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  imports: [ButtonsSelectPageComponent, RegisterLoginComponent, Image],
+  imports: [ButtonsSelectPageComponent, RegisterLoginComponent, Image, CommonModule],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
@@ -68,6 +70,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private renderer: Renderer2,
     private el: ElementRef,
+    public authService: AuthService,
     private router: Router,
     private paletteService: PaletteService
   ) {}

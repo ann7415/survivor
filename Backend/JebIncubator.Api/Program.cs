@@ -12,6 +12,7 @@ using System.Text;
 using JebIncubator.Api.Data;
 using JebIncubator.Api.Services;
 using DotNetEnv;
+using Microsoft.Extensions.FileProviders;
 
 // Load environment variables from .env file
 Env.Load();
@@ -86,6 +87,17 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
+// Configure static files for images
+var imagesPath = Path.Combine(app.Environment.ContentRootPath, "wwwroot", "images");
+if (!Directory.Exists(imagesPath))
+    Directory.CreateDirectory(imagesPath);
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(imagesPath),
+    RequestPath = "/images"
+});
+
 // Initialize Database and Seed Data
 using (var scope = app.Services.CreateScope())
 {
@@ -94,12 +106,16 @@ using (var scope = app.Services.CreateScope())
 
     if (!context.Users.Any())
     {
+        var adminEmail = Environment.GetEnvironmentVariable("ADMIN_EMAIL") ?? throw new InvalidOperationException("ADMIN_EMAIL must be set in environment variables");
+        var adminPassword = Environment.GetEnvironmentVariable("ADMIN_PASSWORD") ?? throw new InvalidOperationException("ADMIN_PASSWORD must be set in environment variables");
+
         var adminUser = new JebIncubator.Api.Models.Entities.User
         {
-            Email = "admin@jeb.com",
-            PasswordHash = BCrypt.Net.BCrypt.HashPassword("admin123"),
+            Email = adminEmail,
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword(adminPassword),
             Role = "Admin"
         };
+
         context.Users.Add(adminUser);
 
         var startups = new[]

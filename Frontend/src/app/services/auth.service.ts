@@ -24,6 +24,8 @@ export class AuthService {
     if (token && user) {
       this.isAuthenticatedSubject.next(true);
       this.currentUserSubject.next(JSON.parse(user));
+    } else {
+      this.isAuthenticatedSubject.next(false);
     }
   }
 
@@ -35,6 +37,8 @@ export class AuthService {
             localStorage.setItem('authToken', response.token);
             this.isAuthenticatedSubject.next(true);
             this.decodeAndStoreUser(response.token);
+          } else {
+            this.isAuthenticatedSubject.next(false);
           }
         })
       );
@@ -62,8 +66,10 @@ export class AuthService {
       };
       localStorage.setItem('currentUser', JSON.stringify(user));
       this.currentUserSubject.next(user);
+      this.isAuthenticatedSubject.next(true);
     } catch (error) {
       console.error('Error decoding token:', error);
+      this.logout();
     }
   }
 
@@ -78,5 +84,9 @@ export class AuthService {
 
   isAdmin(): boolean {
     return this.hasRole('Admin');
+  }
+
+  isConnected(): boolean {
+    return this.isAuthenticatedSubject.value;
   }
 }

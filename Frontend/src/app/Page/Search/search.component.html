@@ -16,31 +16,31 @@
         <button (click)="retryLoadData()" class="retry-button">Retry</button>
     </div>
     <div *ngIf="!isLoading && !errorMessage" class="search-zone">
-        <app-searchbar 
-            (searchChange)="onSearchChange($event)" 
+        <app-searchbar
+            (searchChange)="onSearchChange($event)"
             style="margin-top: 15px;">
         </app-searchbar>
         <div class="filters-container">
-            <app-dropdown-menu 
-                [menu_name]="'Filter by location'" 
-                [options]="locationOptions" 
-                [multipleSelection]="true" 
+            <app-dropdown-menu
+                [menu_name]="'Filter by location'"
+                [options]="locationOptions"
+                [multipleSelection]="true"
                 (selectionChange)="onLocationFilterChange($event)">
             </app-dropdown-menu>
-            <app-dropdown-menu 
-                [menu_name]="'Filter by sector'" 
-                [options]="sectorOptions" 
-                [multipleSelection]="true" 
+            <app-dropdown-menu
+                [menu_name]="'Filter by sector'"
+                [options]="sectorOptions"
+                [multipleSelection]="true"
                 (selectionChange)="onSectorFilterChange($event)">
             </app-dropdown-menu>
-            <app-sort-dropdown 
-                [placeholder]="'Sort by name'" 
+            <app-sort-dropdown
+                [placeholder]="'Sort by name'"
                 [showResetOption]="true"
                 (sortChange)="onSortChange($event)">
             </app-sort-dropdown>
-            <button 
+            <button
                 *ngIf="selectedLocations.length > 0 || selectedSectors.length > 0 || currentSort !== 'none' || searchValue.trim()"
-                (click)="resetAllFilters()" 
+                (click)="resetAllFilters()"
                 class="reset-all-button">
                 Reset all
             </button>
@@ -72,13 +72,16 @@
         <div *ngIf="filteredStartups.length > 0" class="startups-section">
             <h3>Startups ({{ filteredStartups.length }})</h3>
             <div class="startups-grid">
-                <app-project 
+                <app-project
                     *ngFor="let startup of filteredStartups"
                     [src]="'https://via.placeholder.com/300x200?text='"
-                    [companyName]="startup.name" 
-                    [projectName]="startup.name" 
+                    [companyName]="startup.name"
+                    [projectName]="startup.name"
                     [description]="startup.description + ' - Sector: ' + startup.sector + ' | Location: ' + startup.location"
                     [alt]="'Logo of ' + startup.name"
+                    [itemId]="startup.id"
+                    [itemType]="'startup'"
+                    (cardClick)="onCardClick($event)"
                     class="project-card">
                 </app-project>
             </div>
@@ -86,13 +89,16 @@
         <div *ngIf="filteredEvents.length > 0" class="events-section">
             <h3>Events ({{ filteredEvents.length }})</h3>
             <div class="events-grid">
-                <app-project 
+                <app-project
                     *ngFor="let event of filteredEvents"
                     [src]="'https://via.placeholder.com/300x200?text='"
                     [companyName]="event.type"
-                    [projectName]="event.description" 
-                    [description]="' - Location: ' + event.location + ' | Date: ' + event.date"
+                    [projectName]="event.title"
+                    [description]="event.description + ' - Location: ' + event.location + ' | Date: ' + (event.dates | date:'MMM dd, yyyy')"
                     [alt]="'Logo of ' + event.title"
+                    [itemId]="event.id"
+                    [itemType]="'event'"
+                    (cardClick)="onCardClick($event)"
                     class="project-card">
                 </app-project>
             </div>

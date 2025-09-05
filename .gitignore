@@ -5,6 +5,7 @@ bin/
 obj/
 Properties/
 br/
+backup/
 *.db
 *.db-shm
 *.db-wal
@@ -26,6 +27,8 @@ appsettings.*.local.json
 /tmp
 /out-tsc
 /bazel-out
+*wwwroot/
+*.png
 
 # Node
 /node_modules

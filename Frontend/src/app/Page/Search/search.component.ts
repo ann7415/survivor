@@ -8,6 +8,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { Subject, takeUntil, combineLatest } from 'rxjs';
 
 import { HeaderComponent } from '../../Header/header.component';
@@ -32,11 +33,11 @@ import { FilterService } from '../../services/filter.service';
     imports: [
         CommonModule,
         HttpClientModule,
-        HeaderComponent, 
-        DropdownMenuComponent, 
-        SearchbarComponent, 
-        FooterComponent, 
-        HeroComponent, 
+        HeaderComponent,
+        DropdownMenuComponent,
+        SearchbarComponent,
+        FooterComponent,
+        HeroComponent,
         ProjectComponent,
         SortDropdownComponent
     ],
@@ -44,27 +45,28 @@ import { FilterService } from '../../services/filter.service';
 })
 export class SearchPage implements OnInit, OnDestroy {
     private destroy$ = new Subject<void>();
-    
+
     allStartups: Startup[] = [];
     allEvents: Event[] = [];
     filteredStartups: Startup[] = [];
     filteredEvents: Event[] = [];
-    
+
     locationOptions: string[] = [];
     sectorOptions: string[] = [];
-    
+
     selectedLocations: string[] = [];
     selectedSectors: string[] = [];
     currentSort: SortOption = 'none';
     searchValue: string = '';
-    
+
     isLoading = true;
     errorMessage = '';
 
     constructor(
         private startupService: StartupsService,
         private eventsService: EventsService,
-        private filterService: FilterService
+        private filterService: FilterService,
+        private router: Router
     ) {}
 
     ngOnInit(): void {
@@ -78,7 +80,7 @@ export class SearchPage implements OnInit, OnDestroy {
 
     private loadData(): void {
         this.isLoading = true;
-        
+
         combineLatest([
             this.startupService.getStartups(),
             this.eventsService.getEvents()
@@ -88,21 +90,21 @@ export class SearchPage implements OnInit, OnDestroy {
             next: ([startups, events]) => {
                 this.allStartups = startups;
                 this.allEvents = events;
-                
+
                 this.filterService.getAllCountries(startups).pipe(
                     takeUntil(this.destroy$)
                 ).subscribe(locations => {
                     this.locationOptions = locations;
                 });
-                
+
                 this.filterService.getAllSectors(startups).pipe(
                     takeUntil(this.destroy$)
                 ).subscribe(sectors => {
                     this.sectorOptions = sectors;
                 });
-                
+
                 this.isLoading = false;
-                
+
                 this.setupFilterSubscription();
                 this.applyCurrentFilters();
             },
@@ -125,7 +127,7 @@ export class SearchPage implements OnInit, OnDestroy {
 
     private applyCurrentFilters(): void {
         const filters = this.filterService.getCurrentFilters();
-        
+
         let filteredStartups = [...this.allStartups];
         if (filters.locations.length > 0) {
             filteredStartups = filteredStartups.filter(startup => {
@@ -134,19 +136,19 @@ export class SearchPage implements OnInit, OnDestroy {
             });
         }
         if (filters.sectors.length > 0) {
-            filteredStartups = filteredStartups.filter(startup => 
+            filteredStartups = filteredStartups.filter(startup =>
                 filters.sectors.includes(startup.sector)
             );
         }
         if (filters.searchText.trim()) {
             const searchLower = filters.searchText.toLowerCase();
-            filteredStartups = filteredStartups.filter(startup => 
+            filteredStartups = filteredStartups.filter(startup =>
                 startup.name.toLowerCase().includes(searchLower) ||
                 startup.description.toLowerCase().includes(searchLower) ||
                 startup.sector.toLowerCase().includes(searchLower)
             );
         }
-        
+
         let filteredEvents = [...this.allEvents];
         if (filters.locations.length > 0) {
             filteredEvents = filteredEvents.filter(event => {
@@ -155,19 +157,19 @@ export class SearchPage implements OnInit, OnDestroy {
             });
         }
         if (filters.sectors.length > 0) {
-            filteredEvents = filteredEvents.filter(event => 
+            filteredEvents = filteredEvents.filter(event =>
                 filters.sectors.includes(event.type)
             );
         }
         if (filters.searchText.trim()) {
             const searchLower = filters.searchText.toLowerCase();
-            filteredEvents = filteredEvents.filter(event => 
+            filteredEvents = filteredEvents.filter(event =>
                 event.title.toLowerCase().includes(searchLower) ||
                 event.description.toLowerCase().includes(searchLower) ||
                 event.type.toLowerCase().includes(searchLower)
             );
         }
-        
+
         switch (filters.sortOption) {
             case 'alphabetical':
                 filteredStartups.sort((a, b) => a.name.localeCompare(b.name));
@@ -177,12 +179,12 @@ export class SearchPage implements OnInit, OnDestroy {
                 break;
             case 'none':
             default:
-                filteredStartups.sort((a, b) => 
+                filteredStartups.sort((a, b) =>
                     new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime()
                 );
                 break;
         }
-        
+
         switch (filters.sortOption) {
             case 'alphabetical':
                 filteredEvents.sort((a, b) => a.title.localeCompare(b.title));
@@ -192,8 +194,8 @@ export class SearchPage implements OnInit, OnDestroy {
                 break;
             case 'none':
             default:
-                filteredEvents.sort((a, b) => 
-                    new Date(b.date).getTime() - new Date(a.date).getTime()
+                filteredEvents.sort((a, b) =>
+                    new Date(b.dates).getTime() - new Date(a.dates).getTime()
                 );
                 break;
         }
@@ -237,12 +239,12 @@ export class SearchPage implements OnInit, OnDestroy {
 
     private extractCountryFromLocation(location: string): string {
         if (!location) return '';
-        
+
         const trimmed = location.trim();
-        
+
         const parts = trimmed.split(',');
         let country = parts[parts.length - 1].trim();
-        
+
         country = country
           .replace(/\d+/g, '')
           .replace(/\s+/g, ' ')
@@ -254,7 +256,15 @@ export class SearchPage implements OnInit, OnDestroy {
             .replace(/\s+/g, ' ')
             .trim();
         }
-        
+
         return country;
+    }
+
+    onCardClick(event: {id: number, type: 'startup' | 'event'}): void {
+        if (event.type === 'startup') {
+            this.router.navigate(['/startup', event.id]);
+        } else if (event.type === 'event') {
+            this.router.navigate(['/event', event.id]);
+        }
     }
 }
