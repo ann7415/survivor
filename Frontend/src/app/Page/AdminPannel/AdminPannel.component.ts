@@ -27,7 +27,7 @@ import { usersManagement } from '../../Components/AdminPannel/Users Management/u
 export class AdminPage {
 
   constructor(private authGuard: AuthGuardService) {
-    if (!this.authGuard.canActivate('admin')) {
+    if (!this.authGuard.canActivate('Admin')) {
       window.location.href = '/home';
     }
   }
