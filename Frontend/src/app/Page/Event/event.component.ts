@@ -20,7 +20,6 @@ export class EventPage {
     onDateSelected(date: Date): void {
         this.selectedDate = date;
         console.log('Date sélectionnée pour filtrer les événements :', date);
-        // Ici vous pouvez ajouter la logique pour filtrer les événements par date
     }
 
     toggleCalendar(): void {
