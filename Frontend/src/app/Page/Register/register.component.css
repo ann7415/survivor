@@ -2,30 +2,83 @@
 ** EPITECH PROJECT, 2025
 ** survivor
 ** File description:
-** register.component.css
+** register.component
 */
 
-.login-page {
+/* ================================
+   Main register Page Container
+   ================================ */
+.register-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    background-color: var(--color-bg);
+    font-family: var(--font-text);
+}
+
+/* ================================
+   register Content Container
+   ================================ */
+.register-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    padding: 2rem 1rem;
+    min-height: calc(100vh - 120px);
+}
+
+/* ================================
+   register Card
+   ================================ */
+.card {
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-
-.card {
-    justify-content: center;
-    width: 200px;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 3rem 2rem;
     text-align: center;
-    background-color: #1f2029;
+    background-color: var(--color-surface);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    border: 1px solid var(--color-border, rgba(0, 0, 0, 0.1));
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* ================================
+   Input Fields
+   ================================ */
 .field {
-    margin-top: .5rem;
+    margin-top: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: .5em;
-    background-color: #1f2029;
-    border-radius: 4px;
+    gap: 0.75rem;
+    background-color: var(--color-bg-alt);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.field:focus-within {
+    border-color: var(--color-primary);
+    background-color: var(--color-bg);
+    box-shadow: 0 0 0 3px rgba(203, 144, 241, 0.1);
+}
+
+.field:hover {
+    border-color: var(--color-primary);
+    background-color: var(--color-bg);
 }
 
 .input-field {
@@ -33,92 +86,308 @@
     border: none;
     outline: none;
     width: 100%;
-    color: #d3d3d3;
+    color: var(--color-text-primary);
+    font-family: var(--font-text);
+    font-size: 1rem;
+    padding: 0.25rem 0;
 }
 
+.input-field::placeholder {
+    color: var(--color-text-secondary);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+/* ================================
+   Title
+   ================================ */
 .title {
-    margin-bottom: 1rem;
-    font-size: 1.5em;
-    font-weight: 500;
-    color: #f5f5f5;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: var(--font-title);
+    color: var(--color-text-primary);
+    position: relative;
 }
 
+.title::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    border-radius: 2px;
+}
+
+/* ================================
+   Buttons
+   ================================ */
 .btn {
-    margin: 1rem;
+    margin: 1.5rem 0 0.5rem 0;
     border: none;
-    border-radius: 4px;
-    font-weight: bold;
-    font-size: .8em;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    font-family: var(--font-text);
     text-transform: uppercase;
-    padding: 0.6em 1.2em;
-    background-color: #ffeba7;
-    color: #5e6681;
-    box-shadow: 0 8px 24px 0 rgb(255 235 167 / 20%);
-    transition: all .3s ease-in-out;
+    letter-spacing: 0.5px;
+    padding: 0.875rem 2rem;
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
+    box-shadow: 0 4px 16px rgba(203, 144, 241, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
 }
 
-.btn-link {
-    color: #f5f5f5;
-    display: block;
-    font-size: .75em;
-    transition: color .3s ease-out;
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
 }
 
-.field input:focus::placeholder {
-    opacity: 0;
-    transition: opacity .3s;
+.btn:hover::before {
+    left: 100%;
 }
 
 .btn:hover {
-    background-color: #5e6681;
-    color: #ffeba7;
-    box-shadow: 0 8px 24px 0 rgb(16 39 112 / 20%);
+    background-color: var(--color-primary-hover);
+    color: var(--color-text-inverse);
+    box-shadow: 0 6px 20px rgba(203, 144, 241, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    background-color: var(--color-primary-active);
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(203, 144, 241, 0.3);
+}
+
+.btn:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* ================================
+   Link Buttons
+   ================================ */
+.btn-link {
+    color: var(--color-text-secondary);
+    display: block;
+    font-size: 0.875rem;
+    font-family: var(--font-text);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+    border-radius: 6px;
+    margin-top: 1rem;
 }
 
 .btn-link:hover {
-    color: #ffeba7;
+    color: var(--color-primary);
+    background-color: var(--color-bg-alt);
+    transform: translateY(-1px);
 }
 
-.alert {
-    padding: 0.75rem 1rem;
-    margin-bottom: 1rem;
-    border-radius: 4px;
-    font-size: 0.875rem;
+.btn-link:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
 }
 
-.alert-success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+/* ================================
+   Focus & Interaction States
+   ================================ */
+.field input:focus::placeholder {
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-.alert-error {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+/* ================================
+   Error States
+   ================================ */
+.field.error {
+    border-color: var(--color-error);
+    background-color: rgba(217, 93, 93, 0.05);
 }
 
-.input-field.error {
-    border: 1px solid #dc3545;
+.field.error .input-field {
+    color: var(--color-error);
 }
 
-.field-error {
-    color: #dc3545;
-    font-size: 0.75rem;
-    margin-top: 0.25rem;
+.error-message {
+    color: var(--color-error);
+    font-size: 0.8rem;
+    font-family: var(--font-text);
+    margin-top: 0.5rem;
     text-align: left;
     width: 100%;
 }
 
-.btn:disabled {
-    background-color: #6c757d;
-    color: #ffffff;
-    cursor: not-allowed;
-    opacity: 0.65;
+/* ================================
+   Success States
+   ================================ */
+.field.success {
+    border-color: var(--color-success);
+    background-color: rgba(90, 164, 105, 0.05);
 }
 
-.btn:disabled:hover {
-    background-color: #6c757d;
-    color: #ffffff;
-    box-shadow: none;
+/* ================================
+   Loading State
+   ================================ */
+.btn.loading {
+    position: relative;
+    color: transparent;
+}
+
+.btn.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color-text-inverse);
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ================================
+   Responsive Design
+   ================================ */
+@media (max-width: 600px) {
+    .register-page {
+        padding: 1rem 0.5rem;
+    }
+    
+    .card {
+        max-width: 350px;
+        padding: 2rem 1.5rem;
+    }
+    
+    .title {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .field {
+        padding: 0.625rem 0.875rem;
+    }
+    
+    .input-field {
+        font-size: 0.95rem;
+    }
+    
+    .btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .card {
+        max-width: 320px;
+        padding: 1.5rem 1rem;
+    }
+    
+    .title {
+        font-size: 1.5rem;
+    }
+    
+    .field {
+        margin-top: 0.75rem;
+        padding: 0.5rem 0.75rem;
+    }
+    
+    .btn {
+        padding: 0.625rem 1.25rem;
+        margin: 1rem 0 0.25rem 0;
+    }
+}
+
+/* ================================
+   Form Animation
+   ================================ */
+.card {
+    opacity: 0;
+    animation: slideInUp 0.6s ease forwards;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================================
+   Input Icons (if needed)
+   ================================ */
+.field-icon {
+    color: var(--color-text-secondary);
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.field:focus-within .field-icon {
+    color: var(--color-primary);
+}
+
+/* ================================
+   Accessibility Enhancements
+   ================================ */
+@media (prefers-reduced-motion: reduce) {
+    .card {
+        animation: none;
+        opacity: 1;
+    }
+    
+    .btn::before {
+        display: none;
+    }
+    
+    .register-page * {
+        transition: none !important;
+    }
+}
+
+/* ================================
+   Print Styles
+   ================================ */
+@media print {
+    .register-page {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .card {
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+    }
+    
+    .btn {
+        background: #ccc !important;
+        color: black !important;
+        box-shadow: none !important;
+    }
 }

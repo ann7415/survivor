@@ -19,7 +19,6 @@ export class EventPage implements OnInit {
   events: Event[] = [];
   loading = true;
   error: string | null = null;
-
   selectedDate: Date | null = null;
   showCalendar = false;
 

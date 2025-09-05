@@ -27,6 +27,8 @@ appsettings.*.local.json
 /tmp
 /out-tsc
 /bazel-out
+*wwwroot/
+*.png
 
 # Node
 /node_modules
