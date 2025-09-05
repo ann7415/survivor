@@ -8,12 +8,18 @@
 <div class="my-header">
     <div class="image-container">
         <app-image class="logo"
-            src="https://ih1.redbubble.net/image.4607708649.1907/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg"
+            src="favicon.ico"
             customClass="image-class" (clicked)="navigateTo('home')">
         </app-image>
     </div>
-    <div class="checkbox-wrapper-41">
-        <input type="checkbox">
+    <div class="theme-toggle-container">
+        <label class="checkbox-wrapper-41">
+            <input 
+                type="checkbox" 
+                [checked]="currentPalette === 'our'"
+                (change)="onPaletteToggle($event)"
+                aria-label="Toggle color palette">
+        </label>
     </div>
     <div class="button-container" >
         <app-select-page></app-select-page>

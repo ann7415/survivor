@@ -2,11 +2,13 @@
 ** EPITECH PROJECT, 2025
 ** survivor
 ** File description:
-** app.component.ts
+** app.component
 */
-import { Component } from '@angular/core';
+
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './Header/header.component';
+import { PaletteService } from './services/palette.service';
 
 @Component({
   selector: 'app-root',
@@ -18,4 +20,11 @@ import { HeaderComponent } from './Header/header.component';
   `,
   imports: [RouterOutlet, HeaderComponent],
 })
-export class AppComponent {}
+export class AppComponent implements OnInit {
+  title = 'survivor';
+
+  constructor(private paletteService: PaletteService) {}
+
+  ngOnInit() {
+  }
+}

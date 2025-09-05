@@ -12,26 +12,19 @@
           <span *ngIf="!showCalendar">Filter by date</span>
           <span *ngIf="showCalendar">Hide calendar</span>
         </button>
-
         <div class="selected-date-info" *ngIf="selectedDate">
           <span>Events on: {{ selectedDate | date: 'fullDate' }}</span>
-          <button class="clear-filter-btn" (click)="clearDateFilter()">Effacer</button>
+          <button class="clear-filter-btn" (click)="clearDateFilter()">Erase</button>
         </div>
       </div>
-
       <div class="calendar-container" *ngIf="showCalendar">
         <app-calendar (dateSelected)="onDateSelected($event)"></app-calendar>
       </div>
     </div>
 
     <div class="events-grid">
-      <app-event_card
-        *ngFor="let e of events; trackBy: trackByEventId"
-        [eventTitle]="e.type"
-        [title]="e.title"
-        [text]="e.description"
-        [image]="'/assets/images/default-event.png'"
-        [customClass]="'primary-button'">
+      <app-event_card *ngFor="let e of events; trackBy: trackByEventId" [eventTitle]="e.type" [title]="e.title"
+        [text]="e.description" [image]="'/assets/images/default-event.png'" [customClass]="'primary-button'">
       </app-event_card>
     </div>
   </div>
