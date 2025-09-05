@@ -12,6 +12,7 @@ using System.Text;
 using JebIncubator.Api.Data;
 using JebIncubator.Api.Services;
 using DotNetEnv;
+using Microsoft.Extensions.FileProviders;
 
 // Load environment variables from .env file
 Env.Load();
@@ -85,6 +86,17 @@ app.UseCors("AllowAngularApp");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+
+// Configure static files for images
+var imagesPath = Path.Combine(app.Environment.ContentRootPath, "wwwroot", "images");
+if (!Directory.Exists(imagesPath))
+    Directory.CreateDirectory(imagesPath);
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(imagesPath),
+    RequestPath = "/images"
+});
 
 // Initialize Database and Seed Data
 using (var scope = app.Services.CreateScope())

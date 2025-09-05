@@ -2,14 +2,17 @@
 ---- EPITECH PROJECT, 2025
 ---- survivor
 ---- File description:
----- news.component
+  ---- news.component
 --->
 
 <div class="news-card">
-    <div class="image-container">
-        <app-image [src]="imageUrl" [alt]="title"></app-image>
-    </div>
-    <div class="text-container">
-        <h2>{{ title }}</h2>
-    </div>
+  <div class="image-container">
+    <app-image [src]="imageUrl" [alt]="imageUrl[0]"></app-image>
+  </div>
+  <div class="text-container">
+    <h3>{{ title }}</h3>
+    <p>{{ description }}</p>
+    <p class="category">Category: {{ category }}</p>
+    <p class="location">Location: {{ location }}</p>
+  </div>
 </div>

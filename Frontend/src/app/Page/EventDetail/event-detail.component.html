@@ -7,11 +7,11 @@
 
 <div class="event-detail-page">
     <app-header></app-header>
-    
+
     <div *ngIf="isLoading" class="loading-container">
         <p>Loading event details...</p>
     </div>
-    
+
     <div *ngIf="errorMessage" class="error-container">
         <app-hero [text]="'Error'" [customClass]="'hero-error'"></app-hero>
         <div class="error-content">
@@ -19,10 +19,10 @@
             <my-button [text]="'Go Back'" (onClick)="goBack()" [customClass]="'btn-primary'"></my-button>
         </div>
     </div>
-    
+
     <div *ngIf="!isLoading && !errorMessage && event" class="event-content">
         <app-hero [text]="event.title" [customClass]="'hero-event'"></app-hero>
-        
+
         <div class="event-details">
             <div class="event-header">
                 <div class="event-info">
@@ -37,18 +37,18 @@
                 </div>
                 <div class="event-date">
                     <div class="date-display">
-                        <span class="day">{{ event.date | date:'dd' }}</span>
-                        <span class="month">{{ event.date | date:'MMM' }}</span>
-                        <span class="year">{{ event.date | date:'yyyy' }}</span>
+                        <span class="day">{{ event.dates | date:'dd' }}</span>
+                        <span class="month">{{ event.dates | date:'MMM' }}</span>
+                        <span class="year">{{ event.dates | date:'yyyy' }}</span>
                     </div>
                 </div>
             </div>
-            
+
             <div class="event-description">
                 <h2>About This Event</h2>
                 <p>{{ event.description }}</p>
             </div>
-            
+
             <div class="event-info-grid">
                 <div class="info-card">
                     <h3>Event Type</h3>
@@ -56,8 +56,8 @@
                 </div>
                 <div class="info-card">
                     <h3>Date & Time</h3>
-                    <p>{{ event.date | date:'EEEE, MMMM dd, yyyy' }}</p>
-                    <p class="time">{{ event.date | date:'HH:mm' }}</p>
+                    <p>{{ event.dates | date:'EEEE, MMMM dd, yyyy' }}</p>
+                    <p class="time">{{ event.dates | date:'HH:mm' }}</p>
                 </div>
                 <div class="info-card">
                     <h3>Location</h3>
@@ -70,27 +70,27 @@
                     </p>
                 </div>
             </div>
-            
+
             <div class="event-actions" *ngIf="!isEventPast()">
                 <h2>Join This Event</h2>
                 <p>Don't miss out on this exciting opportunity!</p>
                 <div class="action-buttons">
-                    <my-button 
-                        [text]="'Register Now'" 
+                    <my-button
+                        [text]="'Register Now'"
                         [customClass]="'btn-primary'">
                     </my-button>
-                    <my-button 
-                        [text]="'Add to Calendar'" 
+                    <my-button
+                        [text]="'Add to Calendar'"
                         [customClass]="'btn-secondary'">
                     </my-button>
                 </div>
             </div>
-            
+
             <div class="back-button-container">
                 <my-button [text]="'Back to Events'" (onClick)="goBack()" [customClass]="'btn-outline'"></my-button>
             </div>
         </div>
     </div>
-    
+
     <app-footer></app-footer>
 </div>

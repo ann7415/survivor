@@ -1,9 +1,9 @@
 /*
-** EPITECH PROJECT, 2025
-** survivor
-** File description:
-** JebApiModels.cs
-*/
+ ** EPITECH PROJECT, 2025
+ ** survivor
+ ** File description:
+ ** JebApiModels.cs
+ */
 
 using System;
 
@@ -29,9 +29,11 @@ namespace JebIncubator.Api.Models
     {
         public int Id { get; set; }
         public string? Title { get; set; }
-        public string? Content { get; set; }
-        public DateTime PublishDate { get; set; }
+        public string? Description { get; set; }
+        public DateTime NewsDate { get; set; }
         public string? Category { get; set; }
+        public string? Location { get; set; }
+        public int? StartupId { get; set; }
     }
 
     public class JebApiEvent

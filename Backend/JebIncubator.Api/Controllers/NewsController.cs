@@ -76,5 +76,24 @@ namespace JebIncubator.Api.Controllers
                 return NotFound();
             return NoContent();
         }
+        
+        [HttpGet("{id}/image")]
+        public async Task<IActionResult> GetNewsImages(int id)
+        {
+          var news = await _newsService.GetNewsByIdAsync(id);
+          if (news == null)
+            return NotFound();
+
+          return Ok(news.ImageUrls);
+        }
+
+        [HttpPost("{id}/image")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> AddImage(int id, [FromBody] string imageUrl)
+        {
+          var result = await _newsService.AddImageAsync(id, imageUrl);
+          if (!result) return NotFound();
+          return NoContent();
+        }
     }
 }

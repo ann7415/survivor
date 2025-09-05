@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JebIncubator.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250904202944_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250905010814_AddNewsImages")]
+    partial class AddNewsImages
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,10 +64,9 @@ namespace JebIncubator.Api.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Category")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Content")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -77,8 +76,14 @@ namespace JebIncubator.Api.Migrations
                     b.Property<bool>("IsPublished")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("PublishDate")
+                    b.Property<string>("Location")
                         .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("NewsDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("StartupId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -91,6 +96,26 @@ namespace JebIncubator.Api.Migrations
                         .HasFilter("[ExternalApiId] IS NOT NULL");
 
                     b.ToTable("News");
+                });
+
+            modelBuilder.Entity("JebIncubator.Api.Models.Entities.NewsImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("NewsId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NewsId");
+
+                    b.ToTable("NewsImage");
                 });
 
             modelBuilder.Entity("JebIncubator.Api.Models.Entities.Startup", b =>
@@ -179,6 +204,17 @@ namespace JebIncubator.Api.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("JebIncubator.Api.Models.Entities.NewsImage", b =>
+                {
+                    b.HasOne("JebIncubator.Api.Models.Entities.News", "News")
+                        .WithMany("Images")
+                        .HasForeignKey("NewsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("News");
+                });
+
             modelBuilder.Entity("JebIncubator.Api.Models.Entities.User", b =>
                 {
                     b.HasOne("JebIncubator.Api.Models.Entities.Startup", "Startup")
@@ -187,6 +223,11 @@ namespace JebIncubator.Api.Migrations
                         .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Startup");
+                });
+
+            modelBuilder.Entity("JebIncubator.Api.Models.Entities.News", b =>
+                {
+                    b.Navigation("Images");
                 });
 
             modelBuilder.Entity("JebIncubator.Api.Models.Entities.Startup", b =>

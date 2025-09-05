@@ -15,12 +15,14 @@ namespace JebIncubator.Api.Models.Entities
         
         [Required]
         public string Title { get; set; } = string.Empty;
-        
-        public string Content { get; set; } = string.Empty;
-        public DateTime PublishDate { get; set; } = DateTime.UtcNow;
-        public string Category { get; set; } = string.Empty;
-        public bool IsPublished { get; set; } = true;
-        
+		[Required]
+        public string Description { get; set; } = string.Empty;
+        public DateTime NewsDate { get; set; }
+        public string? Category { get; set; }
+        public string? Location { get; set; }
+        public int? StartupId { get; set; }
+        public bool IsPublished { get; set; }
+        public List<NewsImage> Images { get; set; } = new();
         public int? ExternalApiId { get; set; }
     }
 }

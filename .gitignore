@@ -5,6 +5,7 @@ bin/
 obj/
 Properties/
 br/
+backup/
 *.db
 *.db-shm
 *.db-wal

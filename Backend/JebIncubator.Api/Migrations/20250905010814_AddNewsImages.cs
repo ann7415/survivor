@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace JebIncubator.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class AddNewsImages : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -36,9 +36,11 @@ namespace JebIncubator.Api.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Title = table.Column<string>(type: "TEXT", nullable: false),
-                    Content = table.Column<string>(type: "TEXT", nullable: false),
-                    PublishDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Category = table.Column<string>(type: "TEXT", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: false),
+                    NewsDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Category = table.Column<string>(type: "TEXT", nullable: true),
+                    Location = table.Column<string>(type: "TEXT", nullable: true),
+                    StartupId = table.Column<int>(type: "INTEGER", nullable: true),
                     IsPublished = table.Column<bool>(type: "INTEGER", nullable: false),
                     ExternalApiId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
@@ -67,6 +69,26 @@ namespace JebIncubator.Api.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Startups", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "NewsImage",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Url = table.Column<string>(type: "TEXT", nullable: false),
+                    NewsId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NewsImage", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_NewsImage_News_NewsId",
+                        column: x => x.NewsId,
+                        principalTable: "News",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -107,6 +129,11 @@ namespace JebIncubator.Api.Migrations
                 filter: "[ExternalApiId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_NewsImage_NewsId",
+                table: "NewsImage",
+                column: "NewsId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Startups_ExternalApiId",
                 table: "Startups",
                 column: "ExternalApiId",
@@ -132,10 +159,13 @@ namespace JebIncubator.Api.Migrations
                 name: "Events");
 
             migrationBuilder.DropTable(
-                name: "News");
+                name: "NewsImage");
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "News");
 
             migrationBuilder.DropTable(
                 name: "Startups");
