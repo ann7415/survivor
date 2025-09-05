@@ -366,7 +366,7 @@
         display: none;
     }
     
-    * {
+    .register-page * {
         transition: none !important;
     }
 }
