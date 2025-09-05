@@ -7,7 +7,7 @@ export interface News {
   startup_id: number;
   publishDate: Date;
   isPublished: boolean;
-  imageUrls: string;
+  imageUrls: string[];
 }
 
 export interface NewsCreate {
