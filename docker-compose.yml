@@ -1,0 +1,31 @@
+services:
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    depends_on:
+      - backend
+    environment:
+      - API_URL=http://backend:5000
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./Backend
+      dockerfile: JebIncubator.Api/Dockerfile
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./Backend/JebIncubator.Api/.env
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:5000
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
