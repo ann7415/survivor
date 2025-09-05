@@ -4,7 +4,7 @@
 ** File description:
 ** dashboard.component.ts
 */
-// src/app/charts/line-demo.component.ts
+
 import { Component, signal, ViewChild } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration, ChartOptions } from 'chart.js';
@@ -20,7 +20,7 @@ export class dashboardPage {
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
   data = signal<ChartConfiguration<'line'>['data']>({
-    labels: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'],
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     datasets: [
       {
         data: [120, 200, 150, 300, 280, 350, 400],

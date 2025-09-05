@@ -2,8 +2,9 @@
 ** EPITECH PROJECT, 2025
 ** survivor
 ** File description:
-** home.component.css
+** home.component
 */
+
 .home-page {
     width: 100%;
     background-color: var(--color-bg);
@@ -40,7 +41,7 @@
     margin-bottom: 16px;
     padding: 15px;
     margin: 10px;
-    border: 1px solid rgb(186, 177, 177);
+    border: 1px solid var(--color-primary);
     border-radius: 12px;
 }
 

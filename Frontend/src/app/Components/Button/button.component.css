@@ -24,7 +24,7 @@
     outline: none;
     border: none;
     background-color: var(--color-surface);
-    color: var(--color-text);
+    color: var(--color-text-primary);
     transition:
         background 0.2s,
         color 0.2s,
@@ -93,8 +93,8 @@
    Button Variants
    ================================ */
 .button--login {
-    background-color: var(--color-hover);
-    border: 2px solid var(--color-focus);
+    background-color: var(--color-surface);
+    border: 2px solid var(--color-primary-hover);
     color: var(--color-primary);
 }
 
@@ -112,7 +112,7 @@
 }
 
 .button--footer {
-    background-color: var(--color-bg-alt);
+    background-color: var(--color-surface);
     color: color-mix(in srgb, var(--color-primary) 25%, var(--color-text-primary));
     border: none;
     font-size: 0.9rem;
@@ -126,26 +126,24 @@
    Button Hover States
    ================================ */
 .button:hover {
-    background-color: var(--color-hover);
-    border-color: var(--color-focus);
+    background-color: var(--color-surface);
+    color: var(--color-primary-hover);
 }
 
 .button--login:hover {
-    background-color: var(--color-primary);
+    background-color: var(--color-primary-hover);
     color: var(--color-text-inverse);
-    border-color: var(--color-primary);
+    border-color: var(--color-primary-hover);
 }
 
 .button--register:hover {
-    background-color: var(--color-secondary);
-    border: 2px solid var(--color-secondary);
+    background-color: var(--color-secondary-hover);
+    border: 2px solid var(--color-secondary-hover);
     color: var(--color-text-inverse);
-    filter: brightness(1.1);
 }
 
 .button--footer:hover {
   background-color: var(--color-bg-alt);
-  color: color-mix(in srgb, var(--color-primary) 25%, var(--color-text-primary));
   transform: translateY(-1px);
 }
 
@@ -154,35 +152,42 @@
    ================================ */
 .button:focus,
 .button:active {
-    background-color: var(--color-focus);
+    background-color: var(--color-primary);
     color: var(--color-text-inverse);
-    border-color: var(--color-focus);
+    border-color: var(--color-primary-active);
     box-shadow: 0 0 0 2px var(--color-focus);
 }
 
 .button--login:focus,
 .button--login:active {
-    background-color: var(--color-primary);
+    background-color: var(--color-primary-active);
     color: var(--color-text-inverse);
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 2px var(--color-primary);
+    border-color: var(--color-primary-active);
+    box-shadow: 0 0 0 2px var(--color-primary-active);
 }
 
 .button--register:focus,
 .button--register:active {
-    background-color: var(--color-secondary);
-    border: 2px solid var(--color-secondary);
+    background-color: var(--color-secondary-active);
+    border: 2px solid var(--color-secondary-active);
     color: var(--color-text-inverse);
-    filter: brightness(0.85);
-    box-shadow: 0 0 0 2px var(--color-secondary);
+    box-shadow: 0 0 0 2px var(--color-secondary-active);
 }
 
 .button--footer:focus,
 .button--footer:active {
   background-color: var(--color-bg-alt);
   border-color: var(--color-bg-alt);
-  color: var(--color-primary);
+  color: var(--color-text-secondary);
   transform: translateY(0);
+  filter: brightness(0.95);
+}
+
+.button:not(:active),
+.button--login:not(:active),
+.button--register:not(:active),
+.button--footer:not(:active) {
+    transition: all 0.3s ease;
 }
 
 .admin-button {

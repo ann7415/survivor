@@ -16,6 +16,9 @@
         <button (click)="retryLoadData()" class="retry-button">Retry</button>
     </div>
     <div *ngIf="!isLoading && !errorMessage" class="search-zone">
+        <div class="search-header">
+            <h4 class="search-title">Search across Startups & Events</h4>
+        </div>
         <app-searchbar
             (searchChange)="onSearchChange($event)"
             style="margin-top: 15px;">

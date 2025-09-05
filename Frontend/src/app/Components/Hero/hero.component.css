@@ -29,10 +29,10 @@
 
 /* Hover Effect */
 .hero:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 6px var(--color-primary-hover);
     font-weight: bold;
     color: var(--color-text-inverse);
-    filter: brightness(1.05);
+    transition: all 0.2s ease;
 }
 
 /* Responsive adjustments for tablets and mobiles */

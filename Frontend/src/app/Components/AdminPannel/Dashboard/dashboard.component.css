@@ -5,79 +5,197 @@
 ** dashboard.component
 */
 
+/* ================================
+   Dashboard Page Container
+   ================================ */
 .dashboard-page {
-    display: block;
-    height: 100%;
     width: 100%;
+    min-height: 100vh;
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    display: flex;
+    flex-direction: column;
 }
 
-/* Container for puts all the data */
+/* ================================
+   Data Container
+   ================================ */
+
 .container-data {
     padding: 20px 0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    gap: 1.5rem;
+    padding: 1rem;
+    background-color: var(--color-primary);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     padding-bottom: 10px;
     background-color: var(--color-surface);
     gap: 10px;
 }
 
-/* Style for the card containing the information */
+/* ================================
+   Info Cards
+   ================================ */
 .card-info {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid darkgray;
-    background-color: var(--color-surface);
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border, var(--color-bg-alt));
     text-align: center;
-    padding: 10px 0;
-    width: calc(100% - 10px);
-    border-radius: 15px;
+    padding: 1.5rem;
+    flex: 1;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Style for the text of the data */
-.card-info p {
-    font-size: 18px;
+.card-info:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
-/* Style for the container for the data */
+.card-info h2 {
+    margin: 0 0 1rem 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ================================
+   Data Display
+   ================================ */
 .data-info {
-    background-color: var(--color-surface);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    gap: 10px;
-    margin: 0;
-    padding: 0;
+    gap: 0.5rem;
 }
 
-.data-info p {
+.data-info p:first-child {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
     margin: 0;
-    padding: 0;
-    font-size: 20px;
+    line-height: 1;
 }
-/* Style for the card containing the graph/text */
+
+.data-daily-view,
+.data-click {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    background-color: var(--color-secondary-hover);
+    color: var(--color-text-inverse);
+}
+
+/* ================================
+   Graph Container
+   ================================ */
 .card-graph {
     background-color: var(--color-surface);
     width: 90%;
-    padding: 10px;
-    margin: auto;
-    border-radius: 15px;
+    max-width: 1200px;
+    padding: 2rem;
+    margin: 2rem auto;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--color-border, rgba(0, 0, 0, 0.1));
 }
 
-/* Style for the graph */
-.canvas {
-    min-height: auto;
-    padding: 10px;
-    min-height: 400px;
-    background-color: white;
-}
-
-/* Style for the text (top) of the graph */
 .title-canva {
     text-align: center;
     color: var(--color-primary);
-    font-size: 24px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.title-canva::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    border-radius: 2px;
+}
+
+/* ================================
+   Canvas Styling
+   ================================ */
+.card-canva {
+    position: relative;
+    height: 400px;
+    padding: 1rem;
+    background-color: var(--color-bg);
+    border-radius: 12px;
+    border: 1px solid var(--color-border, rgba(0, 0, 0, 0.1));
+}
+
+.canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* ================================
+   Responsive Design
+   ================================ */
+@media (max-width: 900px) {
+    .container-data {
+        flex-direction: column;
+        width: 95%;
+        gap: 1rem;
+    }
+    
+    .card-graph {
+        width: 95%;
+        padding: 1.5rem;
+    }
+    
+    .card-canva {
+        height: 300px;
+    }
+}
+
+@media (max-width: 600px) {
+    .container-data {
+        padding: 0.8rem;
+    }
+    
+    .card-info {
+        padding: 1rem;
+    }
+    
+    .data-info p:first-child {
+        font-size: 2rem;
+    }
+    
+    .title-canva {
+        font-size: 1.5rem;
+    }
+    
+    .card-graph {
+        padding: 1rem;
+    }
+    
+    .card-canva {
+        height: 250px;
+        padding: 0.5rem;
+    }
 }

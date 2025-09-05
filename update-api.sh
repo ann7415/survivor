@@ -69,9 +69,23 @@ echo ""
 echo "Starting database synchronization..."
 
 echo "Authenticating with the API..."
-TOKEN_RESPONSE=$(curl -s --max-time 10 -X POST http://localhost:5000/api/auth/login \
+if [ -f "Backend/JebIncubator.Api/.env" ]; then
+    echo "Loading environment variables from Backend/JebIncubator.Api/.env"
+    export $(grep -v '^#' Backend/JebIncubator.Api/.env | xargs)
+else
+    echo ".env file not found at Backend/JebIncubator.Api/.env"
+fi
+
+if [ -z "$ADMIN_EMAIL" ] || [ -z "$ADMIN_PASSWORD" ]; then
+    echo "ADMIN_EMAIL and/or ADMIN_PASSWORD environment variables are not set."
+    echo "Available environment variables:"
+    env | grep ADMIN || echo "   No ADMIN_* variables found"
+    exit 1
+fi
+TOKEN_RESPONSE=$(curl -s -X POST http://localhost:5000/api/auth/login \
     -H "Content-Type: application/json" \
-    -d '{"email":"admin@jeb.com","password":"admin123"}')
+    -d "{\"email\":\"$ADMIN_EMAIL\",\"password\":\"$ADMIN_PASSWORD\"}")
+
 
 if [ $? -ne 0 ] || [ -z "$TOKEN_RESPONSE" ]; then
     echo "Error connecting to the API"
