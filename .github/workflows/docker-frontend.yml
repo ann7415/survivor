@@ -1,0 +1,31 @@
+name: Build Docker Frontend (Angular)
+
+on: [push, pull_request]
+
+jobs:
+  build-frontend:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    # Build section
+    - name: Build the Docker image
+      run: docker build ./Frontend --file Frontend/Dockerfile --tag survivor-frontend:latest
+
+    # Run & Test section
+    - name: Run the Docker container
+      run: docker run -d -p 4200:4200 --name survivor-frontend survivor-frontend:latest
+
+    - name: Test the Docker container
+      run: |
+        sleep 10
+        curl -f http://localhost:4200/home || exit 1
+
+    # Cleanup section
+    - name: Stop and remove the Docker container
+      run: |
+        docker stop survivor-frontend
+        docker rm survivor-frontend
+
+    - name: Remove the Docker image
+      run: docker rmi survivor-frontend:latest
