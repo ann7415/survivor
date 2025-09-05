@@ -6,19 +6,19 @@ if ! docker info > /dev/null 2>&1; then
 fi
 
 echo "Stopping existing containers..."
-docker-compose down --remove-orphans
+docker compose down --remove-orphans
 
 echo "Cleaning up orphaned images..."
 docker system prune -f
 
 echo "Building and starting containers..."
-docker-compose up --build -d
+docker compose up --build -d
 
 echo "Waiting for services to start..."
 sleep 15
 
 echo "Container status:"
-docker-compose ps
+docker compose ps
 
 check_api_health() {
     local max_attempts=10
@@ -42,7 +42,7 @@ check_api_health() {
 echo "Checking API availability..."
 if ! check_api_health; then
     echo "Unable to connect to the API. Check logs with:"
-    echo "   docker-compose logs backend"
+    echo "   docker compose logs backend"
     exit 1
 fi
 
@@ -128,7 +128,7 @@ echo "Angular frontend available at: http://localhost:4200"
 echo "C# backend API available at: http://localhost:5000"
 
 # To view real-time logs:
-# docker-compose logs -f
+# docker compose logs -f
 
 # To stop the application:
-# docker-compose down
+# docker compose down

@@ -20,8 +20,7 @@ import { AuthService } from '../../services/auth.service';
 export class LoginPage {
     constructor(private authService: AuthService) {}
 
-    onSubmit(event: Event, email: string, password: string): void {
-        event.preventDefault();
+    login(email: string, password: string): void {
         if (email && password) {
             this.authService.login({ email, password }).subscribe({
                 next: (response) => {
