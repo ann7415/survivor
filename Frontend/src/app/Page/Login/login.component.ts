@@ -7,9 +7,8 @@
 
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../../Header/header.component';
-import { HeroComponent } from '../../Components/Hero/hero.component';
 import { FooterComponent } from '../../Footer/footer';
-import { BannerComponent } from '../../Components/Card/banner';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
     selector: 'app-login',
@@ -18,4 +17,24 @@ import { BannerComponent } from '../../Components/Card/banner';
     templateUrl: './login.component.html',
     imports: [HeaderComponent, FooterComponent],
 })
-export class LoginPage {}
+export class LoginPage {
+    constructor(private authService: AuthService) {}
+
+    onSubmit(event: Event, email: string, password: string): void {
+        event.preventDefault();
+        if (email && password) {
+            this.authService.login({ email, password }).subscribe({
+                next: (response) => {
+                    console.log('Login successful:', response);
+                    window.location.href = '/home';
+                },
+                error: (err) => {
+                    console.error('Login failed:', err);
+                    alert('Login failed: ' + (err.error?.message || 'Unknown error'));
+                }
+            });
+        } else {
+            console.log('Please fill in all fields.');
+        }
+    }
+}

@@ -1,0 +1,12 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** dashboard.component
+*/
+
+.dashboard-page {
+    display: block;
+    height: 100%;
+    width: 100%;
+}

@@ -14,6 +14,7 @@ export class UsersService {
 
   getUsers(role?: string, search?: string): Observable<User[]> {
     let params = new HttpParams();
+
     if (role) params = params.set('role', role);
     if (search) params = params.set('search', search);
     return this.apiService.get<User[]>(this.endpoint, params);

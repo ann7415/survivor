@@ -94,12 +94,16 @@ using (var scope = app.Services.CreateScope())
 
     if (!context.Users.Any())
     {
+        var adminEmail = Environment.GetEnvironmentVariable("ADMIN_EMAIL") ?? throw new InvalidOperationException("ADMIN_EMAIL must be set in environment variables");
+        var adminPassword = Environment.GetEnvironmentVariable("ADMIN_PASSWORD") ?? throw new InvalidOperationException("ADMIN_PASSWORD must be set in environment variables");
+
         var adminUser = new JebIncubator.Api.Models.Entities.User
         {
-            Email = "admin@jeb.com",
-            PasswordHash = BCrypt.Net.BCrypt.HashPassword("admin123"),
+            Email = adminEmail,
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword(adminPassword),
             Role = "Admin"
         };
+
         context.Users.Add(adminUser);
 
         var startups = new[]

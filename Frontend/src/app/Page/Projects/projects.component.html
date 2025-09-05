@@ -60,6 +60,9 @@
             [projectName]="startup.name" 
             [description]="startup.description + ' - Sector: ' + startup.sector + ' | Location: ' + startup.location"
             [alt]="'Logo of ' + startup.name"
+            [itemId]="startup.id"
+            [itemType]="'startup'"
+            (cardClick)="onCardClick($event)"
             class="project-card">
         </app-project>
     </div>

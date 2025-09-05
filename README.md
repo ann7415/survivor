@@ -129,7 +129,7 @@ ng serve
 cd JebIncubator.Api
 dotnet run --urls "http://localhost:5000"
 ```
-➡️ **API available at:** http://localhost:5000  
+➡️ **API available at:** http://localhost:5000
 ➡️ **Swagger docs:** http://localhost:5000/swagger
 
 2. **Angular Frontend**:
@@ -140,7 +140,6 @@ ng serve
 ➡️ **Web app:** http://localhost:4200
 
 ### Test Accounts
-- **Admin**: `admin@jeb.com` / `admin123`
 - **Test User**: Create via signup form
 
 ---

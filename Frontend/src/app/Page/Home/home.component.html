@@ -19,12 +19,14 @@
     </div>
 
     <div class="banner-container" *ngIf="startups$ | async as startups; else nothing">
-        <ng-container *ngFor="let s of startups">
+        <ng-container *ngFor="let s of startups | slice:0:8">
             <app-banner
                 [title]="s.name"
                 [text]="s.description.trim() ? s.description : 'No description available.'"
                 buttonText="View more"
-                [image]="s.name">
+                [image]="s.name"
+                [startupId]="s.id"
+                (bannerClick)="onBannerClick($event)">
             </app-banner>
         </ng-container>
     </div>
