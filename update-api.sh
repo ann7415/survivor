@@ -9,7 +9,7 @@ check_container_running() {
     fi
 }
 
-if ! command -v docker-compose &> /dev/null; then
+if ! command -v docker-compose 2>&1 > /dev/null; then
     echo "Docker Compose is not installed"
     exit 1
 fi
