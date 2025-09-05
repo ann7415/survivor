@@ -35,20 +35,6 @@
                         <span class="location">{{ startup.location }}</span>
                     </div>
                 </div>
-                <div class="action-buttons">
-                    <my-button
-                        *ngIf="startup.website"
-                        [text]="'Visit Website'"
-                        (onClick)="visitWebsite()"
-                        [customClass]="'btn-primary'">
-                    </my-button>
-                    <my-button
-                        *ngIf="startup.contactEmail"
-                        [text]="'Contact'"
-                        (onClick)="sendEmail()"
-                        [customClass]="'btn-secondary'">
-                    </my-button>
-                </div>
             </div>
 
             <div class="startup-description">
@@ -64,12 +50,6 @@
                 <div class="info-card">
                     <h3>Location</h3>
                     <p>{{ startup.location }}</p>
-                </div>
-                <div class="info-card">
-                    <h3>Status</h3>
-                    <p class="status" [class]="'status-' + startup.status.toLowerCase()">
-                        {{ startup.status }}
-                    </p>
                 </div>
                 <div class="info-card">
                     <h3>Founded</h3>
@@ -89,10 +69,6 @@
                         <a [href]="startup.website" target="_blank">{{ startup.website }}</a>
                     </div>
                 </div>
-            </div>
-
-            <div class="back-button-container">
-                <my-button [text]="'Back to Projects'" (onClick)="goBack()" [customClass]="'btn-outline'"></my-button>
             </div>
         </div>
     </div>

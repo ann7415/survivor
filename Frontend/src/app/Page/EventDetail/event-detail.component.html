@@ -63,31 +63,6 @@
                     <h3>Location</h3>
                     <p>{{ event.location }}</p>
                 </div>
-                <div class="info-card">
-                    <h3>Status</h3>
-                    <p class="status" [class]="'status-' + getEventStatus()">
-                        {{ getEventStatusText() }}
-                    </p>
-                </div>
-            </div>
-
-            <div class="event-actions" *ngIf="!isEventPast()">
-                <h2>Join This Event</h2>
-                <p>Don't miss out on this exciting opportunity!</p>
-                <div class="action-buttons">
-                    <my-button
-                        [text]="'Register Now'"
-                        [customClass]="'btn-primary'">
-                    </my-button>
-                    <my-button
-                        [text]="'Add to Calendar'"
-                        [customClass]="'btn-secondary'">
-                    </my-button>
-                </div>
-            </div>
-
-            <div class="back-button-container">
-                <my-button [text]="'Back to Events'" (onClick)="goBack()" [customClass]="'btn-outline'"></my-button>
             </div>
         </div>
     </div>
