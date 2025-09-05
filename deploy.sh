@@ -49,7 +49,7 @@ check_api_health() {
 }
 
 # Verify that the API is accessible
-echo "🔍 Checking API availability..."
+echo "🔝 Checking API availability..."
 if ! check_api_health; then
     echo "❌ Unable to connect to the API. Check logs with:"
     echo "   docker-compose logs backend"
@@ -61,9 +61,24 @@ echo "🔄 Synchronizing database..."
 
 # Step 1: Connect and retrieve the token
 echo "🔑 Connecting to the API..."
+
+# Load environment variables from backend .env file
+if [ -f "Backend/JebIncubator.Api/.env" ]; then
+    echo "📋 Loading environment variables from Backend/JebIncubator.Api/.env"
+    export $(grep -v '^#' Backend/JebIncubator.Api/.env | xargs)
+else
+    echo "⚠️  .env file not found at Backend/JebIncubator.Api/.env"
+fi
+
+if [ -z "$ADMIN_EMAIL" ] || [ -z "$ADMIN_PASSWORD" ]; then
+    echo "❌ ADMIN_EMAIL and/or ADMIN_PASSWORD environment variables are not set."
+    echo "📋 Available environment variables:"
+    env | grep ADMIN || echo "   No ADMIN_* variables found"
+    exit 1
+fi
 TOKEN_RESPONSE=$(curl -s -X POST http://localhost:5000/api/auth/login \
     -H "Content-Type: application/json" \
-    -d '{"email":"admin@jeb.com","password":"admin123"}')
+    -d "{\"email\":\"$ADMIN_EMAIL\",\"password\":\"$ADMIN_PASSWORD\"}")
 
 if [ $? -ne 0 ]; then
     echo "❌ Error while connecting to the API"
@@ -117,14 +132,14 @@ echo "📊 Number of startups found: $STARTUP_COUNT"
 if [ $STARTUP_COUNT -gt 2 ]; then
     echo "✅ Test successful! Database contains more than 2 startups"
 else
-    echo "⚠️ Warning: Database contains only $STARTUP_COUNT startup(s)"
+    echo "⚠︝ Warning: Database contains only $STARTUP_COUNT startup(s)"
     echo "Full response: $STARTUPS_RESPONSE"
 fi
 
 echo ""
 echo "🎉 Deployment and synchronization completed!"
-echo "🌐 Angular frontend available at: http://localhost:4200"
-echo "⚙️  C# backend API available at: http://localhost:5000"
+echo "🌝 Angular frontend available at: http://localhost:4200"
+echo "⚙︝  C# backend API available at: http://localhost:5000"
 echo ""
 echo "📜 To view real-time logs:"
 echo "   docker-compose logs -f"
