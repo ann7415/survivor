@@ -2,12 +2,57 @@
 ---- EPITECH PROJECT, 2025
 ---- survivor
 ---- File description:
----- projects.component
+---- news.component
 --->
 
 <div class="news-page">
-    <app-header></app-header>
-    <app-hero text="News"></app-hero>
-    <app-news-card title="test" imageUrl="https://ih1.redbubble.net/image.4607708649.1907/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg"></app-news-card>
-    <app-footer></app-footer>
+  <app-header></app-header>
+  <app-hero text="News"></app-hero>
+
+  @if (loading) {
+    <p class="loading">Loading...</p>
+  }
+
+  @if (error) {
+    <p class="error">{{ error }}</p>
+  }
+
+  @if (!loading && !error) {
+    <div class="news-list">
+        <app-news-card
+          *ngFor="let n of getNewsCards(); trackBy: trackByNewsId"
+          [title]="n.title"
+          [description]="n.description"
+          [imageUrl]="n.imageUrls.length > 0 ? 'http://localhost:5000' + n.imageUrls[0] : '/assets/images/default.png'"
+          [category]="n.category"
+          [location]="n.location">
+        </app-news-card>
+
+
+      @if (getPaginatedNews().length === 0) {
+        <p>No news found.</p>
+      }
+    </div>
+
+    <div class="pagination button-container">
+      <my-button text="Prev" customClass="button button--page" (clicked)="prevPage()"></my-button>
+      <span>Page {{ currentPage }} / {{ totalPages }}</span>
+      <my-button text="Next" customClass="button button--page" (clicked)="nextPage()"></my-button>
+    </div>
+
+    @if (isAdmin) {
+      <div class="button-container">
+        <my-button text="Create News" customClass="button--register" (clicked)="toggleCreateForm()"></my-button>
+      </div>
+
+      @if (showCreateForm) {
+        <div class="create-form">
+          <input [(ngModel)]="newNews.title" placeholder="Title" />
+          <input [(ngModel)]="newNews.category" placeholder="Category" />
+          <my-button text="Submit" customClass="button--login" (clicked)="createNews()"></my-button>
+        </div>
+      }
+    }
+  }
+  <app-footer></app-footer>
 </div>
