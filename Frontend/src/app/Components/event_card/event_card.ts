@@ -6,6 +6,7 @@
 */
 
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event_card',
@@ -18,5 +19,12 @@ export class EventCardComponent {
   @Input({ required: true }) title!: string;
   @Input({ required: true }) text!: string;
   @Input({ required: true }) image!: string;
+  @Input({ required: true }) eventId!: number;
   @Input() customClass?: string;
+
+  constructor(private router: Router) {}
+
+  onCardClick(): void {
+    this.router.navigate(['/event', this.eventId]);
+  }
 }
