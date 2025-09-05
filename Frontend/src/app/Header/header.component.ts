@@ -26,7 +26,6 @@ export class ButtonsSelectPageComponent {
   constructor(private router: Router) {}
 
   navigateTo(page: string) {
-    console.log(`Navigating to ${page}`);
     this.router.navigate([`/${page}`]);
   }
 }
@@ -43,12 +42,10 @@ export class RegisterLoginComponent {
   constructor(private router: Router) {}
 
   onLogin() {
-    console.log("Login button clicked");
     this.router.navigate(['/login']);
   }
 
   onRegister() {
-    console.log("Register button clicked");
     this.router.navigate(['/register']);
   }
 }
@@ -66,7 +63,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private lastScrollTop = 0;
   private headerVisible = true;
   currentPalette: Palette = 'given';
-  
+
   constructor(
     private renderer: Renderer2,
     private el: ElementRef,
@@ -77,7 +74,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.renderer.addClass(this.el.nativeElement.querySelector('.my-header'), 'header-visible');
-    
+
     this.paletteService.palette$
       .pipe(takeUntil(this.destroy$))
       .subscribe(palette => {
@@ -91,7 +88,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   navigateTo(page: string) {
-    console.log(`Navigating to ${page}`);
     this.router.navigate([`/${page}`]);
   }
 
@@ -104,14 +100,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   onWindowScroll() {
     const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
     const headerElement = this.el.nativeElement.querySelector('.my-header');
-    
+
     if (currentScroll <= 0) {
       this.renderer.removeClass(headerElement, 'header-hidden');
       this.renderer.addClass(headerElement, 'header-visible');
       this.headerVisible = true;
       return;
     }
-    
+
     if (currentScroll > this.lastScrollTop && this.headerVisible) {
       this.renderer.removeClass(headerElement, 'header-visible');
       this.renderer.addClass(headerElement, 'header-hidden');
@@ -121,7 +117,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.renderer.addClass(headerElement, 'header-visible');
       this.headerVisible = true;
     }
-    
+
     this.lastScrollTop = currentScroll;
   }
 }

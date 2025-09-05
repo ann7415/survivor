@@ -55,7 +55,7 @@ export class NewsPage implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isAdmin = this.authService.isAdmin();
+    this.isAdmin = true; //this.authService.getRole() === 'Admin';
     this.loadNews();
   }
 

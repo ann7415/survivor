@@ -24,16 +24,13 @@ export class LoginPage {
         if (email && password) {
             this.authService.login({ email, password }).subscribe({
                 next: (response) => {
-                    console.log('Login successful:', response);
                     window.location.href = '/home';
                 },
                 error: (err) => {
-                    console.error('Login failed:', err);
                     alert('Login failed: ' + (err.error?.message || 'Unknown error'));
                 }
             });
         } else {
-            console.log('Please fill in all fields.');
         }
     }
 }
