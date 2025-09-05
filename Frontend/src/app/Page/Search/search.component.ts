@@ -195,7 +195,7 @@ export class SearchPage implements OnInit, OnDestroy {
             case 'none':
             default:
                 filteredEvents.sort((a, b) =>
-                    new Date(b.dates).getTime() - new Date(a.dates).getTime()
+                    new Date(b.date).getTime() - new Date(a.date).getTime()
                 );
                 break;
         }
