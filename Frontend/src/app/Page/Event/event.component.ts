@@ -22,11 +22,6 @@ export class EventPage implements OnInit {
   selectedDate: Date | null = null;
   showCalendar = false;
 
-    onDateSelected(date: Date): void {
-        this.selectedDate = date;
-        console.log('Date sélectionnée pour filtrer les événements :', date);
-    }
-
   constructor(private eventsService: EventsService) {}
 
   ngOnInit(): void {
