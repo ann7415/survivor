@@ -18,14 +18,27 @@
         </div>
       </div>
       <div class="calendar-container" *ngIf="showCalendar">
-        <app-calendar (dateSelected)="onDateSelected($event)"></app-calendar>
+        <app-calendar 
+          [events]="allEvents" 
+          (dateSelected)="onDateSelected($event)">
+        </app-calendar>
       </div>
     </div>
 
-    <div class="events-grid">
-      <app-event_card *ngFor="let e of events; trackBy: trackByEventId" [eventTitle]="e.type" [title]="e.title"
-        [text]="e.description" [image]="'/assets/images/default-event.png'" [customClass]="'primary-button'">
+    <div class="events-grid" *ngIf="events.length > 0">
+      <app-event_card *ngFor="let e of events; trackBy: trackByEventId" 
+        [eventTitle]="e.type" 
+        [title]="e.title"
+        [text]="e.description" 
+        [image]="'/assets/images/default-event.png'" 
+        [eventId]="e.id"
+        [customClass]="'primary-button'">
       </app-event_card>
+    </div>
+
+    <div class="no-events" *ngIf="events.length === 0 && !loading">
+      <p *ngIf="selectedDate">No events found for {{ selectedDate | date: 'fullDate' }}</p>
+      <p *ngIf="!selectedDate">No events available</p>
     </div>
   </div>
   <app-footer></app-footer>

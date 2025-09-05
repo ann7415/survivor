@@ -5,7 +5,7 @@
   ---- news.component
 --->
 
-<div class="news-card">
+<div class="news-card" (click)="onCardClick()">
   <div class="image-container">
     <app-image [src]="imageUrl" [alt]="imageUrl[0]"></app-image>
   </div>

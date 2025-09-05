@@ -5,13 +5,15 @@
 ** calendar.component
 */
 
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Event } from '../../models/event';
 
 interface CalendarDay {
   day: number | null;
   classes: string;
   isClickable: boolean;
+  hasEvents: boolean;
 }
 
 @Component({
@@ -23,6 +25,7 @@ interface CalendarDay {
 })
 export class CalendarComponent {
   @Output() dateSelected = new EventEmitter<Date>();
+  @Input() events: Event[] = [];
 
   currentDate = new Date();
   currentMonth = this.currentDate.getMonth();
@@ -99,7 +102,8 @@ export class CalendarComponent {
     return this.calendarDays.map(day => ({
       day: day,
       classes: this.getCalendarDayClasses(day),
-      isClickable: !!day
+      isClickable: !!day,
+      hasEvents: this.hasEventsOnDay(day)
     }));
   }
 
@@ -122,6 +126,24 @@ export class CalendarComponent {
       classes += ' clickable';
     }
     
+    if (this.hasEventsOnDay(day)) {
+      classes += ' has-events';
+    }
+    
     return classes;
+  }
+
+  private hasEventsOnDay(day: number | null): boolean {
+    if (!day || !this.events) return false;
+    
+    const dayDate = new Date(this.currentYear, this.currentMonth, day);
+    
+    return this.events.some(event => {
+      if (!event.date) return false;
+      const eventDate = new Date(event.date);
+      return eventDate.getFullYear() === dayDate.getFullYear() &&
+             eventDate.getMonth() === dayDate.getMonth() &&
+             eventDate.getDate() === dayDate.getDate();
+    });
   }
 }

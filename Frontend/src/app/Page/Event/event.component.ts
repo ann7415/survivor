@@ -17,6 +17,7 @@ import { Event } from '../../models/event';
 })
 export class EventPage implements OnInit {
   events: Event[] = [];
+  allEvents: Event[] = [];
   loading = true;
   error: string | null = null;
   selectedDate: Date | null = null;
@@ -34,7 +35,8 @@ export class EventPage implements OnInit {
 
     this.eventsService.getEvents().subscribe({
       next: (data) => {
-        this.events = data;
+        this.allEvents = data;
+        this.filterEvents();
         this.loading = false;
       },
       error: (err) => {
@@ -47,6 +49,7 @@ export class EventPage implements OnInit {
 
   onDateSelected(date: Date): void {
     this.selectedDate = date;
+    this.filterEvents();
   }
 
   toggleCalendar(): void {
@@ -55,6 +58,30 @@ export class EventPage implements OnInit {
 
   clearDateFilter(): void {
     this.selectedDate = null;
+    this.filterEvents();
+  }
+
+  private filterEvents(): void {
+    if (!this.selectedDate) {
+      this.events = [...this.allEvents];
+    } else {
+      this.events = this.allEvents.filter(event => {
+        if (!event.date) return false;
+        
+        const eventDate = new Date(event.date);
+        const selectedDate = new Date(this.selectedDate!);
+        
+        return eventDate.getFullYear() === selectedDate.getFullYear() &&
+               eventDate.getMonth() === selectedDate.getMonth() &&
+               eventDate.getDate() === selectedDate.getDate();
+      });
+    }
+  }
+
+  private isSameDay(date1: Date, date2: Date): boolean {
+    return date1.getFullYear() === date2.getFullYear() &&
+           date1.getMonth() === date2.getMonth() &&
+           date1.getDate() === date2.getDate();
   }
 
   trackByEventId(index: number, event: Event): number {

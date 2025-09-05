@@ -1,0 +1,90 @@
+<!--
+---- EPITECH PROJECT, 2025
+---- survivor
+---- File description:
+---- news-detail.component
+--->
+
+<div class="news-detail-page">
+  <app-header></app-header>
+
+  @if (loading) {
+    <div class="loading-container">
+      <p class="loading">Loading news details...</p>
+    </div>
+  }
+
+  @if (error) {
+    <div class="error-container">
+      <div class="error-content">
+        <h2>Error</h2>
+        <p class="error">{{ error }}</p>
+        <my-button 
+          text="Go Back to News" 
+          customClass="button--primary" 
+          (clicked)="goBack()">
+        </my-button>
+      </div>
+    </div>
+  }
+
+  @if (!loading && !error && news) {
+    <div class="news-content">
+      <div class="news-details">
+        <div class="news-header">
+          <div class="news-info">
+            <h1>{{ news.title }}</h1>
+            <div class="news-meta">
+              <span class="category">{{ news.category }}</span>
+              <span class="location">{{ news.location }}</span>
+              <span class="date">{{ formatDate(news.publishDate) }}</span>
+            </div>
+          </div>
+
+          @if (isAdmin) {
+            <div class="action-buttons">
+              <my-button 
+                text="Edit" 
+                customClass="button--secondary" 
+                (clicked)="editNews()">
+              </my-button>
+              <my-button 
+                text="Delete" 
+                customClass="button--danger" 
+                (clicked)="deleteNews()">
+              </my-button>
+            </div>
+          }
+        </div>
+
+        <div class="news-image">
+          <img [src]="getImageUrl()" [alt]="news.title" />
+        </div>
+
+        <div class="news-description">
+          <h2>Description</h2>
+          <p>{{ news.description }}</p>
+        </div>
+
+        <div class="news-info-grid">
+          <div class="info-card">
+            <h3>Category</h3>
+            <p>{{ news.category }}</p>
+          </div>
+          
+          <div class="info-card">
+            <h3>Location</h3>
+            <p>{{ news.location }}</p>
+          </div>
+          
+          <div class="info-card">
+            <h3>Publication Date</h3>
+            <p>{{ formatDate(news.publishDate) }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <app-footer></app-footer>
+</div>

@@ -37,9 +37,9 @@
                 </div>
                 <div class="event-date">
                     <div class="date-display">
-                        <span class="day">{{ event.dates | date:'dd' }}</span>
-                        <span class="month">{{ event.dates | date:'MMM' }}</span>
-                        <span class="year">{{ event.dates | date:'yyyy' }}</span>
+                        <span class="day">{{ event.date | date:'dd' }}</span>
+                        <span class="month">{{ event.date | date:'MMM' }}</span>
+                        <span class="year">{{ event.date | date:'yyyy' }}</span>
                     </div>
                 </div>
             </div>
@@ -56,8 +56,8 @@
                 </div>
                 <div class="info-card">
                     <h3>Date & Time</h3>
-                    <p>{{ event.dates | date:'EEEE, MMMM dd, yyyy' }}</p>
-                    <p class="time">{{ event.dates | date:'HH:mm' }}</p>
+                    <p>{{ event.date | date:'EEEE, MMMM dd, yyyy' }}</p>
+                    <p class="time">{{ event.date | date:'HH:mm' }}</p>
                 </div>
                 <div class="info-card">
                     <h3>Location</h3>

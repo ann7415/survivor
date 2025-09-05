@@ -1,0 +1,208 @@
+/*
+** EPITECH PROJECT, 2025
+** survivor
+** File description:
+** news-detail.component.css
+*/
+
+.news-detail-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.loading-container, .error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    text-align: center;
+}
+
+.error-content {
+    padding: 2rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.news-content {
+    flex: 1;
+}
+
+.news-details {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.news-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.news-info h1 {
+    margin: 0 0 1rem 0;
+    color: var(--color-text-primary);
+    font-size: 2.5rem;
+    font-family: var(--font-title);
+}
+
+.news-meta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.news-meta span {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.category {
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
+}
+
+.location {
+    background-color: var(--color-secondary);
+    color: var(--color-text-inverse);
+}
+
+.date {
+    background-color: var(--color-accent);
+    color: var(--color-text-inverse);
+}
+
+.status {
+    color: var(--color-text-inverse);
+}
+
+.status-published {
+    background-color: var(--color-success);
+}
+
+.status-draft {
+    background-color: var(--color-warning);
+    color: var(--color-text-primary);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.news-image {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.news-image img {
+    max-width: 100%;
+    height: auto;
+    max-height: 500px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.news-description {
+    background-color: var(--color-surface);
+    padding: 2rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--color-primary);
+}
+
+.news-description h2 {
+    margin-top: 0;
+    color: var(--color-text-primary);
+    font-family: var(--font-title);
+}
+
+.news-description p {
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    font-family: var(--font-text);
+    font-size: 1.1rem;
+}
+
+.news-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.info-card {
+    background-color: var(--color-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: 1px solid var(--color-border);
+}
+
+.info-card h3 {
+    margin: 0 0 0.5rem 0;
+    color: var(--color-text-primary);
+    font-size: 1.1rem;
+    font-family: var(--font-title);
+}
+
+.info-card p {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-family: var(--font-text);
+}
+
+.back-button-container {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.loading {
+    font-size: 1.2rem;
+    color: var(--color-text-secondary);
+}
+
+.error {
+    color: var(--color-error);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .news-details {
+        padding: 1rem;
+    }
+    
+    .news-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .news-info h1 {
+        font-size: 2rem;
+    }
+    
+    .news-meta {
+        justify-content: center;
+    }
+    
+    .action-buttons {
+        justify-content: center;
+    }
+    
+    .news-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .news-description {
+        padding: 1.5rem;
+    }
+}
