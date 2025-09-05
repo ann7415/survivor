@@ -109,6 +109,31 @@
   background-color: var(--color-secondary-hover);
 }
 
+.calendar-day.has-events {
+  position: relative;
+  font-weight: bold;
+}
+
+.calendar-day.has-events::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-accent);
+  border-radius: 50%;
+}
+
+.calendar-day.has-events.selected::after {
+  background-color: var(--color-text-inverse);
+}
+
+.calendar-day.has-events.today::after {
+  background-color: var(--color-text-inverse);
+}
+
 @media (max-width: 480px) {
   .calendar-container {
     max-width: 100%;
