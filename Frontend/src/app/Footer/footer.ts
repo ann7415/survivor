@@ -23,7 +23,6 @@ export class FooterComponent {
   }
 
   navigateTo(page: string) {
-    console.log(`Navigating to ${page}`);
     window.location.href = '/' + page;
   }
 
@@ -33,7 +32,6 @@ export class FooterComponent {
   }
 
   navigateToExternal(url: string) {
-    console.log(`Opening external link: ${url}`);
     window.open(url, '_blank');
   }
 }

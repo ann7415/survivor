@@ -21,5 +21,5 @@ export class SideBarAdminComponent {
 
   @Input()  active: AdminPage = 'dashboard';
   @Output() navigate = new EventEmitter<AdminPage>();
-  go(page: AdminPage) { console.log(page); this.navigate.emit(page);  }
+  go(page: AdminPage) { this.navigate.emit(page);  }
 }
