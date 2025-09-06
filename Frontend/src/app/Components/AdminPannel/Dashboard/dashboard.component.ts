@@ -8,6 +8,7 @@
 import { Component, signal, ViewChild } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration, ChartOptions } from 'chart.js';
+import { StartupsService } from '../../../services/startups.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -43,5 +44,18 @@ export class dashboardPage {
     next.datasets[0].data.push(value);
     this.data.set(next);
     this.chart?.update();
+  }
+
+  numberOfStartups = String(0);
+  constructor(private startupService: StartupsService) {
+    this.startupService.getStartups().subscribe({
+      next: (response) => {
+        this.numberOfStartups = response.length.toString();
+      },
+      error: (err) => {
+        console.error('Failed to fetch startups:', err);
+        this.numberOfStartups = "0";
+      }
+    });
   }
 }

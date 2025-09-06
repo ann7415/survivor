@@ -41,9 +41,7 @@ export class RegisterPage {
 
     onSubmit(): void {
         if (this.registerForm.valid) {
-            this.isLoading = true;
             this.errorMessage = '';
-            this.successMessage = '';
 
             const registerData: RegisterRequest = {
                 email: this.registerForm.get('email')?.value,
@@ -53,14 +51,19 @@ export class RegisterPage {
 
             this.authService.register(registerData).subscribe({
                 next: (response) => {
-                    this.isLoading = false;
-                    this.successMessage = response.message || 'Registration successful!';
-                    setTimeout(() => {
-                        this.router.navigate(['/login']);
-                    }, 2000);
+                    this.authService.login({ email: registerData.email, password: registerData.password }).subscribe({
+                        error: (loginError) => {
+                            this.errorMessage = loginError.error?.message || 'An error occurred during login';
+                        },
+                        next: () => {
+                            this.successMessage = 'Registration successful! Redirecting to home...';
+                            setTimeout(() => {
+                                this.router.navigate(['/home']);
+                            }, 500);
+                        }
+                    });
                 },
                 error: (error) => {
-                    this.isLoading = false;
                     this.errorMessage = error.error?.message || 'An error occurred during registration';
                 }
             });

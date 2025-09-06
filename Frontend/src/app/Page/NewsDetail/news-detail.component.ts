@@ -41,7 +41,7 @@ export class NewsDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isAdmin = this.authService.isAdmin();
+    this.isAdmin = true; //this.authService.hasRole('Admin');
     this.loadNewsDetail();
   }
 
@@ -94,11 +94,11 @@ export class NewsDetailComponent implements OnInit {
 
   getImageUrl(): string {
     if (!this.news) return '/assets/images/default.png';
-    
+
     if (this.news.imageUrls && this.news.imageUrls.length > 0) {
       return `http://localhost:5000${this.news.imageUrls[0]}`;
     }
-    
+
     return '/assets/images/default.png';
   }
 
