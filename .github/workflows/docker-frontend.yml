@@ -23,9 +23,11 @@ jobs:
 
     # Cleanup section
     - name: Stop and remove the Docker container
+      if: always()
       run: |
         docker stop survivor-frontend
         docker rm survivor-frontend
 
     - name: Remove the Docker image
+      if: always()
       run: docker rmi survivor-frontend:latest
