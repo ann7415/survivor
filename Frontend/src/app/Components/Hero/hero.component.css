@@ -55,3 +55,10 @@
     margin-bottom: 0;
     border-bottom-left-radius: 0;
 }
+
+.admin-hero:hover {
+    box-shadow: none;
+    font-weight: 700;
+    color: var(--color-text-inverse);
+    transition: none;
+}

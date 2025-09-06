@@ -16,18 +16,23 @@ namespace JebIncubator.Api.Controllers
     public class AuthController : ControllerBase
     {
         private readonly AuthService _authService;
-        public AuthController(AuthService authService)
+        private readonly UserService _userService;
+
+        public AuthController(AuthService authService, UserService userService)
         {
             _authService = authService;
+            _userService = userService;
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
             var result = await _authService.LoginAsync(loginDto);
-            
-            if (result.Success)
+
+            if (result.Success) {
+                await _userService.UpdateLastLoginDateAsync(loginDto.Email);
                 return Ok(new { token = result.Token, message = result.Message });
+            }
             return Unauthorized(new { message = result.Message });
         }
 
@@ -35,7 +40,7 @@ namespace JebIncubator.Api.Controllers
         public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
         {
             var result = await _authService.RegisterAsync(registerDto);
-            
+
             if (result.Success)
                 return Ok(new { message = result.Message });
             return BadRequest(new { message = result.Message });

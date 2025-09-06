@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JebIncubator.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250905010814_AddNewsImages")]
-    partial class AddNewsImages
+    [Migration("20250906093027_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -181,6 +181,9 @@ namespace JebIncubator.Api.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("LastLoginDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PasswordHash")

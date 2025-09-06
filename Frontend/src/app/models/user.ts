@@ -5,6 +5,7 @@ export interface User {
   startupId?: number;
   startupName?: string;
   createdDate: string;
+  lastLoginDate?: string;
 }
 
 export interface UserUpdate {

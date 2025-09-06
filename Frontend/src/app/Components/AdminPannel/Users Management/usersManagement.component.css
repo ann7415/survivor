@@ -6,7 +6,28 @@
 */
 
 .users-page {
-    display: block;
-    height: 100%;
     width: 100%;
+    min-height: 100vh;
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    display: flex;
+    flex-direction: column;
+}
+
+.user-card {
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    gap: 1.5rem;
+    padding: 1rem;
+    background-color: var(--color-primary);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    padding-bottom: 10px;
+    background-color: var(--color-surface);
+    gap: 10px;
 }

@@ -29,4 +29,11 @@ export class usersManagement {
       this.usersService.updateUser(id, { ...user, role }).subscribe();
     });
   }
+
+  deleteUser(id: number): void {
+    this.usersService.deleteUser(id).subscribe();
+    setTimeout(() => {
+      this.users$ = this.usersService.getUsers();
+    }, 200);
+  }
 }

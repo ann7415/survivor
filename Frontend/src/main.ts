@@ -24,6 +24,7 @@ import { StartupDetailComponent } from './app/Page/StartupDetail/startup-detail.
 import { EventDetailComponent } from './app/Page/EventDetail/event-detail.component';
 import { NewsDetailComponent } from './app/Page/NewsDetail/news-detail.component';
 import { RegisterPage } from './app/Page/Register/register.component';
+import { roleGuard } from './app/guard/role.guard';
 
 Chart.register(...registerables);
 
@@ -40,7 +41,7 @@ const routes: Routes = [
     { path: 'news/:id', component: NewsDetailComponent },
     { path: 'login', component: LoginPage },
     { path: 'register', component: RegisterPage },
-    { path: 'admin', component: AdminPage },
+    { path: 'admin', component: AdminPage, canActivate: [roleGuard], data: { expectedRole: 'Admin' } },
     { path: '**', component: UnknownPage },
 ];
 

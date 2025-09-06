@@ -37,7 +37,8 @@ namespace JebIncubator.Api.Services
                     Role = u.Role,
                     StartupId = u.StartupId,
                     StartupName = u.Startup != null ? u.Startup.Name : null,
-                    CreatedDate = u.CreatedDate
+                    CreatedDate = u.CreatedDate,
+                    LastLoginDate = u.LastLoginDate
                 })
                 .ToListAsync();
         }
@@ -57,7 +58,8 @@ namespace JebIncubator.Api.Services
                 Role = user.Role,
                 StartupId = user.StartupId,
                 StartupName = user.Startup?.Name,
-                CreatedDate = user.CreatedDate
+                CreatedDate = user.CreatedDate,
+                LastLoginDate = user.LastLoginDate
             };
         }
 
@@ -76,14 +78,15 @@ namespace JebIncubator.Api.Services
                 Role = user.Role,
                 StartupId = user.StartupId,
                 StartupName = user.Startup?.Name,
-                CreatedDate = user.CreatedDate
+                CreatedDate = user.CreatedDate,
+                LastLoginDate = user.LastLoginDate
             };
         }
 
         public async Task<bool> UpdateUserAsync(int id, UserUpdateDto dto)
         {
             var user = await _context.Users.FindAsync(id);
-            
+
             if (user == null)
                 return false;
             user.Email = dto.Email;
@@ -96,8 +99,8 @@ namespace JebIncubator.Api.Services
         public async Task<bool> DeleteUserAsync(int id)
         {
             var user = await _context.Users.FindAsync(id);
-            
-            if (user == null) 
+
+            if (user == null)
                 return false;
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
@@ -107,7 +110,7 @@ namespace JebIncubator.Api.Services
         public async Task<bool> UpdateUserRoleAsync(int id, string role)
         {
             var user = await _context.Users.FindAsync(id);
-            
+
             if (user == null)
                 return false;
             user.Role = role;
@@ -118,7 +121,7 @@ namespace JebIncubator.Api.Services
         public async Task<bool> AssignUserToStartupAsync(int userId, int? startupId)
         {
             var user = await _context.Users.FindAsync(userId);
-            
+
             if (user == null)
                 return false;
             if (startupId.HasValue)
@@ -128,6 +131,17 @@ namespace JebIncubator.Api.Services
                     return false;
             }
             user.StartupId = startupId;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> UpdateLastLoginDateAsync(string email)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+
+            if (user == null)
+                return false;
+            user.LastLoginDate = DateTime.UtcNow;
             await _context.SaveChangesAsync();
             return true;
         }
