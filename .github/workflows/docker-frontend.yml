@@ -18,8 +18,14 @@ jobs:
 
     - name: Test the Docker container
       run: |
-        sleep 10
-        curl -f http://localhost:4200/home || exit 1
+        for i in {1..30}; do
+          if curl -f http://localhost:4200/home; then
+            exit 0
+          fi
+          sleep 1
+        done
+        echo "Container did not start within 30 seconds."
+        exit 1
 
     # Cleanup section
     - name: Stop and remove the Docker container
